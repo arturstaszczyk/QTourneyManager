@@ -4,9 +4,9 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    sources/BlindsDef.cpp \
     sources/GameContext.cpp \
-    sources/RoundDef.cpp
+    sources/MainScreenController.cpp \
+    Models/RoundModel.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -24,6 +24,7 @@ macx {
 }
 
 HEADERS += \
-    sources/BlindsDef.h \
     sources/GameContext.h \
-    sources/RoundDef.h
+    sources/MainScreenController.h \
+    Models/BlindsModel.h \
+    Models/RoundModel.h

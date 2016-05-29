@@ -1,4 +1,4 @@
-#include "gamecontext.h"
+﻿#include "gamecontext.h"
 
 GameContext::GameContext(QObject *parent)
   : QObject(parent)
@@ -11,14 +11,14 @@ GameContext::GameContext(QObject *parent)
 
 GameContext::~GameContext()
 {
-    std::vector<RoundDef*>::iterator it, endIt = mRounds.end();
+    std::vector<RoundModel*>::iterator it, endIt = mRounds.end();
     for(it = mRounds.begin(); it != endIt; ++it)
         delete *it;
 }
 
-const RoundDef* GameContext::addRoundDef(int seconds, int smallBlind)
+const RoundModel* GameContext::addRoundDef(int seconds, int smallBlind)
 {
-    mRounds.push_back(new RoundDef(seconds, smallBlind));
+    mRounds.push_back(new RoundModel(seconds, smallBlind));
     return mRounds.back();
 }
 

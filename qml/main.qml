@@ -13,18 +13,8 @@ Window {
 
     Rectangle {
         id: root
-        objectName: "root"
-        focus: true
         anchors.fill: parent
         color: Globals.appBackground
-
-        // todo: model
-        property variant initialDate
-
-        Component.onCompleted: {
-            root.initialDate = new Date();
-            gameContext.restart()
-        }
 
         Keys.onReleased: {
             if (event.key === Qt.Key_Back || event.key === Qt.Key_Escape) {
@@ -32,23 +22,30 @@ Window {
             }
         }
 
-        Timer {
-            id: timer
-
-            interval: 1000.0 / 30.0
-            repeat: true
-            running: true
-            onTriggered: {
-                var now = new Date()
-                var diff = (now.getTime() - root.initialDate.getTime())
-                gameContext.tick( diff )
-                root.initialDate = now;
-            }
-        }
-
         MainScreen {
             anchors.fill: parent
         }
+
+//        property variant initialDate
+//        Component.onCompleted: {
+//            root.initialDate = new Date();
+//            gameContext.restart()
+//        }
+
+
+//        Timer {
+//            id: timer
+
+//            interval: 1000.0 / 30.0
+//            repeat: true
+//            running: true
+//            onTriggered: {
+//                var now = new Date()
+//                var diff = (now.getTime() - root.initialDate.getTime())
+//                gameContext.tick( diff )
+//                root.initialDate = now;
+//            }
+//        }
 
     }
 }

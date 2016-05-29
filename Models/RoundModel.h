@@ -1,13 +1,11 @@
-#ifndef ROUNDDEF_H
+﻿#ifndef ROUNDDEF_H
 #define ROUNDDEF_H
 
-#include <math.h>
 #include <QObject>
-#include <QVariant>
 
-#include "blindsdef.h"
+#include "BlindsModel.h"
 
-class RoundDef : public QObject
+class RoundModel : public QObject
 {
     Q_OBJECT
 
@@ -17,8 +15,8 @@ class RoundDef : public QObject
     Q_PROPERTY(int initialSeconds READ initialSeconds CONSTANT)
 
 public:
-    explicit RoundDef(QObject *parent = 0);
-    explicit RoundDef(int initialSeconds, int smallBlind, QObject *parent = 0);
+    explicit RoundModel(QObject *parent = 0);
+    explicit RoundModel(int initialSeconds, int smallBlind, QObject *parent = 0);
 
     inline int initialSeconds() const
     {
@@ -37,12 +35,12 @@ public:
 
     inline bool isValid() const
     {
-        return mBlindsDef.areValid();
+        return mBlindsDef.areValid() && mInitialSeconds > 0;
     }
 
 private:
     int         mInitialSeconds;
-    BlindsDef   mBlindsDef;
+    BlindsModel   mBlindsDef;
 };
 
 #endif // ROUNDDEF_H

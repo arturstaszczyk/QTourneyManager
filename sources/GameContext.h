@@ -1,10 +1,12 @@
-#ifndef GAMECONTEXT_H
+﻿#ifndef GAMECONTEXT_H
 #define GAMECONTEXT_H
 
+#include <cmath>
 #include <vector>
+
 #include <QObject>
 
-#include "rounddef.h"
+#include "Models/RoundModel.h"
 
 #define NO_ACTIVE_ROUND -1
 
@@ -12,7 +14,7 @@ class GameContext : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(RoundDef* activeRound READ activeRound NOTIFY activeRoundChanged)
+    Q_PROPERTY(RoundModel* activeRound READ activeRound NOTIFY activeRoundChanged)
 
     Q_PROPERTY(int activeRoundMinutesLeft READ activeRoundMinutesLeft NOTIFY activeRoundMinutesLeftChanged)
     Q_PROPERTY(int activeRoundSecondsLeft READ activeRoundSecondsLeft NOTIFY activeRoundSecondsLeftChanged)
@@ -35,7 +37,7 @@ public:
         return mPaused;
     }
 
-    RoundDef* activeRound()
+    RoundModel* activeRound()
     {
         if( mActiveRoundIdx >= 0 && mActiveRoundIdx < static_cast<int>(mRounds.size()))
             return mRounds[mActiveRoundIdx];
@@ -57,7 +59,7 @@ public:
     explicit GameContext(QObject *parent = 0);
     ~GameContext();
 
-    const RoundDef* addRoundDef(int seconds, int smallBlind);
+    const RoundModel* addRoundDef(int seconds, int smallBlind);
 
 public slots:
 
@@ -81,8 +83,8 @@ private:
     }
 
 private:
-    std::vector<RoundDef*>  mRounds;
-    RoundDef                mEmptyRound;
+    std::vector<RoundModel*>  mRounds;
+    RoundModel                mEmptyRound;
 
     int                     mActiveRoundIdx;
     int                     mMillisecondsElapsed;

@@ -1,22 +1,22 @@
-#ifndef BLINDSDEF_H
+﻿#ifndef BLINDSDEF_H
 #define BLINDSDEF_H
 
-class BlindsDef
+class BlindsModel
 {
 public:
-    BlindsDef()
-        : mSmallBlind(1)
+    BlindsModel()
+        : mSmallBlind(0)
     {
         // NOP
     }
 
-    BlindsDef(int smallBlind)
+    BlindsModel(int smallBlind)
         : mSmallBlind(smallBlind)
     {
         // NOP
     }
 
-    BlindsDef(const BlindsDef& other)
+    BlindsModel(const BlindsModel& other)
     {
         this->mSmallBlind = other.mSmallBlind;
     }
@@ -36,7 +36,7 @@ public:
         return mSmallBlind != 0;
     }
 
-    bool operator== (BlindsDef& rhs)
+    bool operator== (BlindsModel& rhs)
     {
         return this->mSmallBlind == rhs.mSmallBlind;
     }

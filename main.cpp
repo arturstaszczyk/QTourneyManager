@@ -3,7 +3,7 @@
 #include <QQmlApplicationEngine>
 
 #include "sources/GameContext.h"
-#include "sources/RoundDef.h"
+#include "Models/RoundModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     qmlRegisterType< GameContext >( "pokermanager.types", 1, 0, "GameContext" );
-    qmlRegisterType< RoundDef >( "pokermanager.types", 1, 0, "RoundDef" );
+    qmlRegisterType< RoundModel >( "pokermanager.types", 1, 0, "RoundDef" );
 
     GameContext gameContext;
     gameContext.addRoundDef(15, 1);
