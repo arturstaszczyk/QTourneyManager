@@ -12,10 +12,8 @@
         <file>qml/BlindsEditor/BlindsListEditor.qml</file>
         <file>qml/MainMenu/MainMenu.qml</file>
         <file>qml/MainMenu/MainMenuButton.qml</file>
-        <file>qml/MainScreen/MainControlButtons_h.qml</file>
-        <file>qml/MainScreen/MainControlButtons_v.qml</file>
-        <file>qml/MainScreen/MainScreen_h.qml</file>
-        <file>qml/MainScreen/MainScreen_v.qml</file>
+        <file>qml/MainScreen/MainControlButtons.qml</file>
+        <file>qml/MainScreen/MainScreen.qml</file>
         <file>qml/MainScreen/MainTimer.qml</file>
     </qresource>
 </RCC>

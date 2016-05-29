@@ -46,28 +46,9 @@ Window {
             }
         }
 
-        Loader {
-            id: loader
+        MainScreen {
             anchors.fill: parent
         }
 
-        states: [
-            State {
-                name: "default"
-                when: root.width < root.height
-                PropertyChanges {
-                    target: loader;
-                    source: "MainScreen/MainScreen_v.qml"
-                }
-            },
-            State {
-                name: "horizontal"
-                when: root.width >= root.height
-                PropertyChanges {
-                    target: loader
-                    source: "MainScreen/MainScreen_h.qml"
-                }
-            }
-        ]
     }
 }

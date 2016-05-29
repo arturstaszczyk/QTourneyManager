@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 
 import "../Globals.js" as Globals
 import "../"
@@ -24,7 +24,7 @@ Rectangle {
         anchors.rightMargin: 15
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        source: "../../../images/navigation_next_item.png"
+        source: "qrc:/images/icons-general-ui/play120.png"
     }
 
     MouseArea {
