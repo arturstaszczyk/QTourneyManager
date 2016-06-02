@@ -14,7 +14,7 @@ class MainScreenController : public QObject
     Q_OBJECT
 
 public:
-    Q_PROPERTY(RoundModel* activeRound READ activeRound NOTIFY activeRoundChanged CONSTANT)
+    Q_PROPERTY(RoundModel* activeRound READ activeRound NOTIFY activeRoundChanged)
 
     Q_PROPERTY(int activeRoundMinutesLeft READ activeRoundMinutesLeft NOTIFY activeRoundMinutesLeftChanged)
     Q_PROPERTY(int activeRoundSecondsLeft READ activeRoundSecondsLeft NOTIFY activeRoundSecondsLeftChanged)
@@ -58,7 +58,7 @@ private:
 
     int totalSecondsLeft() const
     {
-        return activeRound()->initialSeconds() - floor(mMillisecondsElapsed / 1000.0);
+        return activeRound()->roundTime() - floor(mMillisecondsElapsed / 1000.0);
     }
 
 private:

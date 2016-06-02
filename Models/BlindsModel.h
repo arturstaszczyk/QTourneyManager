@@ -1,19 +1,26 @@
 ﻿#ifndef BLINDSDEF_H
 #define BLINDSDEF_H
 
-class BlindsModel
+#include <QObject>
+
+class BlindsModel : public QObject
 {
+    Q_OBJECT
+
+    Q_PROPERTY(int smallBlind READ smallBlind CONSTANT)
+    Q_PROPERTY(int bigBlind READ bigBlind CONSTANT)
+
 public:
-    BlindsModel()
-        : mSmallBlind(0)
+    explicit BlindsModel(QObject* parent = nullptr)
+        : QObject(parent)
+        , mSmallBlind(0)
     {
-        // NOP
     }
 
-    BlindsModel(int smallBlind)
-        : mSmallBlind(smallBlind)
+    explicit BlindsModel(int smallBlind, QObject* parent = nullptr)
+        : QObject(parent)
+        , mSmallBlind(smallBlind)
     {
-        // NOP
     }
 
     BlindsModel(const BlindsModel& other)

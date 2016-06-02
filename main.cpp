@@ -5,6 +5,7 @@
 
 #include "sources/MainScreenController.h"
 #include "Models/RoundModel.h"
+#include "Models/BlindsModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,8 +13,9 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType< MainScreenController >( "pokermanager.types", 1, 0, "GameContext" );
-    qmlRegisterType<RoundModel>( "pokermanager.types", 1, 0, "RoundDef" );
+    qmlRegisterType<BlindsModel>( "pokermanager.types", 1, 0, "BlindsModel" );
+    qmlRegisterType<RoundModel>( "pokermanager.types", 1, 0, "RoundModel" );
+    qmlRegisterType<MainScreenController>( "pokermanager.types", 1, 0, "MainScreenController" );
 
     MainScreenController controller;
     QTimer timer;

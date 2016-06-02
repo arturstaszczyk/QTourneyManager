@@ -91,7 +91,7 @@ void MainScreenController::tick()
     mMillisecondsElapsed = mTime.elapsed();
 
     int seconds = floor(mMillisecondsElapsed / 1000.0);
-    if(seconds > activeRound()->initialSeconds())
+    if(seconds > activeRound()->roundTime())
         nextRound();
 
     emit activeRoundMinutesLeftChanged();

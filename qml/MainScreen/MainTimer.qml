@@ -3,7 +3,6 @@ import pokermanager.types 1.0
 import "../Globals.js" as Globals
 
 Item{
-    property RoundDef activeRound: mainScreenController.activeRound
 
     Column {
         anchors.fill: parent
@@ -24,7 +23,7 @@ Item{
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: "$" + activeRound.smallBlind
+                    text: "$" + mainScreenController.activeRound.blinds.smallBlind
                     font.family: "Consolas"
                     font.pointSize: 40
                 }
@@ -41,7 +40,7 @@ Item{
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: "$" + activeRound.bigBlind
+                    text: "$" + mainScreenController.activeRound.blinds.bigBlind
                     font.family: "Consolas"
                     font.pointSize: 40
                 }

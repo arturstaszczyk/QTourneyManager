@@ -9,39 +9,33 @@ class RoundModel : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(int bigBlind READ bigBlind CONSTANT)
-    Q_PROPERTY(int smallBlind READ smallBlind CONSTANT)
+    Q_PROPERTY(BlindsModel* blinds READ blinds CONSTANT)
     Q_PROPERTY(bool isValid READ isValid CONSTANT)
-    Q_PROPERTY(int initialSeconds READ initialSeconds CONSTANT)
+    Q_PROPERTY(int roundTime READ roundTime CONSTANT)
 
 public:
     explicit RoundModel(QObject *parent = 0);
-    explicit RoundModel(int initialSeconds, int smallBlind, QObject *parent = 0);
+    explicit RoundModel(int roundTime, int smallBlind, QObject *parent = 0);
 
-    inline int initialSeconds() const
+    inline int roundTime() const
     {
-        return mInitialSeconds;
+        return mRoundTime;
     }
 
-    inline int smallBlind() const
+    inline BlindsModel* blinds() const
     {
-        return mBlindsDef.smallBlind();
-    }
-
-    inline int bigBlind() const
-    {
-        return mBlindsDef.bigBlind();
+        return mBlindsModel;
     }
 
     inline bool isValid() const
     {
-        return mBlindsDef.areValid() && mInitialSeconds > 0;
+        return mBlindsModel->areValid() && mRoundTime > 0;
     }
 
     bool operator== (const RoundModel& rhs) const
     {
-        return this->mBlindsDef == rhs.mBlindsDef &&
-                this->mInitialSeconds == rhs.mInitialSeconds;
+        return this->mBlindsModel == rhs.mBlindsModel &&
+                this->mRoundTime == rhs.mRoundTime;
     }
 
     bool operator!= (const RoundModel& rhs) const
@@ -50,8 +44,8 @@ public:
     }
 
 private:
-    int         mInitialSeconds;
-    BlindsModel   mBlindsDef;
+    int             mRoundTime;
+    BlindsModel*    mBlindsModel;
 };
 
 #endif // ROUNDDEF_H
