@@ -1,9 +1,9 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import pokermanager.types 1.0
 import "../Globals.js" as Globals
 
 Item{
-    property RoundDef activeRound: gameContext.activeRound
+    property RoundDef activeRound: mainScreenController.activeRound
 
     Column {
         anchors.fill: parent
@@ -60,11 +60,11 @@ Item{
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 text: {
-                    if(!gameContext.activeRound.isValid)
+                    if(!mainScreenController.activeRound.isValid)
                         return "--:--";
 
-                    var minutesLeft = gameContext.activeRoundMinutesLeft;
-                    var secondsLeft = gameContext.activeRoundSecondsLeft;
+                    var minutesLeft = mainScreenController.activeRoundMinutesLeft;
+                    var secondsLeft = mainScreenController.activeRoundSecondsLeft;
                     var minutesStr = minutesLeft < 10 ? "0" + minutesLeft.toString() : minutesLeft.toString()
                     var secondsStr = secondsLeft < 10 ? "0" + secondsLeft.toString() : secondsLeft == 60 ? "00" : secondsLeft.toString()
 

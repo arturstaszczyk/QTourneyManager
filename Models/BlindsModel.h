@@ -36,7 +36,7 @@ public:
         return mSmallBlind != 0;
     }
 
-    bool operator== (BlindsModel& rhs)
+    bool operator== (const BlindsModel& rhs) const
     {
         return this->mSmallBlind == rhs.mSmallBlind;
     }

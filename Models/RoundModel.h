@@ -38,6 +38,17 @@ public:
         return mBlindsDef.areValid() && mInitialSeconds > 0;
     }
 
+    bool operator== (const RoundModel& rhs) const
+    {
+        return this->mBlindsDef == rhs.mBlindsDef &&
+                this->mInitialSeconds == rhs.mInitialSeconds;
+    }
+
+    bool operator!= (const RoundModel& rhs) const
+    {
+        return !this->operator ==(rhs);
+    }
+
 private:
     int         mInitialSeconds;
     BlindsModel   mBlindsDef;
