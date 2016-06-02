@@ -6,6 +6,7 @@
 #include "sources/MainScreenController.h"
 #include "Models/RoundModel.h"
 #include "Models/BlindsModel.h"
+#include "Models/TournamentStructureModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,13 +18,16 @@ int main(int argc, char *argv[])
     qmlRegisterType<RoundModel>( "pokermanager.types", 1, 0, "RoundModel" );
     qmlRegisterType<MainScreenController>( "pokermanager.types", 1, 0, "MainScreenController" );
 
-    MainScreenController controller;
     QTimer timer;
     timer.start(200);
-    QObject::connect(&timer, SIGNAL(timeout()), &controller, SLOT(tick()));
 
-    controller.addRoundDef(15, 1);
-    controller.addRoundDef(15, 2);
+
+    TournamentStructureModel* tournamentStructure = new TournamentStructureModel();
+    tournamentStructure->addRound(15, 1);
+    tournamentStructure->addRound(15, 2);
+
+    MainScreenController controller(tournamentStructure);
+    QObject::connect(&timer, SIGNAL(timeout()), &controller, SLOT(tick()));
     controller.restart();
     engine.rootContext()->setContextProperty( "mainScreenController", &controller );
 

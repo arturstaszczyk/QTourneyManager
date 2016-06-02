@@ -8,6 +8,7 @@
 #include <QObject>
 
 #include "Models/RoundModel.h"
+#include "Models/TournamentStructureModel.h"
 
 class MainScreenController : public QObject
 {
@@ -19,16 +20,18 @@ public:
     Q_PROPERTY(int activeRoundMinutesLeft READ activeRoundMinutesLeft NOTIFY activeRoundMinutesLeftChanged)
     Q_PROPERTY(int activeRoundSecondsLeft READ activeRoundSecondsLeft NOTIFY activeRoundSecondsLeftChanged)
 
-    Q_PROPERTY(bool paused READ paused WRITE setPaused NOTIFY pausedChanged)
+    Q_PROPERTY(bool isPaused READ isPaused WRITE setPaused NOTIFY pausedChanged)
 
 public:
-    explicit MainScreenController(QObject *parent = 0);
-    ~MainScreenController();
+    explicit MainScreenController(QObject* parent = nullptr)
+        : QObject(parent)
+    {}
 
-    const RoundModel* addRoundDef(int seconds, int smallBlind);
+    explicit MainScreenController(TournamentStructureModel* tournamentStructure,
+                                  QObject *parent = 0);
 
     RoundModel* activeRound() const;
-    bool paused() const { return mPaused; }
+    bool isPaused() const { return mIsPaused; }
 
     int activeRoundMinutesLeft() const
     {
@@ -42,8 +45,9 @@ public:
 
 public slots:
 
-    void setPaused(bool paused);
+    void setPaused(bool isPaused);
     void tick();
+
     void restart();
     bool nextRound();
     bool prevRound();
@@ -58,17 +62,14 @@ private:
 
     int totalSecondsLeft() const
     {
-        return activeRound()->roundTime() - floor(mMillisecondsElapsed / 1000.0);
+        return activeRound()->roundTime() - floor(mTime.elapsed() / 1000.0);
     }
 
 private:
     QTime mTime;
-    std::vector<RoundModel*>  mRounds;
+    TournamentStructureModel* mTournamentStructure;
 
-    int                     mActiveRoundIdx;
-    int                     mMillisecondsElapsed;
-
-    bool                    mPaused;
+    bool                    mIsPaused;
 };
 
 #endif // GAMECONTEXT_H
