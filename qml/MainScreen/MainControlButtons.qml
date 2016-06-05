@@ -10,7 +10,7 @@ Row {
         text: "Prev"
 
         onClicked: {
-            gameContext.prevRound();
+            mainScreenController.prevRound();
         }
     }
 
@@ -32,7 +32,7 @@ Row {
         text: "Next"
 
         onClicked: {
-            gameContext.nextRound();
+            mainScreenController.nextRound();
         }
     }
 }
