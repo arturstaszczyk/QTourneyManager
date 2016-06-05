@@ -18,20 +18,17 @@ int main(int argc, char *argv[])
     qmlRegisterType<RoundModel>( "pokermanager.types", 1, 0, "RoundModel" );
     qmlRegisterType<MainScreenController>( "pokermanager.types", 1, 0, "MainScreenController" );
 
-    QTimer timer;
-    timer.start(200);
-
-
     TournamentStructureModel* tournamentStructure = new TournamentStructureModel();
     tournamentStructure->addRound(15, 1);
     tournamentStructure->addRound(15, 2);
 
     MainScreenController controller(tournamentStructure);
-    QObject::connect(&timer, SIGNAL(timeout()), &controller, SLOT(tick()));
     controller.restart();
     engine.rootContext()->setContextProperty( "mainScreenController", &controller );
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+
+    controller.startTimer(200);
 
     return app.exec();
 }

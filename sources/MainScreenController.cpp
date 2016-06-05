@@ -1,11 +1,12 @@
 ﻿#include "MainScreenController.h"
 
-#include <QDebug>
-
 MainScreenController::MainScreenController(TournamentStructureModel* tournamentStructure, QObject *parent)
   : QObject(parent)
   , mTournamentStructure(tournamentStructure)
   , mIsPaused(false)
+  , mLastTick(0.0f)
+  , mElapsedRoundSeconds(0.0f)
+  , mElapsedPasueSeconds(0.0f)
 {
 }
 
@@ -26,14 +27,16 @@ RoundModel* MainScreenController::activeRound() const
 void MainScreenController::restart()
 {
     mTournamentStructure->reset();
-    mTime.restart();
     nextRound();
 }
 
 bool MainScreenController::nextRound()
 {
     bool advanced = mTournamentStructure->nextRound();
+
     mTime.restart();
+    mLastTick = 0.0f;
+    mElapsedRoundSeconds = mElapsedPasueSeconds = 0.0f;
     mIsPaused = false;
 
     emit activeRoundChanged();
@@ -43,25 +46,37 @@ bool MainScreenController::nextRound()
 bool MainScreenController::prevRound()
 {
     bool advanced = mTournamentStructure->prevRound();
+
     mTime.restart();
+    mLastTick = 0.0f;
+    mElapsedRoundSeconds = mElapsedPasueSeconds = 0.0f;
     mIsPaused = false;
 
     emit activeRoundChanged();
     return advanced;
 }
 
-void MainScreenController::tick()
+void MainScreenController::timerEvent(QTimerEvent *event)
 {
+    Q_UNUSED(event);
+
     if(!mTournamentStructure->isActive())
         return;
 
+    float seconds = mTime.elapsed() / 1000.0;
     if(mIsPaused)
-        return;
+    {
+        mLastTick = seconds;
+    }
+    else
+    {
+        mElapsedRoundSeconds += seconds - mLastTick;
+        mLastTick = seconds;
 
-    int seconds = floor(mTime.elapsed() / 1000.0);
-    if(seconds > activeRound()->roundTime())
-        nextRound();
+        if(mElapsedRoundSeconds > activeRound()->roundTime())
+            nextRound();
 
-    emit activeRoundMinutesLeftChanged();
-    emit activeRoundSecondsLeftChanged();
+        emit activeRoundMinutesLeftChanged();
+        emit activeRoundSecondsLeftChanged();
+    }
 }

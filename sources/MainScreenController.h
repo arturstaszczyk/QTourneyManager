@@ -46,7 +46,6 @@ public:
 public slots:
 
     void setPaused(bool isPaused);
-    void tick();
 
     void restart();
     bool nextRound();
@@ -60,9 +59,11 @@ signals:
 
 private:
 
+    void timerEvent(QTimerEvent* event) override;
+
     int totalSecondsLeft() const
     {
-        return activeRound()->roundTime() - floor(mTime.elapsed() / 1000.0);
+        return ceil(activeRound()->roundTime() - mElapsedRoundSeconds);
     }
 
 private:
@@ -70,6 +71,10 @@ private:
     TournamentStructureModel* mTournamentStructure;
 
     bool                    mIsPaused;
+    float                   mLastTick;
+
+    float                   mElapsedRoundSeconds;
+    float                   mElapsedPasueSeconds;
 };
 
 #endif // GAMECONTEXT_H

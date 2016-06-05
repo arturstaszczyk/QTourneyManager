@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import "../"
 
 Row {
@@ -21,7 +21,7 @@ Row {
         text: "Pause"
 
         onClicked: {
-            gameContext.paused = !gameContext.paused
+            mainScreenController.isPaused = !mainScreenController.isPaused
         }
     }
 
