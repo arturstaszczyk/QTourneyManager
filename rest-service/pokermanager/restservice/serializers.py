@@ -7,7 +7,8 @@ class RoundSerializer(serializers.HyperlinkedModelSerializer):
         model = RoundModel
         fields = ('small_blind', 'big_blind', 'round_duration')
 
-# class TournamentStructureSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = TournamentStructureModel
-#         fields = ('name', 'rounds')
+
+class TournamentStructureSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TournamentStructureModel
+        fields = ('name', 'rounds')
