@@ -16,6 +16,6 @@ Rectangle {
         id: controlButtons
         anchors.bottom: parent.bottom
         width: parent.width;
-        height: (parent.width / 3.0)
+        height: (parent.width / 6.0)
     }
 }

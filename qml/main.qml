@@ -1,15 +1,35 @@
 ﻿import QtQuick 2.5
-import QtQuick.Window 2.2
+import QtQuick.Controls 1.4
+import QtQuick.Dialogs 1.2
 import pokermanager.types 1.0
 
 import "Globals.js" as Globals
 import "MainMenu"
 import "MainScreen"
+import "Settings"
 
-Window {
+ApplicationWindow {
     visible: true
     width: 640
     height: 960
+
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("File")
+            MenuItem {
+                text: qsTr("&Set host")
+                onTriggered: hostSetting.open()
+            }
+            MenuItem {
+                text: qsTr("Exit")
+                onTriggered: Qt.quit();
+            }
+        }
+    }
+
+    HostAddressSetting {
+        id: hostSetting
+    }
 
     Rectangle {
         id: root
@@ -25,27 +45,6 @@ Window {
         MainScreen {
             anchors.fill: parent
         }
-
-//        property variant initialDate
-//        Component.onCompleted: {
-//            root.initialDate = new Date();
-//            gameContext.restart()
-//        }
-
-
-//        Timer {
-//            id: timer
-
-//            interval: 1000.0 / 30.0
-//            repeat: true
-//            running: true
-//            onTriggered: {
-//                var now = new Date()
-//                var diff = (now.getTime() - root.initialDate.getTime())
-//                gameContext.tick( diff )
-//                root.initialDate = now;
-//            }
-//        }
 
     }
 }

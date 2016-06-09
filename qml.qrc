@@ -15,5 +15,6 @@
         <file>qml/MainScreen/MainControlButtons.qml</file>
         <file>qml/MainScreen/MainScreen.qml</file>
         <file>qml/MainScreen/MainTimer.qml</file>
+        <file>qml/Settings/HostAddressSetting.qml</file>
     </qresource>
 </RCC>
