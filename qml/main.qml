@@ -27,9 +27,13 @@ ApplicationWindow {
         }
     }
 
-    HostAddressSetting {
+    Dialog {
         id: hostSetting
+        HostAddressSetting {
+        }
+
     }
+
 
     Rectangle {
         id: root
