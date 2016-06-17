@@ -1,7 +1,6 @@
 ﻿import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
-import pokermanager.types 1.0
 
 import "Globals.js" as Globals
 import "MainMenu"
@@ -30,8 +29,10 @@ ApplicationWindow {
     Dialog {
         id: hostSetting
         HostAddressSetting {
+            id:address
         }
 
+        onAccepted: addressModel.address = address.text
     }
 
 

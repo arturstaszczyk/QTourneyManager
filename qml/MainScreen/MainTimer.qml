@@ -1,5 +1,4 @@
 ﻿import QtQuick 2.0
-import pokermanager.types 1.0
 import "../Globals.js" as Globals
 
 Item{

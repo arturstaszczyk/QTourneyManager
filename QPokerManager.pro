@@ -6,7 +6,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     Models/RoundModel.cpp \
     sources/MainScreenController.cpp \
-    Models/TournamentStructureModel.cpp
+    Models/TournamentStructureModel.cpp \
+    Models/AddressModel.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -27,4 +28,5 @@ HEADERS += \
     Models/BlindsModel.h \
     Models/RoundModel.h \
     sources/MainScreenController.h \
-    Models/TournamentStructureModel.h
+    Models/TournamentStructureModel.h \
+    Models/AddressModel.h

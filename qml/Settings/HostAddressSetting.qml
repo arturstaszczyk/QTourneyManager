@@ -8,6 +8,8 @@ Item {
     width: 320
     height: 80
 
+    property alias text: hostAddress.text
+
     Column {
 
         spacing: 5
@@ -24,6 +26,7 @@ Item {
             }
 
             placeholderText: "192.168.0.1"
+            text: addressModel.address
 
             style: TextFieldStyle {
                 textColor: "black"
