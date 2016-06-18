@@ -4,10 +4,10 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    Models/RoundModel.cpp \
-    sources/MainScreenController.cpp \
-    Models/TournamentStructureModel.cpp \
-    Models/AddressModel.cpp
+    Models/AddressModel.cpp \
+    Timer/TimerModel.cpp \
+    Timer/TimerLogic.cpp \
+    RoundDef.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -25,9 +25,9 @@ macx {
 }
 
 HEADERS += \
-    Models/BlindsModel.h \
-    Models/RoundModel.h \
-    sources/MainScreenController.h \
-    Models/TournamentStructureModel.h \
     Models/AddressModel.h \
-    QAutoProperty.h
+    QAutoProperty.h \
+    Timer/TimerModel.h \
+    Timer/TimerLogic.h \
+    RoundDef.h \
+    ReturnIf.h

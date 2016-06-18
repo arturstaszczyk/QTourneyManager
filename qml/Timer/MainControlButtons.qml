@@ -10,7 +10,7 @@ Row {
         text: "Prev"
 
         onClicked: {
-            mainScreenController.prevRound();
+            timerController.previousRound();
         }
     }
 
@@ -21,7 +21,7 @@ Row {
         text: "Pause"
 
         onClicked: {
-            mainScreenController.isPaused = !mainScreenController.isPaused
+            timerController.togglePause();
         }
     }
 
@@ -32,7 +32,7 @@ Row {
         text: "Next"
 
         onClicked: {
-            mainScreenController.nextRound();
+            timerController.nextRound();
         }
     }
 }

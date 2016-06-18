@@ -4,7 +4,7 @@ import QtQuick.Dialogs 1.2
 
 import "Globals.js" as Globals
 import "MainMenu"
-import "MainScreen"
+import "Timer"
 import "Settings"
 
 ApplicationWindow {
@@ -49,9 +49,9 @@ ApplicationWindow {
             }
         }
 
-        MainScreen {
+        Timer {
             anchors.fill: parent
-            visible: addressModel.isValid
+            visible: true//addressModel.isValid
         }
 
     }

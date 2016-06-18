@@ -3,11 +3,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "sources/MainScreenController.h"
+#include <chrono>
+
 #include "Models/AddressModel.h"
-#include "Models/RoundModel.h"
-#include "Models/BlindsModel.h"
-#include "Models/TournamentStructureModel.h"
+#include "Timer/TimerLogic.h"
+#include "Timer/TimerModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,17 +15,20 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    AddressModel addressModel;
-    TournamentStructureModel tournamentStructure;
+    std::chrono::milliseconds interval(100);
 
-    MainScreenController controller(&tournamentStructure);
-    engine.rootContext()->setContextProperty( "mainScreenController", &controller );
+    RoundDef r1(10, 1, 2);
+    RoundDef r2(10, 2, 4);
+
+    TimerModel timerModel;
+    TimerLogic timerLogic(engine.rootContext(), &timerModel, {&r1, &r2});
+    timerLogic.startTimer(interval.count());
+
+    AddressModel addressModel;
+
     engine.rootContext()->setContextProperty("addressModel", &addressModel);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
-
-    //controller.restart();
-    controller.startTimer(200);
 
     return app.exec();
 }

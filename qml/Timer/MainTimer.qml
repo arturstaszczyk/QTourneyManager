@@ -22,7 +22,7 @@ Item{
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: "$" + mainScreenController.activeRound.blinds.smallBlind
+                    text: "$" + timerModel.smallBlind
                     font.family: "Consolas"
                     font.pointSize: 40
                 }
@@ -39,7 +39,7 @@ Item{
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    text: "$" + mainScreenController.activeRound.blinds.bigBlind
+                    text: "$" + timerModel.bigBlind
                     font.family: "Consolas"
                     font.pointSize: 40
                 }
@@ -57,17 +57,7 @@ Item{
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                text: {
-                    if(!mainScreenController.activeRound.isValid)
-                        return "--:--";
-
-                    var minutesLeft = mainScreenController.activeRoundMinutesLeft;
-                    var secondsLeft = mainScreenController.activeRoundSecondsLeft;
-                    var minutesStr = minutesLeft < 10 ? "0" + minutesLeft.toString() : minutesLeft.toString()
-                    var secondsStr = secondsLeft < 10 ? "0" + secondsLeft.toString() : secondsLeft == 60 ? "00" : secondsLeft.toString()
-
-                    return minutesStr + ":" + secondsStr
-                }
+                text: timerModel.timeString
 
                 font.family: "Consolas"
                 font.pointSize: 60
