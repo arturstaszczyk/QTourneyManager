@@ -15,19 +15,16 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    TournamentStructureModel* tournamentStructure = new TournamentStructureModel();
-    tournamentStructure->addRound(15, 1);
-    tournamentStructure->addRound(15, 2);
+    AddressModel addressModel;
+    TournamentStructureModel tournamentStructure;
 
-    AddressModel* addressModel = new AddressModel();
-
-    MainScreenController controller(tournamentStructure);
-    controller.restart();
+    MainScreenController controller(&tournamentStructure);
     engine.rootContext()->setContextProperty( "mainScreenController", &controller );
-    engine.rootContext()->setContextProperty("addressModel", addressModel);
+    engine.rootContext()->setContextProperty("addressModel", &addressModel);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
+    //controller.restart();
     controller.startTimer(200);
 
     return app.exec();

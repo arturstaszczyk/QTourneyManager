@@ -5,15 +5,11 @@
 AddressModel::AddressModel(QObject *parent)
     : QObject(parent)
 {
-
+    this->connect(this, SIGNAL(addressChanged(QString)), this, SLOT(onAddressChanged(QString)));
 }
 
-void AddressModel::setAddress(QString address)
+void AddressModel::onAddressChanged(QString address)
 {
-    qDebug() << address;
-    if(mAddress != address)
-    {
-        mAddress = address;
-        emit addressChanged(mAddress);
-    }
+    isValid(address.length() > 0);
 }
+

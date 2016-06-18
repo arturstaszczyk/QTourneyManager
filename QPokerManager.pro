@@ -29,4 +29,5 @@ HEADERS += \
     Models/RoundModel.h \
     sources/MainScreenController.h \
     Models/TournamentStructureModel.h \
-    Models/AddressModel.h
+    Models/AddressModel.h \
+    QAutoProperty.h

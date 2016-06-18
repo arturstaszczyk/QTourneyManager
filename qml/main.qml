@@ -14,25 +14,21 @@ ApplicationWindow {
 
     menuBar: MenuBar {
         Menu {
-            title: qsTr("File")
+            title: qsTr("Settings")
             MenuItem {
                 text: qsTr("&Set host")
-                onTriggered: hostSetting.open()
-            }
-            MenuItem {
-                text: qsTr("Exit")
-                onTriggered: Qt.quit();
+                onTriggered: hostSettings.open()
             }
         }
     }
 
     Dialog {
-        id: hostSetting
+        id: hostSettings
         HostAddressSetting {
-            id:address
+            id:hostSettingsContent
         }
 
-        onAccepted: addressModel.address = address.text
+        onAccepted: addressModel.address = hostSettingsContent.valid ? hostSettingsContent.address : ""
     }
 
 
@@ -47,8 +43,15 @@ ApplicationWindow {
             }
         }
 
+        Rectangle {
+            Label {
+                text: "bla"
+            }
+        }
+
         MainScreen {
             anchors.fill: parent
+            visible: addressModel.isValid
         }
 
     }

@@ -8,7 +8,8 @@ Item {
     width: 320
     height: 80
 
-    property alias text: hostAddress.text
+    property alias address: hostAddress.text
+    property alias valid: hostAddress.acceptableInput
 
     Column {
 
