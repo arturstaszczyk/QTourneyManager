@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
 
     std::chrono::milliseconds interval(100);
 
-    RoundDef r1(10, 1, 2);
-    RoundDef r2(10, 2, 4);
+    RoundDef r1(3, 1, 2);
+    RoundDef r2(3, 2, 4);
 
     TimerModel timerModel;
     TimerLogic timerLogic(engine.rootContext(), &timerModel, {&r1, &r2});

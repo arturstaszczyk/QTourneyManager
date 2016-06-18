@@ -24,6 +24,10 @@ private:
     void resetTime();
     bool hasNextRound() const;
     bool hasPrevRound() const;
+
+    void updateModelBlinds();
+    void updateModelTime();
+
     void timerEvent(QTimerEvent* event) override;
 
 private:
@@ -37,7 +41,6 @@ private:
     float                   mLastTick;
 
     float                   mElapsedRoundSeconds;
-    float                   mElapsedPasueSeconds;
 };
 
 #endif // TIMERLOGIC_H
