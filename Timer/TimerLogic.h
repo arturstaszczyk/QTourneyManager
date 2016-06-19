@@ -20,6 +20,8 @@ public slots:
     void nextRound();
     void previousRound();
 
+    void addRound(int smallBlind, int bigBlind, int timeInSeconds);
+
 private:
     void resetTime();
     bool hasNextRound() const;

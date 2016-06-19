@@ -18,15 +18,14 @@ int main(int argc, char *argv[])
 
     std::chrono::milliseconds interval(100);
 
-    RoundDef r1(3, 1, 2);
-    RoundDef r2(3, 2, 4);
-
     TimerModel timerModel;
-    TimerLogic timerLogic(engine.rootContext(), &timerModel, {&r1, &r2});
+    TimerLogic timerLogic(engine.rootContext(), &timerModel, {});
     timerLogic.startTimer(interval.count());
 
     HostAddressModel addressModel;
     HostAddressLogic addressLogic(engine.rootContext(), &addressModel);
+    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
+                  &timerLogic, SLOT(addRound(int,int,int)));
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 

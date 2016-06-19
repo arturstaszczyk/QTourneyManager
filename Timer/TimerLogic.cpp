@@ -53,6 +53,11 @@ bool TimerLogic::hasPrevRound() const
     return mActiveRound > 0;
 }
 
+void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
+{
+    mRounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
+}
+
 void TimerLogic::updateModelBlinds()
 {
     RoundDef* activeRound = nullptr;
