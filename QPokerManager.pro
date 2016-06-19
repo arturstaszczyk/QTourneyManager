@@ -4,10 +4,11 @@ QT += qml quick
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    Models/AddressModel.cpp \
     Timer/TimerModel.cpp \
     Timer/TimerLogic.cpp \
-    RoundDef.cpp
+    RoundDef.cpp \
+    Settings/HostAddress/HostAddressModel.cpp \
+    Settings/HostAddress/HostAddressLogic.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -25,9 +26,10 @@ macx {
 }
 
 HEADERS += \
-    Models/AddressModel.h \
     QAutoProperty.h \
     Timer/TimerModel.h \
     Timer/TimerLogic.h \
     RoundDef.h \
-    ReturnIf.h
+    ReturnIf.h \
+    Settings/HostAddress/HostAddressModel.h \
+    Settings/HostAddress/HostAddressLogic.h

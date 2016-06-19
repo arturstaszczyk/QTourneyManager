@@ -5,7 +5,8 @@
 
 #include <chrono>
 
-#include "Models/AddressModel.h"
+#include "Settings/HostAddress/HostAddressModel.h"
+#include "Settings/HostAddress/HostAddressLogic.h"
 #include "Timer/TimerLogic.h"
 #include "Timer/TimerModel.h"
 
@@ -24,9 +25,8 @@ int main(int argc, char *argv[])
     TimerLogic timerLogic(engine.rootContext(), &timerModel, {&r1, &r2});
     timerLogic.startTimer(interval.count());
 
-    AddressModel addressModel;
-
-    engine.rootContext()->setContextProperty("addressModel", &addressModel);
+    HostAddressModel addressModel;
+    HostAddressLogic addressLogic(engine.rootContext(), &addressModel);
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 

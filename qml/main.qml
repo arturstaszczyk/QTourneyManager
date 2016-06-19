@@ -28,7 +28,8 @@ ApplicationWindow {
             id:hostSettingsContent
         }
 
-        onAccepted: addressModel.address = hostSettingsContent.valid ? hostSettingsContent.address : ""
+        onAccepted: hostAddressController.onHostAddressChanged(hostSettingsContent.address,
+                                                               hostSettingsContent.valid)
     }
 
 
@@ -51,7 +52,7 @@ ApplicationWindow {
 
         Timer {
             anchors.fill: parent
-            visible: true//addressModel.isValid
+            visible: true//hostAddressModel.isValid
         }
 
     }
