@@ -17,6 +17,13 @@ public:
     READONLY_PROPERTY(int, bigBlind)
     READONLY_PROPERTY(int, roundTimeInSeconds)
     READONLY_PROPERTY(bool, isValid)
+
+public:
+    bool operator<(const RoundDef& other) const
+    {
+        return this->a_smallBlind < other.a_smallBlind;
+    }
+
 };
 
 #endif // ROUNDDEF_H

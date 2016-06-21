@@ -32,4 +32,5 @@ HEADERS += \
     RoundDef.h \
     ReturnIf.h \
     Settings/HostAddress/HostAddressModel.h \
-    Settings/HostAddress/HostAddressLogic.h
+    Settings/HostAddress/HostAddressLogic.h \
+    QSortHelpers.h

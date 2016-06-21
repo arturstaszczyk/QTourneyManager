@@ -1,7 +1,11 @@
 ﻿#include "TimerLogic.h"
 
 #include <math.h>
+#include <QtAlgorithms>
+
 #include "ReturnIf.h"
+#include "QSortHelpers.h"
+
 #define NO_ACTIVE_ROUND -1
 
 TimerLogic::TimerLogic(QQmlContext* context, TimerModel* timerModel, QList<RoundDef*> rounds, QObject *parent)
@@ -56,6 +60,7 @@ bool TimerLogic::hasPrevRound() const
 void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
 {
     mRounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
+    qSort(mRounds.begin(), mRounds.end(), QSortHelpers::PtrLess<RoundDef>());
 }
 
 void TimerLogic::updateModelBlinds()
