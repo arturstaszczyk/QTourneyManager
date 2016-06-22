@@ -11,7 +11,7 @@ class RoundModel (models.Model):
 
 class TournamentStructureModel(models.Model):
 
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
     rounds = models.ManyToManyField(RoundModel)
 
     def __str__(self):

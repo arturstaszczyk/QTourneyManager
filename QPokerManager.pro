@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     Timer/TimerLogic.cpp \
     RoundDef.cpp \
     Settings/HostAddress/HostAddressModel.cpp \
-    Settings/HostAddress/HostAddressLogic.cpp
+    Settings/HostAddress/HostAddressLogic.cpp \
+    Tournaments/TounramentsListModel.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -33,4 +34,5 @@ HEADERS += \
     ReturnIf.h \
     Settings/HostAddress/HostAddressModel.h \
     Settings/HostAddress/HostAddressLogic.h \
-    QSortHelpers.h
+    QSortHelpers.h \
+    Tournaments/TounramentsListModel.h

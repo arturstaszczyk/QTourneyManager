@@ -6,6 +6,7 @@ Rectangle {
 
     ScrollView {
         anchors.fill: parent
+
         ListView {
             model: ["a", "b", "c"] //tournamentsModel.tournaments
             delegate: Button {
