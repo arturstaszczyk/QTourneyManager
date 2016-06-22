@@ -1,30 +1,20 @@
 ﻿import QtQuick 2.0
-
 import "../Globals.js" as Globals
-import "../"
 
 Rectangle {
     id: button
-    width: parent.width
-    height: Globals.defaultElementHeight
+    border.width: 1
+    border.color: Globals.separatorColor
 
-    property alias title: title.text
+    property alias text: title.text
+    property alias textColor: title.color
+
     signal clicked();
 
     MainText {
         id: title
 
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 15
-        anchors.left: parent.left
-    }
-
-    Image {
-        id: arrow
-        anchors.rightMargin: 15
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        source: "qrc:/images/icons-general-ui/play120.png"
+        anchors.centerIn: parent
     }
 
     MouseArea {
@@ -36,17 +26,13 @@ Rectangle {
         }
     }
 
-    Separator {
-        anchors.bottom: parent.bottom
-    }
-
     states: [
         State {
             name: "default"
             when: !buttonArea.pressed
             PropertyChanges {
                 target: button;
-                color: Globals.inactiveCellBackground
+                color: Globals.debugColor1
             }
         },
         State {
@@ -54,7 +40,7 @@ Rectangle {
             when: buttonArea.pressed
             PropertyChanges {
                 target: button
-                color: Globals.activeCellBackground
+                color: Globals.debugColor2
             }
         }
     ]

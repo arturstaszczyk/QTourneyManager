@@ -1,20 +1,17 @@
 <RCC>
     <qresource prefix="/">
-        <file>qml/Button.qml</file>
-        <file>qml/Checkbox.qml</file>
         <file>qml/Globals.js</file>
         <file>qml/main.qml</file>
         <file>qml/MainText.qml</file>
-        <file>qml/Separator.qml</file>
-        <file>qml/StackViewHeader.qml</file>
         <file>qml/BlindsEditor/AddBlindsButton.qml</file>
         <file>qml/BlindsEditor/BlindsListCell.qml</file>
         <file>qml/BlindsEditor/BlindsListEditor.qml</file>
-        <file>qml/MainMenu/MainMenu.qml</file>
-        <file>qml/MainMenu/MainMenuButton.qml</file>
         <file>qml/Settings/HostAddressSetting.qml</file>
         <file>qml/Timer/MainControlButtons.qml</file>
         <file>qml/Timer/MainTimer.qml</file>
         <file>qml/Timer/Timer.qml</file>
+        <file>qml/BlindsEditor/Checkbox.qml</file>
+        <file>qml/BlindsEditor/Button.qml</file>
+        <file>qml/Styles/BigButtonTextStyle.qml</file>
     </qresource>
 </RCC>

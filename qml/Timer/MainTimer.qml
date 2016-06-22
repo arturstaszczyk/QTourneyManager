@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.0
-import "../Globals.js" as Globals
+
+import "qrc:/qml/Globals.js" as Globals
 
 Item{
 

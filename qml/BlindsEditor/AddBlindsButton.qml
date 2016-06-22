@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 
 import "../"
 import "../Globals.js" as Globals
@@ -21,7 +21,10 @@ Rectangle {
         onClicked: button.clicked()
     }
 
-    Separator {
+    Rectangle {
+        width:parent.width
+        height:3
+        color: Globals.separatorColor
         anchors.bottom: parent.bottom
     }
 }

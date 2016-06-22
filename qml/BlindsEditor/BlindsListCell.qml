@@ -1,4 +1,4 @@
-import QtQuick 2.1
+﻿import QtQuick 2.1
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
@@ -167,7 +167,10 @@ Rectangle{
         NumberAnimation { duration: 200; easing.type: Easing.InOutCubic }
     }
 
-    Separator{
+    Rectangle {
+        width:parent.width
+        height:3
+        color: Globals.separatorColor
         anchors.bottom: parent.bottom
     }
 }
