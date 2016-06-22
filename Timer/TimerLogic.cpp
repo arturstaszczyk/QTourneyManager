@@ -8,16 +8,16 @@
 
 #define NO_ACTIVE_ROUND -1
 
-TimerLogic::TimerLogic(QQmlContext* context, TimerModel* timerModel, QList<RoundDef*> rounds, QObject *parent)
+TimerLogic::TimerLogic(QQmlContext* context, QList<RoundDef*> rounds, QObject *parent)
     : QObject(parent)
-    , mTimerModel(timerModel)
     , mRounds(rounds)
     , mActiveRound(NO_ACTIVE_ROUND)
     , mIsPaused(false)
     , mLastTick(0.0f)
     , mElapsedRoundSeconds(0.0f)
 {
-    context->setContextProperty("timerModel", timerModel);
+    mTimerModel = new TimerModel(this);
+    context->setContextProperty("timerModel", mTimerModel);
     context->setContextProperty("timerController", this);
 }
 

@@ -5,17 +5,13 @@
 
 #include "QAutoProperty.h"
 
-class TounramentsListModel : public QObject
+class TournamentsListModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit TounramentsListModel(QObject *parent = 0);
+    explicit TournamentsListModel(QObject *parent = 0);
 
     AUTO_PROPERTY(QStringList, tournaments)
-
-signals:
-
-public slots:
 };
 
 #endif // TOUNRAMENTSLISTMODEL_H

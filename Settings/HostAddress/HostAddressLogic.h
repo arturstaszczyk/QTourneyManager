@@ -11,7 +11,7 @@ class HostAddressLogic : public QObject
 {
     Q_OBJECT
 public:
-    explicit HostAddressLogic(QQmlContext* qmlContext, HostAddressModel* model, QObject *parent = 0);
+    explicit HostAddressLogic(QQmlContext* qmlContext, QObject *parent = 0);
 
 signals:
     void tournamentName(QString name);

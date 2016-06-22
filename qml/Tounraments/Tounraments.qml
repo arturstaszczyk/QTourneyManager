@@ -8,7 +8,7 @@ Rectangle {
         anchors.fill: parent
 
         ListView {
-            model: ["a", "b", "c"] //tournamentsModel.tournaments
+            model: tournamentsListModel.tournaments
             delegate: Button {
                 text: modelData
             }

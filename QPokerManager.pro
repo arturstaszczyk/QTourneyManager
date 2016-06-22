@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     RoundDef.cpp \
     Settings/HostAddress/HostAddressModel.cpp \
     Settings/HostAddress/HostAddressLogic.cpp \
-    Tournaments/TounramentsListModel.cpp
+    Tournaments/TournamentsListLogic.cpp \
+    Tournaments/TournamentsListModel.cpp
 
 RESOURCES += qml.qrc \
     images.qrc
@@ -35,4 +36,6 @@ HEADERS += \
     Settings/HostAddress/HostAddressModel.h \
     Settings/HostAddress/HostAddressLogic.h \
     QSortHelpers.h \
-    Tournaments/TounramentsListModel.h
+    qml/Tounraments/TournamentsLogic.h \
+    Tournaments/TournamentsListLogic.h \
+    Tournaments/TournamentsListModel.h

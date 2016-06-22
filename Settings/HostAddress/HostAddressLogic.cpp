@@ -5,11 +5,11 @@
 #include <QJsonDocument>
 #include <QNetworkAccessManager>
 
-HostAddressLogic::HostAddressLogic(QQmlContext* qmlContext, HostAddressModel* model, QObject *parent)
+HostAddressLogic::HostAddressLogic(QQmlContext* qmlContext, QObject *parent)
     : QObject(parent)
-    , mModel(model)
 {
-    qmlContext->setContextProperty("hostAddressModel", model);
+    mModel = new HostAddressModel(this);
+    qmlContext->setContextProperty("hostAddressModel", mModel);
     qmlContext->setContextProperty("hostAddressController", this);
 }
 

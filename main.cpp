@@ -5,10 +5,9 @@
 
 #include <chrono>
 
-#include "Settings/HostAddress/HostAddressModel.h"
-#include "Settings/HostAddress/HostAddressLogic.h"
 #include "Timer/TimerLogic.h"
-#include "Timer/TimerModel.h"
+#include "Tournaments/TournamentsListLogic.h"
+#include "Settings/HostAddress/HostAddressLogic.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,14 +17,16 @@ int main(int argc, char *argv[])
 
     std::chrono::milliseconds interval(100);
 
-    TimerModel timerModel;
-    TimerLogic timerLogic(engine.rootContext(), &timerModel, {});
+    TimerLogic timerLogic(engine.rootContext(), {});
     timerLogic.startTimer(interval.count());
 
-    HostAddressModel addressModel;
-    HostAddressLogic addressLogic(engine.rootContext(), &addressModel);
+    HostAddressLogic addressLogic(engine.rootContext());
     QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
                   &timerLogic, SLOT(addRound(int,int,int)));
+
+    TournamentsListLogic tournamentsLogic(engine.rootContext());
+    QObject::connect(&addressLogic, SIGNAL(tournamentName(QString)),
+                     &tournamentsLogic, SLOT(addTournament(QString)));
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
