@@ -13,5 +13,6 @@
         <file>qml/BlindsEditor/Checkbox.qml</file>
         <file>qml/BlindsEditor/Button.qml</file>
         <file>qml/Styles/BigButtonTextStyle.qml</file>
+        <file>qml/Tounraments/Tounraments.qml</file>
     </qresource>
 </RCC>

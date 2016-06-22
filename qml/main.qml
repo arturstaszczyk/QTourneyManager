@@ -18,6 +18,7 @@ ApplicationWindow {
             title: qsTr("Start")
             MenuItem {
                 text: qsTr("Show tournaments");
+                onTriggered: root.state = "Tournaments"
             }
 
             MenuItem {
@@ -80,7 +81,7 @@ ApplicationWindow {
                 name: "Tournaments"
                 PropertyChanges {
                     target: content
-                    source: ""
+                    source: "qrc:/qml/Tounraments/Tounraments.qml"
                 }
             },
 
