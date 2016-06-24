@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.1
 
 import "Globals.js" as Globals
 import "Timer"
@@ -18,17 +19,17 @@ ApplicationWindow {
             title: qsTr("Start")
             MenuItem {
                 text: qsTr("Show tournaments");
-                onTriggered: root.state = "Tournaments"
+                onTriggered: stackView.push("qrc:/qml/Tounraments/Tournaments.qml")
             }
 
             MenuItem {
                 text: qsTr("Show timer");
-                onTriggered: root.state = "Timer"
+                onTriggered: stackView.push("qrc:/qml/Timer/Timer.qml")
             }
 
             MenuItem {
                 text: qsTr("Show menu")
-                onTriggered: root.state = "Menu"
+                onTriggered: stackView.push("qrc:/qml/BlindsEditor/BlindsListEditor.qml")
             }
         }
 
@@ -37,6 +38,16 @@ ApplicationWindow {
             MenuItem {
                 text: qsTr("&Set host")
                 onTriggered: hostSettings.open()
+            }
+        }
+    }
+
+    toolBar: ToolBar {
+        RowLayout {
+            anchors.fill: parent
+            ToolButton {
+                iconSource: "qrc:/images/icons-basic-ui/left224.png"
+                onClicked: stackView.pop()
             }
         }
     }
@@ -52,47 +63,17 @@ ApplicationWindow {
     }
 
 
-    Rectangle {
-        id: root
-        anchors.fill: parent
-        color: Globals.appBackground
+    StackView {
+        id: stackView
+        width: parent.width
+        height: parent.height
+        initialItem: root
 
-        Keys.onReleased: {
-            if (event.key === Qt.Key_Back || event.key === Qt.Key_Escape) {
-                stackView.back(event);
-            }
+        Rectangle {
+            id: root
+            width: parent.width
+            height: parent.height
+            color: Globals.appBackground
         }
-
-        Loader {
-            anchors.fill: parent
-            id: content
-        }
-
-        states: [
-            State {
-                name: "Timer"
-                PropertyChanges {
-                    target: content
-                    source: "qrc:/qml/Timer/Timer.qml"
-                }
-            },
-
-            State {
-                name: "Tournaments"
-                PropertyChanges {
-                    target: content
-                    source: "qrc:/qml/Tounraments/Tournaments.qml"
-                }
-            },
-
-            State {
-                name: "Menu"
-                PropertyChanges {
-                    target: content
-                    source: "qrc:/qml/BlindsEditor/BlindsListEditor.qml"
-                }
-            }
-
-        ]
     }
 }

@@ -2,7 +2,6 @@
 import QtQuick.Controls 1.4
 
 Rectangle {
-    anchors.fill: parent
 
     ScrollView {
         anchors.fill: parent

@@ -2,8 +2,6 @@
 
 Rectangle {
 
-    anchors.fill: parent
-
     MainTimer {
         id: timerView
         anchors.top: parent.top
