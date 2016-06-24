@@ -12,6 +12,11 @@ SOURCES += main.cpp \
     Tournaments/TournamentsListLogic.cpp \
     Tournaments/TournamentsListModel.cpp
 
+CONFIG(debug, debug|release)
+{
+    DEFINES += _DEBUG
+}
+
 RESOURCES += qml.qrc \
     images.qrc
 

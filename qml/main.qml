@@ -81,7 +81,7 @@ ApplicationWindow {
                 name: "Tournaments"
                 PropertyChanges {
                     target: content
-                    source: "qrc:/qml/Tounraments/Tounraments.qml"
+                    source: "qrc:/qml/Tounraments/Tournaments.qml"
                 }
             },
 

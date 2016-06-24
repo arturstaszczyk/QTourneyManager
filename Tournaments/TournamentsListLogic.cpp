@@ -4,6 +4,7 @@ TournamentsListLogic::TournamentsListLogic(QQmlContext* qmlContext, QObject *par
 {
     mModel = new TournamentsListModel(this);
     qmlContext->setContextProperty("tournamentsListModel", mModel);
+    qmlContext->setContextProperty("tournamentsListController", this);
 }
 
 void TournamentsListLogic::addTournament(QString tournamentName)
@@ -11,4 +12,9 @@ void TournamentsListLogic::addTournament(QString tournamentName)
     auto tournaments = mModel->tournaments();
     tournaments.append(tournamentName);
     mModel->tournaments(tournaments);
+}
+
+void TournamentsListLogic::onTournamentSelected(QString tournamentName)
+{
+
 }

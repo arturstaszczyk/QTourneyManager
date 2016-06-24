@@ -28,6 +28,10 @@ int main(int argc, char *argv[])
     QObject::connect(&addressLogic, SIGNAL(tournamentName(QString)),
                      &tournamentsLogic, SLOT(addTournament(QString)));
 
+#ifdef _DEBUG
+    addressLogic.onHostAddressChanged("127.0.0.1", true);
+#endif
+
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
