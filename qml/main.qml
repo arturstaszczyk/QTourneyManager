@@ -16,7 +16,7 @@ ApplicationWindow {
     menuBar: MenuBar {
 
         Menu {
-            title: qsTr("Start")
+            title: qsTr("Go to...")
             MenuItem {
                 text: qsTr("Show tournaments");
                 onTriggered: stackView.push("qrc:/qml/Tounraments/Tournaments.qml")
@@ -34,7 +34,7 @@ ApplicationWindow {
         }
 
         Menu {
-            title: qsTr("Settings")
+            title: qsTr("Settings...")
             MenuItem {
                 text: qsTr("&Set host")
                 onTriggered: hostSettings.open()
