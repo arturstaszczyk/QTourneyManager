@@ -15,7 +15,7 @@ Item{
             Rectangle {
                 width: parent.width / 2.0
                 height: parent.height
-                color: Globals.debugColor1
+                color: Globals.backgroundColor
                 border.width: 1
                 border.color: Globals.separatorColor
 
@@ -32,7 +32,7 @@ Item{
             Rectangle {
                 width: parent.width / 2.0
                 height: parent.height
-                color: Globals.debugColor1
+                color: Globals.backgroundColor
                 border.width: 1
                 border.color: Globals.separatorColor
 
@@ -50,7 +50,7 @@ Item{
         Rectangle {
             width: parent.width;
             height: parent.height * 2.0 / 3.0
-            color: Globals.debugColor1
+            color: Globals.backgroundColor
             border.width: 1
             border.color: Globals.separatorColor
 

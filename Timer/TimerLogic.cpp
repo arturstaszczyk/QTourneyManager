@@ -3,6 +3,7 @@
 #include <math.h>
 #include <QtAlgorithms>
 
+#include "ModelsAgregator.h"
 #include "ReturnIf.h"
 #include "QSortHelpers.h"
 
@@ -17,6 +18,7 @@ TimerLogic::TimerLogic(QQmlContext* context, QList<RoundDef*> rounds, QObject *p
     , mElapsedRoundSeconds(0.0f)
 {
     mTimerModel = new TimerModel(this);
+    //ModelsAgregator::instance()->addModel("timerModel", mTimerModel);
     context->setContextProperty("timerModel", mTimerModel);
     context->setContextProperty("timerController", this);
 }

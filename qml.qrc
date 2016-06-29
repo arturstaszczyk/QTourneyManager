@@ -14,5 +14,8 @@
         <file>qml/BlindsEditor/Button.qml</file>
         <file>qml/Styles/BigButtonTextStyle.qml</file>
         <file>qml/Tounraments/Tournaments.qml</file>
+        <file>qml/HeaderText.qml</file>
+        <file>qml/Styles/AppButtonStyle.qml</file>
+        <file>qml/MockModels.qml</file>
     </qresource>
 </RCC>
