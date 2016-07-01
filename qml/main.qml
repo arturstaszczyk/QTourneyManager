@@ -1,13 +1,15 @@
-﻿import QtQuick 2.5
-import QtQuick.Controls 1.4
+﻿import QtQuick 2.7
+import QtQuick.Controls 1.5
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.2
-import QtQuick.Layouts 1.1
+import QtQuick.Layouts 1.3
 
 import "Globals.js" as Globals
+
 import "Timer"
-import "Settings"
 import "Styles"
+import "Settings"
+import "Tounraments"
 
 ApplicationWindow {
     visible: true
@@ -16,72 +18,20 @@ ApplicationWindow {
     id: app
 
     property bool isCppAvailable: typeof _cpp !== "undefined"
-
-    property QtObject _hostAddress: hostAddressModel
+    property QtObject _hostAddress;
+    property QtObject _timer
 
     MockModels{
-
     }
 
-    menuBar: MenuBar {
-
-        Menu {
-            title: qsTr("Go to...")
-            MenuItem {
-                text: qsTr("Show tournaments");
-                onTriggered: stackView.push("qrc:/qml/Tounraments/Tournaments.qml")
-            }
-
-            MenuItem {
-                text: qsTr("Show timer");
-                onTriggered: stackView.push("qrc:/qml/Timer/Timer.qml")
-            }
-
-            MenuItem {
-                text: qsTr("Show menu")
-                onTriggered: stackView.push("qrc:/qml/BlindsEditor/BlindsListEditor.qml")
-            }
-        }
-
-        Menu {
-            title: qsTr("Settings...")
-            MenuItem {
-                text: qsTr("&Set host")
-                onTriggered: hostSettings.open()
-            }
-        }
+    Component {
+        id: tournaments
+        Tournaments {}
     }
 
-    toolBar: ToolBar {
-        style: ToolBarStyle {
-            background: Rectangle {
-                color: Globals.appBackground
-            }
-        }
-
-        RowLayout {
-            anchors.fill: parent
-            ToolButton {
-                id: backButton
-
-                style: AppButtonStyle {
-                    pressed: backButton.pressed
-                }
-
-                iconSource: "qrc:/images/ui/button-back.png"
-                onClicked: stackView.pop()
-            }
-
-            Text {
-                Layout.fillWidth: true
-
-                text: "TOURNAMENTS"
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                font.pixelSize: 32
-                color: Globals.textColor
-            }
-        }
+    Component{
+        id: timer
+        Timer {}
     }
 
     Dialog {
@@ -94,18 +44,66 @@ ApplicationWindow {
                                                                hostSettingsContent.valid)
     }
 
+    menuBar: MenuBar {
+        Menu {
+            title: qsTr("Go to...")
+            MenuItem {
+                text: qsTr("Show tournaments");
+                onTriggered: {
+                    stackView.push(tournaments)
+                }
+            }
 
-    StackView {
-        id: stackView
-        width: parent.width
-        height: parent.height
-        initialItem: root
+            MenuItem {
+                text: qsTr("Show timer");
+                onTriggered: stackView.push(timer)
+            }
 
-        Rectangle {
-            id: root
-            width: parent.width
-            height: parent.height
-            color: Globals.appBackground
+//            MenuItem {
+//                text: qsTr("Show menu")
+//                onTriggered: stackView.push("qml/BlindsEditor/BlindsListEditor.qml")
+//            }
+        }
+
+
+
+        Menu {
+            title: qsTr("Settings...")
+            MenuItem {
+                text: qsTr("&Set host")
+                onTriggered: hostSettings.open()
+            }
+        }
+    }
+
+    Image {
+        id: background
+        anchors.fill: parent
+        source: "../images/poker.jpg"
+        fillMode: Image.PreserveAspectCrop
+    }
+
+    ColumnLayout
+    {
+        anchors.fill: parent
+        spacing: 0
+
+        NavigationBar {
+            Layout.fillWidth: true
+            //Layout.preferredHeight: 64
+        }
+
+        StackView {
+            id: stackView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            initialItem: root
+
+            Rectangle {
+                id: root
+                anchors.fill: parent
+                color: "transparent"
+            }
         }
     }
 }

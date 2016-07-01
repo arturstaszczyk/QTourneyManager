@@ -1,67 +1,76 @@
-﻿import QtQuick 2.0
+﻿import QtQuick 2.7
+import QtQuick.Layouts 1.3
 
-import "qrc:/qml/Globals.js" as Globals
+import "../"
+import "../Styles"
+import "../Globals.js" as Globals
 
-Item{
+Rectangle {
+    id: timerView
+    color: Globals.secondaryColor
 
-    Column {
+    border.color: "red"
+    border.width: 5
+
+    ColumnLayout {
         anchors.fill: parent
+        spacing: 1
 
-        Row {
+        Item {
+            Layout.fillWidth: true
+            Layout.preferredHeight: parent.height / 5.0
 
-            width: parent.width
-            height: parent.height / 3.0
+            RowLayout {
+                anchors.fill: parent
+                spacing: 1
 
-            Rectangle {
-                width: parent.width / 2.0
-                height: parent.height
-                color: Globals.backgroundColor
-                border.width: 1
-                border.color: Globals.separatorColor
+                Rectangle {
+                    Layout.preferredWidth: parent.width / 2.0
+                    Layout.preferredHeight: parent.height
 
-                Text {
-                    anchors.fill: parent
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    text: "$" + timerModel.smallBlind
-                    font.family: "Consolas"
-                    font.pointSize: 40
+                    color: Globals.appBackground
+
+                    MainText {
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        text: "Small blind\n$" + _timer.smallBlind
+                        font.family: "Consolas"
+                        font.pointSize: 40
+                    }
                 }
-            }
 
-            Rectangle {
-                width: parent.width / 2.0
-                height: parent.height
-                color: Globals.backgroundColor
-                border.width: 1
-                border.color: Globals.separatorColor
+                Rectangle {
+                    Layout.preferredWidth: parent.width / 2.0
+                    Layout.preferredHeight: parent.height
 
-                Text {
-                    anchors.fill: parent
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    text: "$" + timerModel.bigBlind
-                    font.family: "Consolas"
-                    font.pointSize: 40
+                    color: Globals.appBackground
+                    border.width: 1
+                    border.color: Globals.secondaryColor
+
+                    MainText {
+                        anchors.fill: parent
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        text: "$" + _timer.bigBlind
+                        font.family: "Consolas"
+                        font.pointSize: 40
+                    }
                 }
             }
         }
 
         Rectangle {
-            width: parent.width;
-            height: parent.height * 2.0 / 3.0
-            color: Globals.backgroundColor
-            border.width: 1
-            border.color: Globals.separatorColor
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height / 5.0 * 4.0
 
-            Text {
+            color: Globals.appBackground
+
+            MainText {
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                text: timerModel.timeString
-
-                font.family: "Consolas"
-                font.pointSize: 60
+                text: _timer.timeString
             }
         }
     }

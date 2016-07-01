@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/ui/button-back.png</file>
+        <file>images/poker.jpg</file>
     </qresource>
 </RCC>
