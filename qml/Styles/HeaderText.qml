@@ -3,8 +3,6 @@ import "../Globals.js" as Globals
 
 Text {
 
-    color: Globals.defaultTextColor
-
     font.pixelSize: 32
     font.bold: true
     text: ""

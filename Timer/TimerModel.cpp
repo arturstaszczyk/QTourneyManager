@@ -8,7 +8,18 @@ TimerModel::TimerModel(QObject *parent)
 
 void TimerModel::zero()
 {
-    smallBlind(0);
-    bigBlind(0);
-    timeString("--:--");
+    running(false);
+    activeRound(0);
+    rounds({});
+}
+
+QQmlListProperty<RoundDef> TimerModel::rounds()
+{
+    return QQmlListProperty<RoundDef>(this, mRounds);
+}
+
+void TimerModel::rounds(QList<RoundDef*> rounds)
+{
+    mRounds = rounds;
+    emit roundsChanged(QQmlListProperty<RoundDef>(this, mRounds));
 }

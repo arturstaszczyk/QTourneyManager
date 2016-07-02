@@ -13,9 +13,12 @@ public:
     explicit RoundDef(QObject* parent = nullptr);
     explicit RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, QObject *parent = 0);
 
+    static QString secondsToTimeString(int seconds);
+
     READONLY_PROPERTY(int, smallBlind)
     READONLY_PROPERTY(int, bigBlind)
     READONLY_PROPERTY(int, roundTimeInSeconds)
+    READONLY_PROPERTY(QString, roundTimeString)
     READONLY_PROPERTY(bool, isValid)
 
 public:

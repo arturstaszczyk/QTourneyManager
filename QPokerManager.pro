@@ -10,8 +10,7 @@ SOURCES += main.cpp \
     Settings/HostAddress/HostAddressModel.cpp \
     Settings/HostAddress/HostAddressLogic.cpp \
     Tournaments/TournamentsListLogic.cpp \
-    Tournaments/TournamentsListModel.cpp \
-    ModelsAgregator.cpp
+    Tournaments/TournamentsListModel.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -42,9 +41,6 @@ HEADERS += \
     Settings/HostAddress/HostAddressModel.h \
     Settings/HostAddress/HostAddressLogic.h \
     QSortHelpers.h \
-    qml/Tounraments/TournamentsLogic.h \
     Tournaments/TournamentsListLogic.h \
     Tournaments/TournamentsListModel.h \
-    ModelsAgregator.h \
-    MVC/IModel.h \
     AppExceptions.h

@@ -19,7 +19,7 @@ Rectangle {
             height: 50
         }
 
-        model: _timer.blinds
+        model: timerModel.rounds
     }
 
 //    ColumnLayout {

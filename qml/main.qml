@@ -17,12 +17,12 @@ ApplicationWindow {
     width: 640
     height: 960
     id: app
-
     property bool isCppAvailable: typeof _cpp !== "undefined"
-    property QtObject _hostAddress;
-    property QtObject _timer
+    property QtObject _hostAddress: app.isCppAvailable ? hostAddressModel : mock.mockHostAddressModel
+    property QtObject _timer: app.isCppAvailable ? timerModel : mock.mockTimerModel
 
     MockModels{
+        id: mock
     }
 
     Component {
@@ -103,6 +103,7 @@ ApplicationWindow {
             Rectangle {
                 id: root
                 color: "transparent"
+
             }
         }
     }

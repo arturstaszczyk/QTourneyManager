@@ -1,9 +1,16 @@
 ﻿import QtQuick 2.0
 
 Item {
+
+    property alias mockHostAddressModel: mockHostAddressModel
+    property alias mockTimerModel: mockTimerModel
+
     Component.onCompleted: {
-        _hostAddress = app.isCppAvailable ? hostAddressModel : mockHostAddressModel
-        _timer = app.isCppAvailable ? timerModel : mockTimerModel
+//        _hostAddress = app.isCppAvailable ? hostAddressModel : mockHostAddressModel
+//        _timer = app.isCppAvailable ? timerModel : mockTimerModel
+
+//        console.log("Cpp available: " + app.isCppAvailable)
+//        console.log("hostAddressModel: " + hostAddressModel)
     }
 
     Item {

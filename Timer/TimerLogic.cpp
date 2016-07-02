@@ -2,23 +2,18 @@
 
 #include <math.h>
 #include <QtAlgorithms>
-
-#include "ModelsAgregator.h"
+#include <QDebug>
 #include "ReturnIf.h"
 #include "QSortHelpers.h"
-
-#define NO_ACTIVE_ROUND -1
 
 TimerLogic::TimerLogic(QQmlContext* context, QList<RoundDef*> rounds, QObject *parent)
     : QObject(parent)
     , mRounds(rounds)
-    , mActiveRound(NO_ACTIVE_ROUND)
     , mIsPaused(false)
     , mLastTick(0.0f)
     , mElapsedRoundSeconds(0.0f)
 {
     mTimerModel = new TimerModel(this);
-    //ModelsAgregator::instance()->addModel("timerModel", mTimerModel);
     context->setContextProperty("timerModel", mTimerModel);
     context->setContextProperty("timerController", this);
 }
@@ -32,70 +27,63 @@ void TimerLogic::nextRound()
 {
     resetTime();
     if(hasNextRound())
-        mActiveRound++;
+    {
+        mTimerModel->activeRound(mTimerModel->activeRound() + 1);
+        mTimerModel->running(true);
+    }
     else
-        mActiveRound = NO_ACTIVE_ROUND;
-
-    updateModelBlinds();
+    {
+        mTimerModel->zero();
+        mTimerModel->running(false);
+    }
 }
 
 void TimerLogic::previousRound()
 {
     resetTime();
     if(hasPrevRound())
-        mActiveRound--;
+    {
+        mTimerModel->activeRound(mTimerModel->activeRound() - 1);
+        mTimerModel->running(true);
+    }
     else
-        mActiveRound = NO_ACTIVE_ROUND;
-    updateModelBlinds();
+    {
+        mTimerModel->zero();
+        mTimerModel->running(false);
+    }
 }
 
 bool TimerLogic::hasNextRound() const
 {
-    return mActiveRound < mRounds.size() - 1;
+    return mTimerModel->activeRound() < mRounds.size() - 1;
 }
 
 bool TimerLogic::hasPrevRound() const
 {
-    return mActiveRound > 0;
+    return mTimerModel->activeRound() > 0;
 }
 
 void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
 {
     mRounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
     qSort(mRounds.begin(), mRounds.end(), QSortHelpers::PtrLess<RoundDef>());
-}
 
-void TimerLogic::updateModelBlinds()
-{
-    RoundDef* activeRound = nullptr;
-    if(mActiveRound >= 0)
-        activeRound = mRounds[mActiveRound];
-
-    if(activeRound)
-    {
-        mTimerModel->smallBlind(activeRound->smallBlind());
-        mTimerModel->bigBlind(activeRound->bigBlind());
-    }
-    else
-        mTimerModel->zero();
+    mTimerModel->rounds(mRounds);
 }
 
 void TimerLogic::updateModelTime()
 {
-    RoundDef* activeRound = nullptr;
-    if(mActiveRound >= 0)
-        activeRound = mRounds[mActiveRound];
+    RETURN_IF(!mTimerModel->running());
+
+    auto activeRoundId = mTimerModel->activeRound();
+    auto activeRound = mRounds[activeRoundId];
 
     if(activeRound)
     {
         int secondsLeft = ceil(activeRound->roundTimeInSeconds() - mElapsedRoundSeconds);
-        auto out = QString("%1:%2").
-                arg(secondsLeft / 60, 2, 10, QChar('0')).
-                arg(secondsLeft % 60, 2, 10, QChar('0'));
-        mTimerModel->timeString(out);
+        auto secondsLeftStr = RoundDef::secondsToTimeString(secondsLeft);
+        mTimerModel->activeRoundRemainingTime(secondsLeftStr);
     }
-    else
-        mTimerModel->zero();
 }
 
 void TimerLogic::resetTime()
@@ -110,7 +98,7 @@ void TimerLogic::timerEvent(QTimerEvent* event)
 {
     Q_UNUSED(event);
 
-    RETURN_IF(mActiveRound == NO_ACTIVE_ROUND)
+    RETURN_IF(!mTimerModel->running())
 
     float seconds = mTime.elapsed() / 1000.0;
     if(!mIsPaused)
@@ -118,7 +106,7 @@ void TimerLogic::timerEvent(QTimerEvent* event)
         mElapsedRoundSeconds += seconds - mLastTick;
         mLastTick = seconds;
 
-        auto activeRound = mRounds[mActiveRound];
+        auto activeRound = mRounds[mTimerModel->activeRound()];
         if(mElapsedRoundSeconds > activeRound->roundTimeInSeconds())
             nextRound();
 

@@ -27,7 +27,7 @@ Item {
             }
 
             placeholderText: "192.168.0.1"
-            text: _hostAddress.address
+            text: hostAddressModel.address
 
             style: TextFieldStyle {
                 textColor: "black"

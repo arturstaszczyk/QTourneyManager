@@ -27,7 +27,6 @@ private:
     bool hasNextRound() const;
     bool hasPrevRound() const;
 
-    void updateModelBlinds();
     void updateModelTime();
 
     void timerEvent(QTimerEvent* event) override;
@@ -37,7 +36,6 @@ private:
 
     QTime                   mTime;
     QList<RoundDef*>        mRounds;
-    int                     mActiveRound;
 
     bool                    mIsPaused;
     float                   mLastTick;

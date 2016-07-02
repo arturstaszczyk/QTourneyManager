@@ -16,5 +16,5 @@ void TournamentsListLogic::addTournament(QString tournamentName)
 
 void TournamentsListLogic::onTournamentSelected(QString tournamentName)
 {
-
+    Q_UNUSED(tournamentName);
 }
