@@ -18,5 +18,7 @@
         <file>qml/NavigationBar.qml</file>
         <file>qml/Styles/HeaderText.qml</file>
         <file>qml/Styles/MainText.qml</file>
+        <file>qml/Styles/SupportText.qml</file>
+        <file>qml/Timer/RoundView.qml</file>
     </qresource>
 </RCC>

@@ -2,25 +2,37 @@
 import QtQuick.Layouts 1.3
 
 Item {
-    id: timerScreen
+    Rectangle {
+        id: timerScreen
+        color: "white"
+        radius: 20
+        clip: true
 
-    ColumnLayout {
-        anchors.fill: parent
-        spacing: 0
-
-        MainTimer {
-            id: timerView
-
-            Layout.fillWidth: true
-            Layout.preferredHeight: timerScreen.height / 4.0 * 3
+        anchors {
+            fill: parent
+            topMargin: 50
+            leftMargin: 50
+            rightMargin: 50
         }
 
-        MainControlButtons {
-            id: controlButtons
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: 0
 
-            Layout.fillWidth: true
-            Layout.preferredHeight: parent.height / 4.0
+            MainTimer {
+                id: timerView
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: timerScreen.height / 4.0 * 3
+            }
+
+            MainControlButtons {
+                id: controlButtons
+
+                Layout.fillWidth: true
+                Layout.preferredHeight: parent.height / 4.0
+            }
+
         }
-
     }
 }

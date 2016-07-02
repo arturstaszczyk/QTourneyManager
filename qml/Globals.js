@@ -6,4 +6,6 @@ var secondaryColor = "#353b56"
 var buttonNormal = "transparent"
 var buttonPressed = "transparent"
 
-var textColor = "#ffffff"
+var textColorLight = "#ffffff"
+var textColorDark = "#000000"
+var supportTextColor = "#bbbabb"

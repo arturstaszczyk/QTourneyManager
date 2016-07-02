@@ -31,7 +31,8 @@ ApplicationWindow {
 
     Component{
         id: timer
-        Timer {}
+        Timer {
+        }
     }
 
     Dialog {

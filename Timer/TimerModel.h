@@ -14,6 +14,7 @@ public:
     AUTO_PROPERTY(int, smallBlind)
     AUTO_PROPERTY(int, bigBlind)
     AUTO_PROPERTY(QString, timeString)
+    //AUTO_PROPERTY()
 
 public:
     void zero();
