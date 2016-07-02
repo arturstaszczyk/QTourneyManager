@@ -47,8 +47,9 @@ Item {
                 width: 80
                 height: 80
 
-                text: "Pause"
                 style: RoundButtonStyle {}
+                iconSource: timerModel.running ? "../../images/ui/button-pause.png" :
+                                                 "../../images/ui/button-play.png"
 
                 onClicked: {
                     timerController.togglePause();

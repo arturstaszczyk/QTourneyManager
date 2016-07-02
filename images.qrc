@@ -5,5 +5,7 @@
         <file>images/ui/button-next.png</file>
         <file>images/ui/button-prev.png</file>
         <file>images/ui/mask-button-round.png</file>
+        <file>images/ui/button-pause.png</file>
+        <file>images/ui/button-play.png</file>
     </qresource>
 </RCC>
