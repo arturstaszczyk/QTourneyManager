@@ -32,14 +32,10 @@ private:
     void timerEvent(QTimerEvent* event) override;
 
 private:
-    TimerModel*             mTimerModel;
+    TimerModel*             mModel;
 
     QTime                   mTime;
-    QList<RoundDef*>        mRounds;
-
-    bool                    mIsPaused;
     float                   mLastTick;
-
     float                   mElapsedRoundSeconds;
 };
 

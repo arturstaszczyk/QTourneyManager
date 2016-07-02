@@ -6,7 +6,7 @@ import "../Globals.js" as Globals
 
 Rectangle {
     id: roundView
-    property bool isActive: (index === _timer.activeRound) && _timer.running
+    property bool isActive: (index === timerModel.activeRound) && timerModel.running
 
     color: isActive ? "#8fd9d0" : "transparent"
 
@@ -27,7 +27,7 @@ Rectangle {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignRight
 
-            text: modelData.roundTimeString
+            text: roundView.isActive ? timerModel.activeRoundRemainingTime : modelData.roundTimeString
         }
     }
 }

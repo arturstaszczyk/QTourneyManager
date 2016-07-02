@@ -23,6 +23,7 @@ public:
     void zero();
 
     QQmlListProperty<RoundDef> rounds();
+    const QList<RoundDef*>& rawRoundsList() const { return mRounds; }
     void rounds(QList<RoundDef*> blinds);
 
 signals:

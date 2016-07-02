@@ -8,19 +8,21 @@
 
 TimerLogic::TimerLogic(QQmlContext* context, QList<RoundDef*> rounds, QObject *parent)
     : QObject(parent)
-    , mRounds(rounds)
-    , mIsPaused(false)
     , mLastTick(0.0f)
     , mElapsedRoundSeconds(0.0f)
 {
-    mTimerModel = new TimerModel(this);
-    context->setContextProperty("timerModel", mTimerModel);
+    mModel = new TimerModel(this);
+    mModel->rounds(rounds);
+
+    context->setContextProperty("timerModel", mModel);
     context->setContextProperty("timerController", this);
+
+    mTime.start();
 }
 
 void TimerLogic::togglePause()
 {
-    mIsPaused = !mIsPaused;
+    mModel->running(!mModel->running());
 }
 
 void TimerLogic::nextRound()
@@ -28,13 +30,13 @@ void TimerLogic::nextRound()
     resetTime();
     if(hasNextRound())
     {
-        mTimerModel->activeRound(mTimerModel->activeRound() + 1);
-        mTimerModel->running(true);
+        mModel->activeRound(mModel->activeRound() + 1);
+        mModel->running(true);
     }
     else
     {
-        mTimerModel->zero();
-        mTimerModel->running(false);
+        mModel->zero();
+        mModel->running(false);
     }
 }
 
@@ -43,46 +45,49 @@ void TimerLogic::previousRound()
     resetTime();
     if(hasPrevRound())
     {
-        mTimerModel->activeRound(mTimerModel->activeRound() - 1);
-        mTimerModel->running(true);
+        mModel->activeRound(mModel->activeRound() - 1);
+        mModel->running(true);
     }
     else
     {
-        mTimerModel->zero();
-        mTimerModel->running(false);
+        mModel->zero();
+        mModel->running(false);
     }
 }
 
 bool TimerLogic::hasNextRound() const
 {
-    return mTimerModel->activeRound() < mRounds.size() - 1;
+    auto rounds = mModel->rawRoundsList();
+    return mModel->activeRound() < rounds.size() - 1;
 }
 
 bool TimerLogic::hasPrevRound() const
 {
-    return mTimerModel->activeRound() > 0;
+    return mModel->activeRound() > 0;
 }
 
 void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
 {
-    mRounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
-    qSort(mRounds.begin(), mRounds.end(), QSortHelpers::PtrLess<RoundDef>());
+    QList<RoundDef*> rounds = mModel->rawRoundsList();
+    rounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
+    qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
 
-    mTimerModel->rounds(mRounds);
+    mModel->rounds(rounds);
 }
 
 void TimerLogic::updateModelTime()
 {
-    RETURN_IF(!mTimerModel->running());
+    RETURN_IF(!mModel->running());
 
-    auto activeRoundId = mTimerModel->activeRound();
-    auto activeRound = mRounds[activeRoundId];
+    auto activeRoundId = mModel->activeRound();
+    auto rounds = mModel->rawRoundsList();
+    auto activeRound = rounds[activeRoundId];
 
     if(activeRound)
     {
         int secondsLeft = ceil(activeRound->roundTimeInSeconds() - mElapsedRoundSeconds);
         auto secondsLeftStr = RoundDef::secondsToTimeString(secondsLeft);
-        mTimerModel->activeRoundRemainingTime(secondsLeftStr);
+        mModel->activeRoundRemainingTime(secondsLeftStr);
     }
 }
 
@@ -91,22 +96,21 @@ void TimerLogic::resetTime()
     mTime.restart();
     mLastTick = 0.0f;
     mElapsedRoundSeconds = 0.0f;
-    mIsPaused = false;
 }
 
 void TimerLogic::timerEvent(QTimerEvent* event)
 {
     Q_UNUSED(event);
 
-    RETURN_IF(!mTimerModel->running())
-
     float seconds = mTime.elapsed() / 1000.0;
-    if(!mIsPaused)
+    if(mModel->running())
     {
         mElapsedRoundSeconds += seconds - mLastTick;
         mLastTick = seconds;
 
-        auto activeRound = mRounds[mTimerModel->activeRound()];
+        auto rounds = mModel->rawRoundsList();
+        auto activeRoundId = mModel->activeRound();
+        auto activeRound = rounds[activeRoundId];
         if(mElapsedRoundSeconds > activeRound->roundTimeInSeconds())
             nextRound();
 
