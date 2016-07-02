@@ -6,82 +6,72 @@ import QtGraphicalEffects 1.0
 
 import "../Styles"
 
-Rectangle {
+Item {
     id: timerButtonsView
 
-    border.color: "red"
-    border.width: 5
-
     RowLayout {
+        anchors.fill: parent
+        anchors.margins: 5
+        anchors.leftMargin: 60
+        anchors.rightMargin: 60
         spacing: 0
 
-        Button {
-            id: prevButton
+        Item {
+            Layout.preferredWidth: 80
+            Layout.fillHeight: true
 
-            Layout.preferredWidth: timerButtonsView.width / 3.0
-            Layout.preferredHeight: timerButtonsView.height
+            Button {
+                id: prevButton
 
-            text: "Prev"
+                anchors.centerIn: parent
+                width: 60
+                height: 60
 
-            style: ButtonStyle {
-                label: Component {
-                    BigButtonTextStyle{
-                        text: prevButton.text
-                    }
+                style: RoundButtonStyle {}
+                iconSource: "../../images/ui/button-prev.png"
+
+                onClicked: {
+                    timerController.previousRound();
                 }
-                background: Rectangle {
-                    id: back
-                    radius: 30
-                    anchors.fill: parent
-                    gradient: Gradient {
-//                        anchors.fill: parent
-//                        start: Qt.point(0, 0);
-//                        end: Qt.point(0, back.height)
-                        GradientStop { position: 0.0; color: "white" }
-                        GradientStop { position: 1.0; color: "black" }
-                    }
-                }
-            }
-
-            onClicked: {
-                timerController.previousRound();
             }
         }
 
-        Button {
-            id: pauseButton
-            Layout.preferredWidth: timerButtonsView.width / 3.0
-            Layout.preferredHeight: timerButtonsView.height
-            text: "Pause"
-            style: ButtonStyle {
-                label: Component {
-                    BigButtonTextStyle{
-                        text: pauseButton.text
-                    }
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            Button {
+                id: pauseButton
+
+                anchors.centerIn: parent
+                width: 80
+                height: 80
+
+                text: "Pause"
+                style: RoundButtonStyle {}
+
+                onClicked: {
+                    timerController.togglePause();
                 }
-            }
-
-
-            onClicked: {
-                timerController.togglePause();
             }
         }
 
-        Button {
-            id: nextButton
-            Layout.preferredWidth: timerButtonsView.width / 3.0
-            Layout.preferredHeight: timerButtonsView.height
-            text: "Next"
-            style: ButtonStyle {
-                label: Component {
-                    BigButtonTextStyle{
-                        text: nextButton.text
-                    }
-                }
-            }
+        Item {
+            Layout.preferredWidth: 80
+            Layout.fillHeight: true
+            Button {
+                id: nextButton
 
-            onClicked: {
-                timerController.nextRound();
+                anchors.centerIn: parent
+                width: 60
+                height: 60
+
+                style: RoundButtonStyle {}
+                iconSource: "../../images/ui/button-next.png"
+
+                onClicked: {
+                    timerController.nextRound();
+                }
             }
         }
     }

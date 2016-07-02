@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>images/ui/button-back.png</file>
         <file>images/poker.jpg</file>
+        <file>images/ui/button-next.png</file>
+        <file>images/ui/button-prev.png</file>
+        <file>images/ui/mask-button-round.png</file>
     </qresource>
 </RCC>

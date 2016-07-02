@@ -3,6 +3,7 @@ import QtQuick.Controls 1.5
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 import "Globals.js" as Globals
 
