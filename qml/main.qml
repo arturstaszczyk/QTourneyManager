@@ -90,7 +90,6 @@ ApplicationWindow {
 
         NavigationBar {
             Layout.fillWidth: true
-            //Layout.preferredHeight: 64
         }
 
         StackView {
@@ -101,7 +100,6 @@ ApplicationWindow {
 
             Rectangle {
                 id: root
-                anchors.fill: parent
                 color: "transparent"
             }
         }

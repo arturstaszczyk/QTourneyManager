@@ -3,7 +3,6 @@ import QtQuick.Layouts 1.3
 
 Item {
     id: timerScreen
-    anchors.fill: parent
 
     ColumnLayout {
         anchors.fill: parent

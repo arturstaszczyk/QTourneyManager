@@ -7,10 +7,7 @@ import "../Globals.js" as Globals
 
 Rectangle {
     id: timerView
-    color: Globals.secondaryColor
-
-    border.color: "red"
-    border.width: 5
+    color: "transparent"
 
     ColumnLayout {
         anchors.fill: parent
@@ -28,7 +25,7 @@ Rectangle {
                     Layout.preferredWidth: parent.width / 2.0
                     Layout.preferredHeight: parent.height
 
-                    color: Globals.appBackground
+                    color: "transparent"
 
                     MainText {
                         anchors.fill: parent
@@ -44,9 +41,7 @@ Rectangle {
                     Layout.preferredWidth: parent.width / 2.0
                     Layout.preferredHeight: parent.height
 
-                    color: Globals.appBackground
-                    border.width: 1
-                    border.color: Globals.secondaryColor
+                    color: "transparent"
 
                     MainText {
                         anchors.fill: parent
@@ -64,7 +59,7 @@ Rectangle {
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height / 5.0 * 4.0
 
-            color: Globals.appBackground
+            color: "transparent"
 
             MainText {
                 anchors.fill: parent
