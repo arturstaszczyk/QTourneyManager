@@ -10,7 +10,6 @@ void TimerModel::zero()
 {
     running(false);
     activeRound(0);
-    rounds({});
 }
 
 QQmlListProperty<RoundDef> TimerModel::rounds()
