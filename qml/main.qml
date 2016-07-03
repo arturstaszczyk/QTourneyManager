@@ -60,11 +60,6 @@ ApplicationWindow {
                 text: qsTr("Show timer");
                 onTriggered: stackView.push(timer)
             }
-
-//            MenuItem {
-//                text: qsTr("Show menu")
-//                onTriggered: stackView.push("qml/BlindsEditor/BlindsListEditor.qml")
-//            }
         }
 
 
