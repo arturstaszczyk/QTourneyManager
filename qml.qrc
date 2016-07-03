@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>qml/Globals.js</file>
         <file>qml/main.qml</file>
-        <file>qml/Settings/HostAddressSetting.qml</file>
         <file>qml/Timer/MainControlButtons.qml</file>
         <file>qml/Timer/MainTimer.qml</file>
         <file>qml/Timer/Timer.qml</file>
@@ -15,5 +14,6 @@
         <file>qml/Styles/SupportText.qml</file>
         <file>qml/Timer/RoundView.qml</file>
         <file>qml/Styles/RoundButtonStyle.qml</file>
+        <file>qml/Settings/HostAddressSettingDialog.qml</file>
     </qresource>
 </RCC>

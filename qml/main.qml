@@ -36,14 +36,8 @@ ApplicationWindow {
         }
     }
 
-    Dialog {
+    HostAddressSettingDialog {
         id: hostSettings
-        HostAddressSetting {
-            id:hostSettingsContent
-        }
-
-        onAccepted: hostAddressController.onHostAddressChanged(hostSettingsContent.address,
-                                                               hostSettingsContent.valid)
     }
 
     menuBar: MenuBar {
