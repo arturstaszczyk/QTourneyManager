@@ -5,59 +5,31 @@ import QtQuick.Controls.Styles 1.4
 import "../"
 import "../Styles"
 
-Rectangle {
+Item{
+    Rectangle {
+        color: "white"
+        radius: 20
+        clip: true
 
-    HeaderText {
-        id: header
-        width: parent.width
-        height: 40
-        text: "Avalilable tournaments"
-
-        anchors.topMargin: 20
-    }
-
-    ScrollView {
         anchors {
-            top: header.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-
-            margins: 20
+            fill: parent
+            topMargin: 50
+            leftMargin: 50
+            rightMargin: 50
         }
 
         ListView {
+
             anchors.fill: parent
+            anchors.topMargin: 50
+            boundsBehavior: Flickable.StopAtBounds
+
             model: tournamentsListModel.tournaments
-            delegate: Button {
+
+            delegate: TournamentView {
                 width: parent.width
                 height: 40
-                text: modelData
-
-                style: ButtonStyle {
-                    background: Column{
-                        Rectangle {
-                            width: parent.width
-                            height: 1
-                            color: "black"
-                        }
-                        Rectangle{
-                            width: parent.width
-                            height: parent.height - 2
-                            color: "green"
-                        }
-
-                        Rectangle {
-                            width: parent.width
-                            height: 1
-                            color: "black"
-                        }
-                    }
-                }
-
-                onClicked: tournamentsListController.onTournamentSelected(modelData)
             }
         }
     }
-
 }

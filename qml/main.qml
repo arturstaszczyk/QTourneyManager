@@ -8,9 +8,9 @@ import QtGraphicalEffects 1.0
 import "Globals.js" as Globals
 
 import "Timer"
-import "Styles"
 import "Settings"
 import "Tounraments"
+import "Styles/Buttons"
 
 ApplicationWindow {
     visible: true
@@ -32,42 +32,11 @@ ApplicationWindow {
 
     Component{
         id: timer
-        Timer {
-        }
+        Timer {}
     }
 
     HostAddressSettingDialog {
         id: hostSettings
-    }
-
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("Go to...")
-            MenuItem {
-                text: qsTr("Show tournaments");
-                onTriggered: {
-                    stackView.push(tournaments)
-                    navigationBarController.push("tournaments")
-                }
-            }
-
-            MenuItem {
-                text: qsTr("Show timer");
-                onTriggered: {
-                    stackView.push(timer)
-                    navigationBarController.push("timer")
-                }
-            }
-
-        }
-
-        Menu {
-            title: qsTr("Settings...")
-            MenuItem {
-                text: qsTr("&Set host")
-                onTriggered: hostSettings.open()
-            }
-        }
     }
 
     Image {
@@ -99,6 +68,53 @@ ApplicationWindow {
             Rectangle {
                 id: root
                 color: "transparent"
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 50
+                    spacing: 0
+
+                    Button {
+                        id: timerButton
+                        Layout.fillWidth: true
+                        text: "Show timer"
+
+                        onClicked: {
+                            stackView.push(timer)
+                            navigationBarController.push("timer")
+                        }
+
+                        style: SystemButtonStyle {
+                            buttonText: timerButton.text
+                        }
+                    }
+
+                    Button {
+                        id: tournamentButton
+                        Layout.fillWidth: true
+                        text: "Show tournaments"
+                        onClicked: {
+                            stackView.push(tournaments)
+                            navigationBarController.push("tournaments")
+                        }
+
+                        style: SystemButtonStyle {
+                            buttonText: tournamentButton.text
+                        }
+                    }
+
+                    Button {
+                        id: hostButton
+
+                        Layout.fillWidth: true
+                        text: "Set host address"
+                        onClicked: hostSettings.open()
+
+                        style: SystemButtonStyle {
+                            buttonText: hostButton.text
+                        }
+                    }
+                }
             }
         }
     }

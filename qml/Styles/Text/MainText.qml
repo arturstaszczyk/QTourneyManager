@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.7
-import "../Globals.js" as Globals
+import "../../Globals.js" as Globals
 
 Text {
 

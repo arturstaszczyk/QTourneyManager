@@ -6,14 +6,15 @@
         <file>qml/Timer/MainTimer.qml</file>
         <file>qml/Timer/Timer.qml</file>
         <file>qml/Tounraments/Tournaments.qml</file>
-        <file>qml/Styles/AppButtonStyle.qml</file>
         <file>qml/MockModels.qml</file>
         <file>qml/NavigationBar.qml</file>
-        <file>qml/Styles/HeaderText.qml</file>
-        <file>qml/Styles/MainText.qml</file>
-        <file>qml/Styles/SupportText.qml</file>
         <file>qml/Timer/RoundView.qml</file>
-        <file>qml/Styles/RoundButtonStyle.qml</file>
         <file>qml/Settings/HostAddressSettingDialog.qml</file>
+        <file>qml/Tounraments/TournamentView.qml</file>
+        <file>qml/Styles/Text/MainText.qml</file>
+        <file>qml/Styles/Text/SupportText.qml</file>
+        <file>qml/Styles/Buttons/RoundButtonStyle.qml</file>
+        <file>qml/Styles/Buttons/SystemButtonStyle.qml</file>
+        <file>qml/Styles/Buttons/TransparentButtonStyle.qml</file>
     </qresource>
 </RCC>

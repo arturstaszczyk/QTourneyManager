@@ -1,8 +1,8 @@
-﻿import QtQuick 2.0
+﻿import QtQuick 2.7
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
-import "../Globals.js" as Globals
+import "../../Globals.js" as Globals
 
 ButtonStyle {
 
@@ -20,7 +20,7 @@ ButtonStyle {
         Image {
             id: mask
             anchors.fill: parent
-            source: "../../images/ui/mask-button-round.png"
+            source: "../../../images/ui/mask-button-round.png"
             sourceSize: Qt.size(parent.width, parent.height)
             smooth: true
             visible: false

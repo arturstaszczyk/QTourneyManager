@@ -10,3 +10,5 @@ var roundButtonColor = "black"
 var textColorLight = "#ffffff"
 var textColorDark = "#000000"
 var supportTextColor = "#bbbabb"
+
+var leftMargin = 30

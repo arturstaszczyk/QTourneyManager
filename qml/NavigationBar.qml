@@ -3,7 +3,8 @@ import QtQuick.Controls 1.5
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 
-import "Styles"
+import "Styles/Buttons"
+import "Styles/Text"
 
 Item {
     id: navigationBar
@@ -16,9 +17,7 @@ Item {
 
         Button {
             id: backButton
-            style: AppButtonStyle {
-                pressed: backButton.pressed
-            }
+            style: TransparentButtonStyle {}
 
             visible: !navigationBarModel.isRoot
             iconSource: "../images/ui/button-back.png"

@@ -1,8 +1,7 @@
 ﻿import QtQuick 2.7
-import "../Globals.js" as Globals
+import "../../Globals.js" as Globals
 
 Text {
-
     property int level: 1
 
     color: Globals.supportTextColor

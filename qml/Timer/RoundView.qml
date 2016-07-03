@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.7
 import QtQuick.Layouts 1.3
 
-import "../Styles"
+import "../Styles/Text"
 import "../Globals.js" as Globals
 
 Rectangle {
