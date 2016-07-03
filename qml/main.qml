@@ -53,16 +53,19 @@ ApplicationWindow {
                 text: qsTr("Show tournaments");
                 onTriggered: {
                     stackView.push(tournaments)
+                    navigationBarController.push("tournaments")
                 }
             }
 
             MenuItem {
                 text: qsTr("Show timer");
-                onTriggered: stackView.push(timer)
+                onTriggered: {
+                    stackView.push(timer)
+                    navigationBarController.push("timer")
+                }
             }
+
         }
-
-
 
         Menu {
             title: qsTr("Settings...")
@@ -95,10 +98,13 @@ ApplicationWindow {
             Layout.fillHeight: true
             initialItem: root
 
+            Component.onCompleted: {
+                navigationBarController.push("main")
+            }
+
             Rectangle {
                 id: root
                 color: "transparent"
-
             }
         }
     }

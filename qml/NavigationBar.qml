@@ -5,13 +5,10 @@ import QtQuick.Layouts 1.3
 
 import "Styles"
 
-Rectangle {
+Item {
     id: navigationBar
 
     height: 80
-    border.width: 0
-    border.color: "red"
-    color: "transparent"
 
     RowLayout {
         anchors.fill: parent
@@ -23,14 +20,19 @@ Rectangle {
                 pressed: backButton.pressed
             }
 
+            visible: !navigationBarModel.isRoot
             iconSource: "../images/ui/button-back.png"
-            onClicked: stackView.pop()
+
+            onClicked: {
+                stackView.pop()
+                navigationBarController.pop()
+            }
         }
 
         MainText {
             level: 3
             Layout.fillWidth: true
-            text: "menu"
+            text: navigationBarModel.title
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }

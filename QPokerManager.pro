@@ -10,7 +10,9 @@ SOURCES += main.cpp \
     Settings/HostAddress/HostAddressModel.cpp \
     Settings/HostAddress/HostAddressLogic.cpp \
     Tournaments/TournamentsListLogic.cpp \
-    Tournaments/TournamentsListModel.cpp
+    Tournaments/TournamentsListModel.cpp \
+    NavigationBar/NavigationBarModel.cpp \
+    NavigationBar/NavigationBarController.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -43,4 +45,6 @@ HEADERS += \
     QSortHelpers.h \
     Tournaments/TournamentsListLogic.h \
     Tournaments/TournamentsListModel.h \
-    AppExceptions.h
+    AppExceptions.h \
+    NavigationBar/NavigationBarModel.h \
+    NavigationBar/NavigationBarController.h

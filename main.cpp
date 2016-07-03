@@ -7,6 +7,7 @@
 
 #include "Timer/TimerLogic.h"
 #include "Tournaments/TournamentsListLogic.h"
+#include "NavigationBar/NavigationBarController.h"
 #include "Settings/HostAddress/HostAddressLogic.h"
 
 int main(int argc, char *argv[])
@@ -30,6 +31,8 @@ int main(int argc, char *argv[])
     TournamentsListLogic tournamentsLogic(engine.rootContext());
     QObject::connect(&addressLogic, SIGNAL(tournamentName(QString)),
                      &tournamentsLogic, SLOT(addTournament(QString)));
+
+    NavigationBarController navigationBar(engine.rootContext());
 
 #ifdef _DEBUG
     addressLogic.onHostAddressChanged("127.0.0.1", true);
