@@ -6,13 +6,15 @@ import "../../Globals.js" as Globals
 
 ButtonStyle {
 
+    property color backgroundColor: Globals.roundButtonColor;
+
     background: Item {
 
         Rectangle {
             id: back
             radius: 30
             anchors.fill: parent
-            color: Globals.roundButtonColor
+            color: backgroundColor
 
             visible: false
         }
@@ -23,6 +25,7 @@ ButtonStyle {
             source: "../../../images/ui/mask-button-round.png"
             sourceSize: Qt.size(parent.width, parent.height)
             smooth: true
+            antialiasing: true
             visible: false
         }
 
@@ -30,6 +33,8 @@ ButtonStyle {
             anchors.fill: parent
             source: back
             maskSource: mask
+            smooth: true
+            antialiasing: true
         }
     }
 }

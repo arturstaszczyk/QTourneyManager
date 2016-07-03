@@ -3,7 +3,7 @@
 
 HostAddressModel::HostAddressModel(QObject *parent)
     : QObject(parent)
-    , a_address("127.0.0.1")
+    , a_address("192.168.0.103")
 {
     this->connect(this, SIGNAL(addressChanged(QString)), this, SLOT(onAddressChanged(QString)));
 }

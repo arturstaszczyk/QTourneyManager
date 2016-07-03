@@ -10,9 +10,10 @@ Item {
     id: tournamentView
 
     RowLayout {
-        anchors.fill: parent
-        anchors.leftMargin: Globals.leftMargin
-        anchors.rightMargin: Globals.leftMargin
+        spacing: 20
+        anchors.fill: tournamentView
+        anchors.leftMargin: Globals.normalMargin
+        anchors.rightMargin: Globals.normalMargin
 
         Item {
             Layout.fillWidth: true
@@ -31,39 +32,22 @@ Item {
             Layout.preferredWidth: tournamentView.height - 10
             Layout.preferredHeight: tournamentView.height - 10
 
+            iconSource: "../../images/ui/button-question-small.png"
+
+            style: RoundButtonStyle {
+                backgroundColor: "gray"
+            }
+        }
+
+        Button {
+            Layout.preferredWidth: tournamentView.height - 10
+            Layout.preferredHeight: tournamentView.height - 10
+
             iconSource: "../../images/ui/button-play-small.png"
 
             style: RoundButtonStyle {
+                backgroundColor: "gray"
             }
         }
     }
-
-//Button {
-//    width: parent.width
-//    height: 40
-//    text: modelData
-
-//    style: ButtonStyle {
-//        background: Column{
-//            Rectangle {
-//                width: parent.width
-//                height: 1
-//                color: "black"
-//            }
-//            Rectangle{
-//                width: parent.width
-//                height: parent.height - 2
-//                color: "green"
-//            }
-
-//            Rectangle {
-//                width: parent.width
-//                height: 1
-//                color: "black"
-//            }
-//        }
-//    }
-
-//    onClicked: tournamentsListController.onTournamentSelected(modelData)
-//}
 }

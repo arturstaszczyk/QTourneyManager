@@ -8,5 +8,7 @@
         <file>images/ui/button-pause.png</file>
         <file>images/ui/button-play.png</file>
         <file>images/ui/button-play-small.png</file>
+        <file>images/ui/button-question-small.png</file>
+        <file>images/ui/button-question.png</file>
     </qresource>
 </RCC>

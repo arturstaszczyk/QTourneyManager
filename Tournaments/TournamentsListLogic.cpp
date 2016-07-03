@@ -14,7 +14,3 @@ void TournamentsListLogic::addTournament(QString tournamentName)
     mModel->tournaments(tournaments);
 }
 
-void TournamentsListLogic::onTournamentSelected(QString tournamentName)
-{
-    Q_UNUSED(tournamentName);
-}

@@ -15,8 +15,6 @@ public:
 public slots:
     void addTournament(QString tournamentName);
 
-    void onTournamentSelected(QString tournamentName);
-
 private:
     TournamentsListModel* mModel;
 };

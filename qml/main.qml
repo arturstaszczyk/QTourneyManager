@@ -3,7 +3,6 @@ import QtQuick.Controls 1.5
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 
 import "Globals.js" as Globals
 
@@ -13,17 +12,18 @@ import "Tounraments"
 import "Styles/Buttons"
 
 ApplicationWindow {
+    id: app
     visible: true
     width: 640
     height: 960
-    id: app
-    property bool isCppAvailable: typeof _cpp !== "undefined"
-    property QtObject _hostAddress: app.isCppAvailable ? hostAddressModel : mock.mockHostAddressModel
-    property QtObject _timer: app.isCppAvailable ? timerModel : mock.mockTimerModel
 
-    MockModels{
-        id: mock
-    }
+//    property bool isCppAvailable: typeof _cpp !== "undefined"
+//    property QtObject _hostAddress: app.isCppAvailable ? hostAddressModel : mock.mockHostAddressModel
+//    property QtObject _timer: app.isCppAvailable ? timerModel : mock.mockTimerModel
+
+//    MockModels{
+//        id: mock
+//    }
 
     Component {
         id: tournaments

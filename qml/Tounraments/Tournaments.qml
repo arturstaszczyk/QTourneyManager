@@ -18,7 +18,7 @@ Item{
 
             delegate: TournamentView {
                 width: parent.width
-                height: 40
+                height: 60
             }
         }
     }
