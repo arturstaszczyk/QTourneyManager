@@ -6,17 +6,7 @@ import "../"
 import "../Styles"
 
 Item{
-    Rectangle {
-        color: "white"
-        radius: 20
-        clip: true
-
-        anchors {
-            fill: parent
-            topMargin: 50
-            leftMargin: 50
-            rightMargin: 50
-        }
+    RoundedPage {
 
         ListView {
 

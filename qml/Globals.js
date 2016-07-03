@@ -11,4 +11,4 @@ var textColorLight = "#ffffff"
 var textColorDark = "#000000"
 var supportTextColor = "#bbbabb"
 
-var leftMargin = 30
+var normalMargin = 20

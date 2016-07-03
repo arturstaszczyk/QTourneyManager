@@ -8,6 +8,6 @@ Text {
     color: Globals.textColorLight
 
     font.family: "Verdana"
-    font.pointSize: level == 1 ? 60 : level == 2 ? 48 : 32
+    font.pointSize: level == 1 ? 60 : level == 2 ? 48 : 26
     text: ""
 }

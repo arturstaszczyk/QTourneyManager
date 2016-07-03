@@ -35,8 +35,14 @@ ApplicationWindow {
         Timer {}
     }
 
-    HostAddressSettingDialog {
+    Component {
         id: hostSettings
+        HostAddressSetting {
+            onRequestClose: {
+                stackView.pop()
+                navigationBarController.pop()
+            }
+        }
     }
 
     Image {
@@ -60,6 +66,20 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
             initialItem: root
+
+            focus: true
+
+            Keys.onReleased: {
+                if(event.key == Qt.Key_Back)
+                {
+                    if(!navigationBarModel.isRoot)
+                    {
+                        stackView.pop()
+                        navigationBarController.pop()
+                    }
+                    event.accepted = true
+                }
+            }
 
             Component.onCompleted: {
                 navigationBarController.push("main")
@@ -102,13 +122,15 @@ ApplicationWindow {
                             buttonText: tournamentButton.text
                         }
                     }
-
                     Button {
                         id: hostButton
 
                         Layout.fillWidth: true
                         text: "Set host address"
-                        onClicked: hostSettings.open()
+                        onClicked: {
+                            stackView.push(hostSettings)
+                            navigationBarController.push("settings/host address")
+                        }
 
                         style: SystemButtonStyle {
                             buttonText: hostButton.text

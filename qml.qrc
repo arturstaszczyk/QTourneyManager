@@ -9,12 +9,13 @@
         <file>qml/MockModels.qml</file>
         <file>qml/NavigationBar.qml</file>
         <file>qml/Timer/RoundView.qml</file>
-        <file>qml/Settings/HostAddressSettingDialog.qml</file>
         <file>qml/Tounraments/TournamentView.qml</file>
         <file>qml/Styles/Text/MainText.qml</file>
         <file>qml/Styles/Text/SupportText.qml</file>
         <file>qml/Styles/Buttons/RoundButtonStyle.qml</file>
         <file>qml/Styles/Buttons/SystemButtonStyle.qml</file>
         <file>qml/Styles/Buttons/TransparentButtonStyle.qml</file>
+        <file>qml/Settings/HostAddressSetting.qml</file>
+        <file>qml/Styles/RoundedPage.qml</file>
     </qresource>
 </RCC>
