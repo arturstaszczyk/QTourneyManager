@@ -25,12 +25,14 @@ int main(int argc, char *argv[])
     timerLogic.startTimer(interval.count());
 
     HostAddressLogic addressLogic(engine.rootContext());
-    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
-                  &timerLogic, SLOT(addRound(int,int,int)));
+//    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
+//                  &timerLogic, SLOT(addRound(int,int,int)));
 
     TournamentsListLogic tournamentsLogic(engine.rootContext());
     QObject::connect(&addressLogic, SIGNAL(tournamentName(QString)),
                      &tournamentsLogic, SLOT(addTournament(QString)));
+    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
+                     &tournamentsLogic, SLOT(addRoundToCurrentTournament(int,int,int)));
 
     NavigationBarController navigationBar(engine.rootContext());
 

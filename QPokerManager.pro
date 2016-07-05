@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     Tournaments/TournamentsListLogic.cpp \
     Tournaments/TournamentsListModel.cpp \
     NavigationBar/NavigationBarModel.cpp \
-    NavigationBar/NavigationBarController.cpp
+    NavigationBar/NavigationBarController.cpp \
+    TournamentStructureDef.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -47,4 +48,5 @@ HEADERS += \
     Tournaments/TournamentsListModel.h \
     AppExceptions.h \
     NavigationBar/NavigationBarModel.h \
-    NavigationBar/NavigationBarController.h
+    NavigationBar/NavigationBarController.h \
+    TournamentStructureDef.h
