@@ -13,7 +13,11 @@ SOURCES += main.cpp \
     Tournaments/TournamentsListModel.cpp \
     NavigationBar/NavigationBarModel.cpp \
     NavigationBar/NavigationBarController.cpp \
-    TournamentStructureDef.cpp
+    TournamentStructureDef.cpp \
+    Commands/RequestTournamentsCommand.cpp \
+    Commands/CommandRecycler.cpp \
+    Commands/Command.cpp \
+    Commands/RequestRoundsCommand.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -49,4 +53,8 @@ HEADERS += \
     AppExceptions.h \
     NavigationBar/NavigationBarModel.h \
     NavigationBar/NavigationBarController.h \
-    TournamentStructureDef.h
+    TournamentStructureDef.h \
+    Commands/RequestTournamentsCommand.h \
+    Commands/CommandRecycler.h \
+    Commands/Command.h \
+    Commands/RequestRoundsCommand.h

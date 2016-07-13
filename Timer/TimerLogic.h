@@ -8,6 +8,7 @@
 
 #include "TimerModel.h"
 #include "RoundDef.h"
+#include "TournamentStructureDef.h"
 
 class TimerLogic : public QObject
 {
@@ -20,7 +21,8 @@ public slots:
     void nextRound();
     void previousRound();
 
-    void addRound(int smallBlind, int bigBlind, int timeInSeconds);
+    //void addRound(int smallBlind, int bigBlind, int timeInSeconds);
+    void addStructure(TournamentStructureDef* tournament);
 
 private:
     void resetTime();

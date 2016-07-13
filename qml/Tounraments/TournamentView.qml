@@ -48,6 +48,8 @@ Item {
             style: RoundButtonStyle {
                 backgroundColor: "gray"
             }
+
+            onClicked: tournamentsListController.onPlayClicked(modelData)
         }
     }
 }

@@ -1,23 +1,39 @@
 ﻿#include "TournamentsListLogic.h"
 
-TournamentsListLogic::TournamentsListLogic(QQmlContext* qmlContext, QObject *parent) : QObject(parent)
+#include <QDebug>
+
+#include "Commands/RequestRoundsCommand.h"
+
+TournamentsListLogic::TournamentsListLogic(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent)
+    : QObject(parent)
+    , mCommandRecycler(recycler)
 {
     mModel = new TournamentsListModel(this);
     qmlContext->setContextProperty("tournamentsListModel", mModel);
     qmlContext->setContextProperty("tournamentsListController", this);
 }
 
-void TournamentsListLogic::addTournament(QString tournamentName)
+void TournamentsListLogic::addTournament(TournamentStructureDef* tourney)
 {
-    auto tournaments = mModel->tournaments();
-    tournaments.append(tournamentName);
-    mModel->tournaments(tournaments);
-    mCurrentTournament = tournamentName;
+    auto tourneyList = mModel->tournaments();
+    auto tourneyName = tourney->name();
+
+    tourneyList.append(tourneyName);
+    mModel->tournaments(tourneyList);
+
+    mStructure[tourneyName] = tourney;
+    tourney->setParent(this);
+
+    if(!tourney->isStructureReady())
+    {
+        RequestRoundsCommand* command = new RequestRoundsCommand(tourney, this);
+        mCommandRecycler->executeAndDispose(command);
+    }
 }
 
-void TournamentsListLogic::addRoundToCurrentTournament(int smallBlind, int bigBlind, int timeInSeconds)
+void TournamentsListLogic::onPlayClicked(QString tournamentName)
 {
-    if(mStructure.find(mCurrentTournament) == mStructure.end())
-        mStructure[mCurrentTournament] = new TournamentStructureDef(mCurrentTournament, this);
-    mStructure[mCurrentTournament]->addRound(smallBlind, bigBlind, timeInSeconds);
+    qDebug() << tournamentName;
+    qDebug() << mStructure[tournamentName]->rounds().size();
+    //emit tournamentSelectedToPlay(mStructure[tournamentName]);
 }

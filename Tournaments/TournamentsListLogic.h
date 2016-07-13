@@ -7,21 +7,26 @@
 
 #include "TournamentStructureDef.h"
 #include "TournamentsListModel.h"
+#include "Commands/CommandRecycler.h"
 
 class TournamentsListLogic : public QObject
 {
     Q_OBJECT
 public:
-    explicit TournamentsListLogic(QQmlContext* qmlContext, QObject *parent = 0);
+    explicit TournamentsListLogic(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent = 0);
+
+signals:
+    void tournamentSelectedToPlay(TournamentStructureDef*);
 
 public slots:
-    void addTournament(QString tournamentName);
-    void addRoundToCurrentTournament(int smallBlind, int bigBlind, int timeInSeconds);
+    void addTournament(TournamentStructureDef* tourney);
+
+    void onPlayClicked(QString);
 
 private:
     TournamentsListModel* mModel;
 
-    QString mCurrentTournament;
+    CommandRecycler* mCommandRecycler;
     QMap<QString, TournamentStructureDef*> mStructure;
 };
 

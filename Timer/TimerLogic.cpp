@@ -66,12 +66,19 @@ bool TimerLogic::hasPrevRound() const
     return mModel->activeRound() > 0;
 }
 
-void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
-{
-    QList<RoundDef*> rounds = mModel->rawRoundsList();
-    rounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
-    qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
+//void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
+//{
+//    QList<RoundDef*> rounds = mModel->rawRoundsList();
+//    rounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
+//    qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
 
+//    mModel->rounds(rounds);
+//}
+
+void TimerLogic::addStructure(TournamentStructureDef *tournament)
+{
+    QList<RoundDef*> rounds = tournament->rounds();
+    qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
     mModel->rounds(rounds);
 }
 

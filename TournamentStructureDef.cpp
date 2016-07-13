@@ -1,8 +1,9 @@
 ﻿#include "TournamentStructureDef.h"
 
-TournamentStructureDef::TournamentStructureDef(QString name, QObject *parent)
+TournamentStructureDef::TournamentStructureDef(QString name, QStringList roundUrls, QObject *parent)
     : QObject(parent)
     , mName(name)
+    , mRoundUrls(roundUrls)
 {
 
 }

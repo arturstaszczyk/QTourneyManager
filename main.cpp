@@ -5,6 +5,7 @@
 
 #include <chrono>
 
+#include "Commands/CommandRecycler.h"
 #include "Timer/TimerLogic.h"
 #include "Tournaments/TournamentsListLogic.h"
 #include "NavigationBar/NavigationBarController.h"
@@ -19,20 +20,23 @@ int main(int argc, char *argv[])
 
     qmlRegisterUncreatableType<RoundDef>("poker.rounddef", 1, 0, "RoundDef", "Cannot create model in QML");
 
+
     std::chrono::milliseconds interval(100);
 
     TimerLogic timerLogic(engine.rootContext(), {});
     timerLogic.startTimer(interval.count());
+    CommandRecycler commandRecycler(interval);
 
-    HostAddressLogic addressLogic(engine.rootContext());
+    HostAddressLogic addressLogic(engine.rootContext(), &commandRecycler);
 //    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
 //                  &timerLogic, SLOT(addRound(int,int,int)));
 
-    TournamentsListLogic tournamentsLogic(engine.rootContext());
-    QObject::connect(&addressLogic, SIGNAL(tournamentName(QString)),
-                     &tournamentsLogic, SLOT(addTournament(QString)));
-    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
-                     &tournamentsLogic, SLOT(addRoundToCurrentTournament(int,int,int)));
+    TournamentsListLogic tournamentsLogic(engine.rootContext(), &commandRecycler);
+    QObject::connect(&addressLogic, SIGNAL(onTournamentParsed(TournamentStructureDef*)),
+                     &tournamentsLogic, SLOT(addTournament(TournamentStructureDef*)));
+
+    QObject::connect(&tournamentsLogic, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
+                     &timerLogic, SLOT(addStructure(TournamentStructureDef*)));
 
     NavigationBarController navigationBar(engine.rootContext());
 

@@ -6,30 +6,24 @@
 #include <QNetworkReply>
 
 #include "HostAddressModel.h"
+#include "TournamentStructureDef.h"
+#include "Commands/CommandRecycler.h"
 
 class HostAddressLogic : public QObject
 {
     Q_OBJECT
 public:
-    explicit HostAddressLogic(QQmlContext* qmlContext, QObject *parent = 0);
+    explicit HostAddressLogic(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
 
 signals:
-    void tournamentName(QString name);
-    void tournamentRound(int smallBlind, int bigBlind, int timeInSeconds);
+    void onTournamentParsed(TournamentStructureDef* torunament);
 
 public slots:
     void onHostAddressChanged(QString address, bool isValid);
 
-private slots:
-    void onHttpTournamentsGet(QNetworkReply* reply);
-    void onHttpRoundGet(QNetworkReply* reply);
-
-private:
-    void getRounds(QStringList rounds);
-
 private:
     HostAddressModel* mModel;
-
+    CommandRecycler* mCommandRecycler;
 };
 
 #endif // HOSTADDRESSLOGIC_H
