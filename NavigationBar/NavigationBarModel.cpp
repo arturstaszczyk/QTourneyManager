@@ -5,5 +5,4 @@ NavigationBarModel::NavigationBarModel(QObject *parent)
     , a_title("hah")
     , a_isRoot(true)
 {
-
 }

@@ -25,9 +25,15 @@ ApplicationWindow {
 //        id: mock
 //    }
 
+
     Component {
         id: tournaments
-        Tournaments {}
+        Tournaments {
+            onShowTimer: {
+                stackView.push(timer)
+                navigationBarController.push("timer")
+            }
+        }
     }
 
     Component{
@@ -70,7 +76,7 @@ ApplicationWindow {
             focus: true
 
             Keys.onReleased: {
-                if(event.key == Qt.Key_Back)
+                if(event.key === Qt.Key_Back)
                 {
                     if(!navigationBarModel.isRoot)
                     {

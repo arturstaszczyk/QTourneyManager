@@ -8,6 +8,7 @@ import "../Styles/Buttons"
 
 Item {
     id: tournamentView
+    signal showTimer
 
     RowLayout {
         spacing: 20
@@ -49,7 +50,10 @@ Item {
                 backgroundColor: "gray"
             }
 
-            onClicked: tournamentsListController.onPlayClicked(modelData)
+            onClicked: {
+                tournamentsListController.onPlayClicked(modelData)
+                showTimer()
+            }
         }
     }
 }

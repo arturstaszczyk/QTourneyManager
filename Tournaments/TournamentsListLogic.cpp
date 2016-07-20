@@ -35,5 +35,5 @@ void TournamentsListLogic::onPlayClicked(QString tournamentName)
 {
     qDebug() << tournamentName;
     qDebug() << mStructure[tournamentName]->rounds().size();
-    //emit tournamentSelectedToPlay(mStructure[tournamentName]);
+    emit tournamentSelectedToPlay(mStructure[tournamentName]);
 }
