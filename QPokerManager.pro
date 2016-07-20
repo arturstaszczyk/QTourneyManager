@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml quick multimedia
 CONFIG += c++11
 
 SOURCES += main.cpp \
@@ -25,7 +25,8 @@ CONFIG(debug, debug|release)
 }
 
 RESOURCES += qml.qrc \
-    images.qrc
+    images.qrc \
+    sounds.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

@@ -1,8 +1,9 @@
 ﻿#include "TimerLogic.h"
 
 #include <math.h>
-#include <QtAlgorithms>
 #include <QDebug>
+#include <QSound>
+#include <QtAlgorithms>
 #include "ReturnIf.h"
 #include "QSortHelpers.h"
 
@@ -66,15 +67,6 @@ bool TimerLogic::hasPrevRound() const
     return mModel->activeRound() > 0;
 }
 
-//void TimerLogic::addRound(int smallBlind, int bigBlind, int timeInSeconds)
-//{
-//    QList<RoundDef*> rounds = mModel->rawRoundsList();
-//    rounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
-//    qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
-
-//    mModel->rounds(rounds);
-//}
-
 void TimerLogic::addStructure(TournamentStructureDef *tournament)
 {
     QList<RoundDef*> rounds = tournament->rounds();
@@ -119,7 +111,10 @@ void TimerLogic::timerEvent(QTimerEvent* event)
         auto activeRoundId = mModel->activeRound();
         auto activeRound = rounds[activeRoundId];
         if(mElapsedRoundSeconds > activeRound->roundTimeInSeconds())
+        {
+            QSound::play(":/sounds/bell.wav");
             nextRound();
+        }
 
         updateModelTime();
     }

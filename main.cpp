@@ -16,20 +16,16 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("_cpp", QVariant(true));
-
     qmlRegisterUncreatableType<RoundDef>("poker.rounddef", 1, 0, "RoundDef", "Cannot create model in QML");
-
 
     std::chrono::milliseconds interval(100);
 
-    TimerLogic timerLogic(engine.rootContext(), {});
-    timerLogic.startTimer(interval.count());
     CommandRecycler commandRecycler(interval);
 
+    TimerLogic timerLogic(engine.rootContext());
+    timerLogic.startTimer(interval.count());
+
     HostAddressLogic addressLogic(engine.rootContext(), &commandRecycler);
-//    QObject::connect(&addressLogic, SIGNAL(tournamentRound(int,int,int)),
-//                  &timerLogic, SLOT(addRound(int,int,int)));
 
     TournamentsListLogic tournamentsLogic(engine.rootContext(), &commandRecycler);
     QObject::connect(&addressLogic, SIGNAL(onTournamentParsed(TournamentStructureDef*)),

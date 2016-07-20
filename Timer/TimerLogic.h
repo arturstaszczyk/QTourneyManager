@@ -14,7 +14,7 @@ class TimerLogic : public QObject
 {
     Q_OBJECT
 public:
-    explicit TimerLogic(QQmlContext* qmlContext, QList<RoundDef*> rounds, QObject *parent = 0);
+    explicit TimerLogic(QQmlContext* qmlContext, QList<RoundDef*> rounds = {}, QObject *parent = 0);
 
 public slots:
     void togglePause();
