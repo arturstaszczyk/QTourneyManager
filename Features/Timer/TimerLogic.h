@@ -7,8 +7,8 @@
 #include <QQmlContext>
 
 #include "TimerModel.h"
-#include "RoundDef.h"
-#include "TournamentStructureDef.h"
+#include "Features/RoundDef.h"
+#include "Features/TournamentStructureDef.h"
 
 class TimerLogic : public QObject
 {

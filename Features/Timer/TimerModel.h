@@ -5,8 +5,8 @@
 #include <QString>
 #include <QQmlListProperty>
 
-#include "RoundDef.h"
 #include "QAutoProperty.h"
+#include "Features/RoundDef.h"
 
 class TimerModel : public QObject
 {

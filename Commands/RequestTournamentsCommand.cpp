@@ -5,7 +5,7 @@
 #include <QJsonDocument>
 #include <QNetworkAccessManager>
 
-#include "TournamentStructureDef.h"
+#include "Features/TournamentStructureDef.h"
 
 RequestTournamentsCommand::RequestTournamentsCommand(QString hostAddress, QObject *parent)
     : Command(COMMAND_NAME(RequestTournamentsCommand), parent)

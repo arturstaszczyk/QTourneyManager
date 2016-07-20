@@ -6,8 +6,8 @@
 #include <QNetworkReply>
 
 #include "HostAddressModel.h"
-#include "TournamentStructureDef.h"
 #include "Commands/CommandRecycler.h"
+#include "Features/TournamentStructureDef.h"
 
 class HostAddressLogic : public QObject
 {

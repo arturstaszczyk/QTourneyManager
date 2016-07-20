@@ -6,10 +6,10 @@
 #include <chrono>
 
 #include "Commands/CommandRecycler.h"
-#include "Timer/TimerLogic.h"
-#include "Tournaments/TournamentsListLogic.h"
-#include "NavigationBar/NavigationBarController.h"
-#include "Settings/HostAddress/HostAddressLogic.h"
+#include "Features/Timer/TimerLogic.h"
+#include "Features/Tournaments/TournamentsListLogic.h"
+#include "Features/NavigationBar/NavigationBarController.h"
+#include "Features/Settings/HostAddress/HostAddressLogic.h"
 
 int main(int argc, char *argv[])
 {

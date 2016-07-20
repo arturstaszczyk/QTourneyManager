@@ -4,7 +4,7 @@
 #include <QNetworkReply>
 
 #include "Command.h"
-#include "TournamentStructureDef.h"
+#include "Features/TournamentStructureDef.h"
 
 class RequestRoundsCommand : public Command
 {

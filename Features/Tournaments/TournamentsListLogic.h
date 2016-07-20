@@ -5,9 +5,9 @@
 #include <QObject>
 #include <QQmlContext>
 
-#include "TournamentStructureDef.h"
 #include "TournamentsListModel.h"
 #include "Commands/CommandRecycler.h"
+#include "Features/TournamentStructureDef.h"
 
 class TournamentsListLogic : public QObject
 {
