@@ -20,6 +20,7 @@ void RequestTournamentsCommand::execute()
     connect(http, SIGNAL(finished(QNetworkReply*)), this, SLOT(onHttpTournamentsGet(QNetworkReply*)));
 
     auto addressStr = QString("http://%1:8000/tournaments/").arg(mHostAddress);
+    qDebug() << addressStr;
     http->get(QNetworkRequest(QUrl(addressStr)));
 }
 

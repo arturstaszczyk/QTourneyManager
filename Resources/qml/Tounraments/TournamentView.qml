@@ -8,7 +8,6 @@ import "../Styles/Buttons"
 
 Item {
     id: tournamentView
-    signal showTimer
 
     RowLayout {
         spacing: 20
@@ -52,7 +51,7 @@ Item {
 
             onClicked: {
                 tournamentsListController.onPlayClicked(modelData)
-                showTimer()
+                navigationBarController.requestTimerScreen();
             }
         }
     }

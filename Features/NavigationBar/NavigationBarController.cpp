@@ -13,6 +13,7 @@ void NavigationBarController::push(QString screenName)
     mScreenNames.append(screenName);
     mModel->title(screenName);
     mModel->isRoot(mScreenNames.count() <= 1);
+    mModel->requestedScreen("");
 }
 
 void NavigationBarController::pop()
@@ -20,4 +21,9 @@ void NavigationBarController::pop()
     mScreenNames.pop_back();
     mModel->title(mScreenNames.last());
     mModel->isRoot(mScreenNames.count() <= 1);
+}
+
+void NavigationBarController::requestTimerScreen()
+{
+    mModel->requestedScreen("timer");
 }

@@ -7,8 +7,6 @@ import "../Styles"
 
 Item{
     id: tournamentsList
-    signal showTimer;
-
     RoundedPage {
 
         ListView {
@@ -22,10 +20,6 @@ Item{
             delegate: TournamentView {
                 width: parent.width
                 height: 60
-
-                onShowTimer: {
-                    tournamentsList.showTimer()
-                }
             }
         }
     }

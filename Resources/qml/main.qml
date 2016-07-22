@@ -25,15 +25,21 @@ ApplicationWindow {
 //        id: mock
 //    }
 
-
-    Component {
-        id: tournaments
-        Tournaments {
-            onShowTimer: {
+    Connections {
+        target: navigationBarModel
+        onRequestedScreenChanged: {
+            if(navigationBarModel.requestedScreen == "timer")
+            {
                 stackView.push(timer)
                 navigationBarController.push("timer")
             }
         }
+    }
+
+
+    Component {
+        id: tournaments
+        Tournaments {}
     }
 
     Component{

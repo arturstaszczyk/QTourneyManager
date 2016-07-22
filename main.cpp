@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     NavigationBarController navigationBar(engine.rootContext());
 
 #ifdef _DEBUG
-    addressLogic.onHostAddressChanged("192.168.0.103", true);
+    addressLogic.onHostAddressChanged("192.168.0.102", true);
 #endif
 
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));

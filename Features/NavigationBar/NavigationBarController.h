@@ -16,6 +16,8 @@ public slots:
     void push(QString screenName);
     void pop();
 
+    void requestTimerScreen();
+
 private:
     QStringList mScreenNames;
     NavigationBarModel* mModel;
