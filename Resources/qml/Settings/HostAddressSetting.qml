@@ -10,7 +10,6 @@ import "../Styles/Text"
 import "../Globals.js" as Globals
 
 Item {
-    signal requestClose
 
     RoundedPage {
         id: page
@@ -80,7 +79,7 @@ Item {
                 onClicked: {
                     hostAddressController.onHostAddressChanged(hostAddress.text,
                                                                hostAddress.acceptableInput)
-                    requestClose()
+                    navigationBarController.requestPop()
                 }
             }
         }

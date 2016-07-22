@@ -34,13 +34,12 @@ int main(int argc, char *argv[])
     QObject::connect(&tournamentsLogic, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
                      &timerLogic, SLOT(addStructure(TournamentStructureDef*)));
 
-    NavigationBarController navigationBar(engine.rootContext());
+    NavigationBarController navigationBar(&engine);
 
 #ifdef _DEBUG
     addressLogic.onHostAddressChanged("192.168.0.102", true);
 #endif
 
-    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 
     return app.exec();
 }

@@ -12,7 +12,6 @@ public:
     explicit NavigationBarModel(QObject *parent = 0);
 
     AUTO_PROPERTY(QString, title)
-    AUTO_PROPERTY(QString, requestedScreen)
     AUTO_PROPERTY(bool, isRoot)
 };
 

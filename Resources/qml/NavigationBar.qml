@@ -22,10 +22,7 @@ Item {
             visible: !navigationBarModel.isRoot
             iconSource: "../images/ui/button-back.png"
 
-            onClicked: {
-                stackView.pop()
-                navigationBarController.pop()
-            }
+            onClicked: navigationBarController.requestPop()
         }
 
         MainText {

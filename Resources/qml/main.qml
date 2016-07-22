@@ -25,18 +25,6 @@ ApplicationWindow {
 //        id: mock
 //    }
 
-    Connections {
-        target: navigationBarModel
-        onRequestedScreenChanged: {
-            if(navigationBarModel.requestedScreen == "timer")
-            {
-                stackView.push(timer)
-                navigationBarController.push("timer")
-            }
-        }
-    }
-
-
     Component {
         id: tournaments
         Tournaments {}
@@ -49,12 +37,7 @@ ApplicationWindow {
 
     Component {
         id: hostSettings
-        HostAddressSetting {
-            onRequestClose: {
-                stackView.pop()
-                navigationBarController.pop()
-            }
-        }
+        HostAddressSetting {}
     }
 
     Image {
@@ -75,6 +58,7 @@ ApplicationWindow {
 
         StackView {
             id: stackView
+            objectName: "MainStackView"
             Layout.fillWidth: true
             Layout.fillHeight: true
             initialItem: root
@@ -86,15 +70,10 @@ ApplicationWindow {
                 {
                     if(!navigationBarModel.isRoot)
                     {
-                        stackView.pop()
-                        navigationBarController.pop()
+                        navigationBarController.requestPop()
                     }
                     event.accepted = true
                 }
-            }
-
-            Component.onCompleted: {
-                navigationBarController.push("main")
             }
 
             Rectangle {
@@ -111,13 +90,20 @@ ApplicationWindow {
                         Layout.fillWidth: true
                         text: "Show timer"
 
-                        onClicked: {
-                            stackView.push(timer)
-                            navigationBarController.push("timer")
-                        }
-
+                        onClicked: navigationBarController.requestTimerScreen()
                         style: SystemButtonStyle {
                             buttonText: timerButton.text
+                        }
+                    }
+
+                    Button {
+                        id: playerAndStatsButton
+                        Layout.fillWidth: true
+                        text: "Players & Stats"
+
+                        onClicked: navigationBarController.requestPlayerAndStatsScreen()
+                        style: SystemButtonStyle {
+                            buttonText: tournamentButton.text
                         }
                     }
 
@@ -125,11 +111,8 @@ ApplicationWindow {
                         id: tournamentButton
                         Layout.fillWidth: true
                         text: "Show tournaments"
-                        onClicked: {
-                            stackView.push(tournaments)
-                            navigationBarController.push("tournaments")
-                        }
 
+                        onClicked: navigationBarController.requestTournamentScreen()
                         style: SystemButtonStyle {
                             buttonText: tournamentButton.text
                         }
@@ -139,10 +122,7 @@ ApplicationWindow {
 
                         Layout.fillWidth: true
                         text: "Set host address"
-                        onClicked: {
-                            stackView.push(hostSettings)
-                            navigationBarController.push("settings/host address")
-                        }
+                        onClicked: navigationBarController.requestHostAddressScreen()
 
                         style: SystemButtonStyle {
                             buttonText: hostButton.text

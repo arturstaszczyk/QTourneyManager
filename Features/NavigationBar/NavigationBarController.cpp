@@ -1,11 +1,31 @@
 ﻿#include "NavigationBarController.h"
 
-NavigationBarController::NavigationBarController(QQmlContext* context, QObject *parent)
+#include <QUrl>
+#include <QQmlContext>
+#include <QQmlComponent>
+
+NavigationBarController::NavigationBarController(QQmlApplicationEngine* engine, QObject *parent)
     : QObject(parent)
 {
     mModel = new NavigationBarModel(this);
-    context->setContextProperty("navigationBarModel", mModel);
-    context->setContextProperty("navigationBarController", this);
+    engine->rootContext()->setContextProperty("navigationBarModel", mModel);
+    engine->rootContext()->setContextProperty("navigationBarController", this);
+
+    engine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    auto rootObj = engine->rootObjects()[0];
+    mMainStackView = rootObj->findChild<QObject*>("MainStackView");
+    mScreenNames.push_back("main");
+    mModel->title("main");
+
+    QQmlComponent tourneysComponent(engine, QUrl("qrc:/qml/Tounraments/Tournaments.qml"));
+    mTournamentsScreen = tourneysComponent.create();
+
+    QQmlComponent timerComponent(engine, QUrl("qrc:/qml/Timer/Timer.qml"));
+    mTimerScreen = timerComponent.create();
+
+    QQmlComponent hostAddressComponent(engine, QUrl("qrc:/qml/Settings/HostAddressSetting.qml"));
+    mHostAddressScreen = hostAddressComponent.create();
+
 }
 
 void NavigationBarController::push(QString screenName)
@@ -13,7 +33,6 @@ void NavigationBarController::push(QString screenName)
     mScreenNames.append(screenName);
     mModel->title(screenName);
     mModel->isRoot(mScreenNames.count() <= 1);
-    mModel->requestedScreen("");
 }
 
 void NavigationBarController::pop()
@@ -25,5 +44,33 @@ void NavigationBarController::pop()
 
 void NavigationBarController::requestTimerScreen()
 {
-    mModel->requestedScreen("timer");
+    auto param = QVariant::fromValue<QObject*>(mTimerScreen);
+    QMetaObject::invokeMethod(mMainStackView, "push", Q_ARG(QVariant, param));
+    push("timer");
+}
+
+void NavigationBarController::requestTournamentScreen()
+{
+    auto param = QVariant::fromValue<QObject*>(mTournamentsScreen);
+    QMetaObject::invokeMethod(mMainStackView, "push", Q_ARG(QVariant, param));
+    push("tournaments");
+}
+
+void NavigationBarController::requestPlayerAndStatsScreen()
+{
+
+}
+
+void NavigationBarController::requestHostAddressScreen()
+{
+    auto param = QVariant::fromValue<QObject*>(mHostAddressScreen);
+    QMetaObject::invokeMethod(mMainStackView, "push", Q_ARG(QVariant, param));
+    push("settings/address");
+}
+
+void NavigationBarController::requestPop()
+{
+    QVariant ret;
+    QMetaObject::invokeMethod(mMainStackView, "pop", Q_ARG(QVariant, ret));
+    pop();
 }
