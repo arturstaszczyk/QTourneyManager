@@ -1,6 +1,7 @@
-#include "PlayerDef.h"
+﻿#include "PlayerDef.h"
 
-PlayerDef::PlayerDef(QObject *parent) : QObject(parent)
+PlayerDef::PlayerDef(QObject *parent)
+    : QObject(parent)
 {
 
 }

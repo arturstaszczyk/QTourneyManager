@@ -1,6 +1,6 @@
 ﻿#include "HostAddressController.h"
 
-
+#include "Commands/RequestPlayersCommand.h"
 #include "Commands/RequestTournamentsCommand.h"
 
 HostAddressController::HostAddressController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent)
@@ -17,7 +17,12 @@ void HostAddressController::onHostAddressChanged(QString address, bool isValid)
     if(isValid)
         mModel->address(address);
 
-    RequestTournamentsCommand* command = new RequestTournamentsCommand(address, this);
-    connect(command, SIGNAL(onTournamentParsed(TournamentStructureDef*)), this, SIGNAL(onTournamentParsed(TournamentStructureDef*)));
-    mCommandRecycler->executeAndDispose(command);
+    RequestTournamentsCommand* requestTourneysCmd = new RequestTournamentsCommand(address, this);
+    connect(requestTourneysCmd, SIGNAL(onTournamentParsed(TournamentStructureDef*)),
+            this, SIGNAL(onTournamentParsed(TournamentStructureDef*)));
+    mCommandRecycler->executeAndDispose(requestTourneysCmd);
+
+    RequestPlayersCommand* requestPlayersCmd = new RequestPlayersCommand(address, this);
+    //connect(requestPlayersCmd, SIGNAL(onPlayerParsed(), )
+    mCommandRecycler->executeAndDispose(requestPlayersCmd);
 }

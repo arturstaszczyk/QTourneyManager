@@ -1,6 +1,7 @@
-#include "BuyinDef.h"
+﻿#include "BuyinDef.h"
 
-BuyinDef::BuyinDef()
+BuyinDef::BuyinDef(QObject* parent)
+    : QObject(parent)
 {
 
 }

@@ -1,7 +1,9 @@
-#ifndef PLAYERDEF_H
+﻿#ifndef PLAYERDEF_H
 #define PLAYERDEF_H
 
 #include <QObject>
+
+#include "QAutoProperty.h"
 
 class PlayerDef : public QObject
 {
@@ -9,9 +11,11 @@ class PlayerDef : public QObject
 public:
     explicit PlayerDef(QObject *parent = 0);
 
-signals:
+    AUTO_PROPERTY(QString, nick)
+    AUTO_PROPERTY(int, rebuyCount)
 
-public slots:
+private:
+    QString mByuinUrl;
 };
 
 #endif // PLAYERDEF_H

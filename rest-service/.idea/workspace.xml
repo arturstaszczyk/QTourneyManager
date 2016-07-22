@@ -68,7 +68,7 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pokermanager/restservice/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
+            <state relative-caret-position="301">
               <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
               <folding>
                 <element signature="e#702#743#0" expanded="true" />
@@ -437,7 +437,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="23" width="1229" height="777" extended-state="0" />
+    <frame x="51" y="23" width="1229" height="777" extended-state="1" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18795769" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -936,7 +936,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pokermanager/restservice/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
+        <state relative-caret-position="301">
           <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
           <folding>
             <element signature="e#702#743#0" expanded="true" />

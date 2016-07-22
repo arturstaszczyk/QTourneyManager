@@ -10,7 +10,6 @@ class RequestRoundsCommand : public Command
 {
     Q_OBJECT
 
-
 public:
     explicit RequestRoundsCommand(TournamentStructureDef* tourney, QObject* parent = nullptr);
 
