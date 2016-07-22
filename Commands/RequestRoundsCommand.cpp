@@ -5,11 +5,11 @@
 #include <QJsonDocument>
 #include <QNetworkAccessManager>
 
-int RequestRoundsCommand::sRemainigRequestsCount = 0;
 
 RequestRoundsCommand::RequestRoundsCommand(TournamentStructureDef* tourney, QObject* parent)
     : Command(COMMAND_NAME(RequestRoundsCommand), parent)
     , mTourney(tourney)
+    , mRemainigRequestsCount(0)
 {
 
 }
@@ -20,10 +20,11 @@ void RequestRoundsCommand::execute()
     connect(roundsHttp, SIGNAL(finished(QNetworkReply*)), this, SLOT(onHttpRoundGet(QNetworkReply*)));
     QString apiAddress;
 
-    sRemainigRequestsCount = mTourney->roundUrls().size();
+    mRemainigRequestsCount = mTourney->roundUrls().size();
     foreach(apiAddress, mTourney->roundUrls())
     {
         roundsHttp->get(QNetworkRequest(QUrl(apiAddress)));
+        qDebug() << "Requesting " << apiAddress;
     }
 }
 
@@ -38,7 +39,7 @@ void RequestRoundsCommand::onHttpRoundGet(QNetworkReply *reply)
             roundObject["big_blind"].toInt(),
             roundObject["round_duration"].toInt());
 
-    sRemainigRequestsCount--;
-    if(sRemainigRequestsCount == 0)
+    mRemainigRequestsCount--;
+    if(mRemainigRequestsCount == 0)
         finish();
 }

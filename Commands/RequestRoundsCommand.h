@@ -10,7 +10,6 @@ class RequestRoundsCommand : public Command
 {
     Q_OBJECT
 
-    static int sRemainigRequestsCount;
 
 public:
     explicit RequestRoundsCommand(TournamentStructureDef* tourney, QObject* parent = nullptr);
@@ -22,6 +21,8 @@ private slots:
 
 private:
     TournamentStructureDef* mTourney;
+
+    int mRemainigRequestsCount;
 };
 
 #endif // REQUESTROUNDSCOMMAND_H
