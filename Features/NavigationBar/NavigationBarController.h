@@ -33,6 +33,7 @@ private:
     QObject* mTournamentsScreen;
     QObject* mTimerScreen;
     QObject* mHostAddressScreen;
+    QObject* mPlayersAndSettingsScreen;
 };
 
 #endif // NAVIGATIONBARCONTROLLER_H

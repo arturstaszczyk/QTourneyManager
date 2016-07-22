@@ -11,7 +11,6 @@ RequestRoundsCommand::RequestRoundsCommand(TournamentStructureDef* tourney, QObj
     , mTourney(tourney)
     , mRemainigRequestsCount(0)
 {
-
 }
 
 void RequestRoundsCommand::execute()

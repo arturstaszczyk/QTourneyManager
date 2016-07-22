@@ -26,6 +26,8 @@ NavigationBarController::NavigationBarController(QQmlApplicationEngine* engine, 
     QQmlComponent hostAddressComponent(engine, QUrl("qrc:/qml/Settings/HostAddressScreen.qml"));
     mHostAddressScreen = hostAddressComponent.create();
 
+    QQmlComponent playersAndStatsComponent(engine, QUrl("qrc:/qml/PlayerAndStats/PlayersAndStatsScreen.qml"));
+    mPlayersAndSettingsScreen = playersAndStatsComponent.create();
 }
 
 void NavigationBarController::push(QString screenName)
@@ -58,7 +60,9 @@ void NavigationBarController::requestTournamentScreen()
 
 void NavigationBarController::requestPlayerAndStatsScreen()
 {
-
+    auto param = QVariant::fromValue<QObject*>(mPlayersAndSettingsScreen);
+    QMetaObject::invokeMethod(mMainStackView, "push", Q_ARG(QVariant, param));
+    push("players & stats");
 }
 
 void NavigationBarController::requestHostAddressScreen()
