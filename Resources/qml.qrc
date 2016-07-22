@@ -4,8 +4,6 @@
         <file>qml/main.qml</file>
         <file>qml/Timer/MainControlButtons.qml</file>
         <file>qml/Timer/MainTimer.qml</file>
-        <file>qml/Timer/Timer.qml</file>
-        <file>qml/Tounraments/Tournaments.qml</file>
         <file>qml/MockModels.qml</file>
         <file>qml/NavigationBar.qml</file>
         <file>qml/Timer/RoundView.qml</file>
@@ -15,7 +13,10 @@
         <file>qml/Styles/Buttons/RoundButtonStyle.qml</file>
         <file>qml/Styles/Buttons/SystemButtonStyle.qml</file>
         <file>qml/Styles/Buttons/TransparentButtonStyle.qml</file>
-        <file>qml/Settings/HostAddressSetting.qml</file>
         <file>qml/Styles/RoundedPage.qml</file>
+        <file>qml/Timer/TimerScreen.qml</file>
+        <file>qml/Tounraments/TournamentsScreen.qml</file>
+        <file>qml/Settings/HostAddressScreen.qml</file>
+        <file>qml/PlayerAndStats/PlayersAndStatsScreen.qml</file>
     </qresource>
 </RCC>

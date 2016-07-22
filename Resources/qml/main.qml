@@ -88,7 +88,7 @@ ApplicationWindow {
 
                         onClicked: navigationBarController.requestPlayerAndStatsScreen()
                         style: SystemButtonStyle {
-                            buttonText: tournamentButton.text
+                            buttonText: playerAndStatsButton.text
                         }
                     }
 
