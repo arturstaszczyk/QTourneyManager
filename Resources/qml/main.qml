@@ -25,21 +25,6 @@ ApplicationWindow {
 //        id: mock
 //    }
 
-    Component {
-        id: tournaments
-        Tournaments {}
-    }
-
-    Component{
-        id: timer
-        Timer {}
-    }
-
-    Component {
-        id: hostSettings
-        HostAddressSetting {}
-    }
-
     Image {
         id: background
         anchors.fill: parent
