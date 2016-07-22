@@ -6,10 +6,10 @@
 #include <chrono>
 
 #include "Commands/CommandRecycler.h"
-#include "Features/Timer/TimerLogic.h"
-#include "Features/Tournaments/TournamentsListLogic.h"
+#include "Features/Timer/TimerController.h"
+#include "Features/Tournaments/TournamentsListController.h"
 #include "Features/NavigationBar/NavigationBarController.h"
-#include "Features/Settings/HostAddress/HostAddressLogic.h"
+#include "Features/Settings/HostAddress/HostAddressController.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,22 +22,22 @@ int main(int argc, char *argv[])
 
     CommandRecycler commandRecycler(interval);
 
-    TimerLogic timerLogic(engine.rootContext());
-    timerLogic.startTimer(interval.count());
+    TimerController timerController(engine.rootContext());
+    timerController.startTimer(interval.count());
 
-    HostAddressLogic addressLogic(engine.rootContext(), &commandRecycler);
+    HostAddressController addressController(engine.rootContext(), &commandRecycler);
 
-    TournamentsListLogic tournamentsLogic(engine.rootContext(), &commandRecycler);
-    QObject::connect(&addressLogic, SIGNAL(onTournamentParsed(TournamentStructureDef*)),
-                     &tournamentsLogic, SLOT(addTournament(TournamentStructureDef*)));
+    TournamentsListController tournamentsController(engine.rootContext(), &commandRecycler);
+    QObject::connect(&addressController, SIGNAL(onTournamentParsed(TournamentStructureDef*)),
+                     &tournamentsController, SLOT(addTournament(TournamentStructureDef*)));
 
-    QObject::connect(&tournamentsLogic, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
-                     &timerLogic, SLOT(addStructure(TournamentStructureDef*)));
+    QObject::connect(&tournamentsController, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
+                     &timerController, SLOT(addStructure(TournamentStructureDef*)));
 
     NavigationBarController navigationBar(&engine);
 
 #ifdef _DEBUG
-    addressLogic.onHostAddressChanged("192.168.0.102", true);
+    addressController.onHostAddressChanged("192.168.0.102", true);
 #endif
 
 

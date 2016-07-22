@@ -10,11 +10,11 @@
 #include "Features/RoundDef.h"
 #include "Features/TournamentStructureDef.h"
 
-class TimerLogic : public QObject
+class TimerController : public QObject
 {
     Q_OBJECT
 public:
-    explicit TimerLogic(QQmlContext* qmlContext, QList<RoundDef*> rounds = {}, QObject *parent = 0);
+    explicit TimerController(QQmlContext* qmlContext, QList<RoundDef*> rounds = {}, QObject *parent = 0);
 
 public slots:
     void togglePause();

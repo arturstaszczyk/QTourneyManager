@@ -17,13 +17,13 @@ NavigationBarController::NavigationBarController(QQmlApplicationEngine* engine, 
     mScreenNames.push_back("main");
     mModel->title("main");
 
-    QQmlComponent tourneysComponent(engine, QUrl("qrc:/qml/Tounraments/Tournaments.qml"));
+    QQmlComponent tourneysComponent(engine, QUrl("qrc:/qml/Tounraments/TournamentsScreen.qml"));
     mTournamentsScreen = tourneysComponent.create();
 
-    QQmlComponent timerComponent(engine, QUrl("qrc:/qml/Timer/Timer.qml"));
+    QQmlComponent timerComponent(engine, QUrl("qrc:/qml/Timer/TimerScreen.qml"));
     mTimerScreen = timerComponent.create();
 
-    QQmlComponent hostAddressComponent(engine, QUrl("qrc:/qml/Settings/HostAddressSetting.qml"));
+    QQmlComponent hostAddressComponent(engine, QUrl("qrc:/qml/Settings/HostAddressScreen.qml"));
     mHostAddressScreen = hostAddressComponent.create();
 
 }

@@ -5,11 +5,8 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     Features/Timer/TimerModel.cpp \
-    Features/Timer/TimerLogic.cpp \
     Features/RoundDef.cpp \
     Features/Settings/HostAddress/HostAddressModel.cpp \
-    Features/Settings/HostAddress/HostAddressLogic.cpp \
-    Features/Tournaments/TournamentsListLogic.cpp \
     Features/Tournaments/TournamentsListModel.cpp \
     Features/NavigationBar/NavigationBarModel.cpp \
     Features/NavigationBar/NavigationBarController.cpp \
@@ -17,7 +14,10 @@ SOURCES += main.cpp \
     Commands/RequestTournamentsCommand.cpp \
     Commands/CommandRecycler.cpp \
     Commands/Command.cpp \
-    Commands/RequestRoundsCommand.cpp
+    Commands/RequestRoundsCommand.cpp \
+    Features/Settings/HostAddress/HostAddressController.cpp \
+    Features/Timer/TimerController.cpp \
+    Features/Tournaments/TournamentsListController.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -49,13 +49,13 @@ HEADERS += \
     Features/TournamentStructureDef.h \
     Features/Timer/TimerModel.h \
     Features/Settings/HostAddress/HostAddressModel.h \
-    Features/Timer/TimerLogic.h \
-    Features/Settings/HostAddress/HostAddressLogic.h \
-    Features/Tournaments/TournamentsListLogic.h \
     Features/Tournaments/TournamentsListModel.h \
     Features/NavigationBar/NavigationBarModel.h \
     Features/NavigationBar/NavigationBarController.h \
     Commands/Command.h \
     Commands/CommandRecycler.h \
     Commands/RequestRoundsCommand.h \
-    Commands/RequestTournamentsCommand.h
+    Commands/RequestTournamentsCommand.h \
+    Features/Settings/HostAddress/HostAddressController.h \
+    Features/Timer/TimerController.h \
+    Features/Tournaments/TournamentsListController.h

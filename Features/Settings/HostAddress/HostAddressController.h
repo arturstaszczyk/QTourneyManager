@@ -9,11 +9,11 @@
 #include "Commands/CommandRecycler.h"
 #include "Features/TournamentStructureDef.h"
 
-class HostAddressLogic : public QObject
+class HostAddressController : public QObject
 {
     Q_OBJECT
 public:
-    explicit HostAddressLogic(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
+    explicit HostAddressController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
 
 signals:
     void onTournamentParsed(TournamentStructureDef* torunament);

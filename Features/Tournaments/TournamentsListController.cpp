@@ -1,10 +1,10 @@
-﻿#include "TournamentsListLogic.h"
+﻿#include "TournamentsListController.h"
 
 #include <QDebug>
 
 #include "Commands/RequestRoundsCommand.h"
 
-TournamentsListLogic::TournamentsListLogic(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent)
+TournamentsListController::TournamentsListController(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent)
     : QObject(parent)
     , mCommandRecycler(recycler)
 {
@@ -13,7 +13,7 @@ TournamentsListLogic::TournamentsListLogic(QQmlContext* qmlContext, CommandRecyc
     qmlContext->setContextProperty("tournamentsListController", this);
 }
 
-void TournamentsListLogic::addTournament(TournamentStructureDef* tourney)
+void TournamentsListController::addTournament(TournamentStructureDef* tourney)
 {
     auto tourneyList = mModel->tournaments();
     auto tourneyName = tourney->name();
@@ -31,7 +31,7 @@ void TournamentsListLogic::addTournament(TournamentStructureDef* tourney)
     }
 }
 
-void TournamentsListLogic::onPlayClicked(QString tournamentName)
+void TournamentsListController::onPlayClicked(QString tournamentName)
 {
     qDebug() << tournamentName;
     qDebug() << mStructure[tournamentName]->rounds().size();

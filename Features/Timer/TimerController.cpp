@@ -1,4 +1,4 @@
-﻿#include "TimerLogic.h"
+﻿#include "TimerController.h"
 
 #include <math.h>
 #include <QDebug>
@@ -7,7 +7,7 @@
 #include "ReturnIf.h"
 #include "QSortHelpers.h"
 
-TimerLogic::TimerLogic(QQmlContext* context, QList<RoundDef*> rounds, QObject *parent)
+TimerController::TimerController(QQmlContext* context, QList<RoundDef*> rounds, QObject *parent)
     : QObject(parent)
     , mLastTick(0.0f)
     , mElapsedRoundSeconds(0.0f)
@@ -21,12 +21,12 @@ TimerLogic::TimerLogic(QQmlContext* context, QList<RoundDef*> rounds, QObject *p
     mTime.start();
 }
 
-void TimerLogic::togglePause()
+void TimerController::togglePause()
 {
     mModel->running(!mModel->running());
 }
 
-void TimerLogic::nextRound()
+void TimerController::nextRound()
 {
     resetTime();
     if(hasNextRound())
@@ -41,7 +41,7 @@ void TimerLogic::nextRound()
     }
 }
 
-void TimerLogic::previousRound()
+void TimerController::previousRound()
 {
     resetTime();
     if(hasPrevRound())
@@ -56,25 +56,25 @@ void TimerLogic::previousRound()
     }
 }
 
-bool TimerLogic::hasNextRound() const
+bool TimerController::hasNextRound() const
 {
     auto rounds = mModel->rawRoundsList();
     return mModel->activeRound() < rounds.size() - 1;
 }
 
-bool TimerLogic::hasPrevRound() const
+bool TimerController::hasPrevRound() const
 {
     return mModel->activeRound() > 0;
 }
 
-void TimerLogic::addStructure(TournamentStructureDef *tournament)
+void TimerController::addStructure(TournamentStructureDef *tournament)
 {
     QList<RoundDef*> rounds = tournament->rounds();
     qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
     mModel->rounds(rounds);
 }
 
-void TimerLogic::updateModelTime()
+void TimerController::updateModelTime()
 {
     RETURN_IF(!mModel->running());
 
@@ -90,14 +90,14 @@ void TimerLogic::updateModelTime()
     }
 }
 
-void TimerLogic::resetTime()
+void TimerController::resetTime()
 {
     mTime.restart();
     mLastTick = 0.0f;
     mElapsedRoundSeconds = 0.0f;
 }
 
-void TimerLogic::timerEvent(QTimerEvent* event)
+void TimerController::timerEvent(QTimerEvent* event)
 {
     Q_UNUSED(event);
 

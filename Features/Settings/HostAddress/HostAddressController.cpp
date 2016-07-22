@@ -1,9 +1,9 @@
-﻿#include "HostAddressLogic.h"
+﻿#include "HostAddressController.h"
 
 
 #include "Commands/RequestTournamentsCommand.h"
 
-HostAddressLogic::HostAddressLogic(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent)
+HostAddressController::HostAddressController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent)
     : QObject(parent)
     , mCommandRecycler(commandRecycler)
 {
@@ -12,7 +12,7 @@ HostAddressLogic::HostAddressLogic(QQmlContext* qmlContext, CommandRecycler* com
     qmlContext->setContextProperty("hostAddressController", this);
 }
 
-void HostAddressLogic::onHostAddressChanged(QString address, bool isValid)
+void HostAddressController::onHostAddressChanged(QString address, bool isValid)
 {
     if(isValid)
         mModel->address(address);

@@ -9,11 +9,11 @@
 #include "Commands/CommandRecycler.h"
 #include "Features/TournamentStructureDef.h"
 
-class TournamentsListLogic : public QObject
+class TournamentsListController : public QObject
 {
     Q_OBJECT
 public:
-    explicit TournamentsListLogic(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent = 0);
+    explicit TournamentsListController(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent = 0);
 
 signals:
     void tournamentSelectedToPlay(TournamentStructureDef*);
