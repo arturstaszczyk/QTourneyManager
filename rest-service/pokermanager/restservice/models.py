@@ -24,7 +24,7 @@ class BuyinStructureModel(models.Model):
     def __str__(self):
         return "{}GC for {}zl".format(self.bankroll, self.cash)
 
-class ParticipantModel(models.Model):
+class PlayerModel(models.Model):
 
     nick = models.CharField(max_length=128, unique=True)
     rebuy_count = models.IntegerField(default=1)

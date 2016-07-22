@@ -17,12 +17,14 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from rest_framework import routers, serializers, viewsets
-from .views import RoundViewSet, TournamentStructureViewSet
+from .views import RoundViewSet, TournamentStructureViewSet, PlayersViewSet, BuyinStructureViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'rounds', RoundViewSet)
 router.register(r'tournaments', TournamentStructureViewSet)
+router.register(r'players', PlayersViewSet)
+router.register(r'buyins', BuyinStructureViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
