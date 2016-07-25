@@ -4,6 +4,7 @@
 
 #include "Features/PlayerDef.h"
 
+#include "ReturnIf.h"
 #include "StatsModel.h"
 #include "PlayersModel.h"
 #include "Features/BuyinDef.h"
@@ -47,6 +48,8 @@ void PlayersAndStatsController::addPlayer(QJsonObject playerObj)
 
     if(needToDownloadBuyin(buyinUrl))
         downloadBuyin(buyinUrl);
+
+    updateStatsModel();
 }
 
 void PlayersAndStatsController::addBuyin(QString buyinUrl, QJsonObject buyinObj)
@@ -55,6 +58,8 @@ void PlayersAndStatsController::addBuyin(QString buyinUrl, QJsonObject buyinObj)
     buyinDef->bankroll(buyinObj["bankroll"].toInt());
     buyinDef->cash(buyinObj["cash"].toInt());
     mBuyins[buyinUrl] = buyinDef;
+
+    updateStatsModel();
 }
 
 void PlayersAndStatsController::rebuy(QString playerNick)
@@ -63,6 +68,8 @@ void PlayersAndStatsController::rebuy(QString playerNick)
         if(playerDef->nick() == playerNick && !playerDef->eliminated())
             playerDef->rebuyCount(playerDef->rebuyCount() + 1);
     });
+
+    updateStatsModel();
 }
 
 void PlayersAndStatsController::eliminate(QString playerNick)
@@ -71,4 +78,25 @@ void PlayersAndStatsController::eliminate(QString playerNick)
         if(playerDef->nick() == playerNick)
             playerDef->eliminated(!playerDef->eliminated());
     });
+
+    updateStatsModel();
+}
+
+void PlayersAndStatsController::updateStatsModel()
+{
+    RETURN_IF(mBuyins.size() == 0);
+    RETURN_IF(mBuyins.first() == nullptr);
+
+    int chipsSum = 0;
+    int playersCount = 0;
+
+    mPlayersModel->forEachPlayer([&](PlayerDef* player){
+        chipsSum += player->rebuyCount();
+        if(!player->eliminated())
+            playersCount++;
+    });
+
+    auto bankroll = mBuyins.first()->bankroll();
+
+    mStatsModel->averageChipsCount(chipsSum * bankroll / playersCount);
 }

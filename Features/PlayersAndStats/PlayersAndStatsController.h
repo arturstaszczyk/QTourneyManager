@@ -29,6 +29,8 @@ private:
     bool needToDownloadBuyin(QString buyinUrl);
     void downloadBuyin(QString buyinUrl);
 
+    void updateStatsModel();
+
 private:
     CommandRecycler* mCommandRecycler;
     PlayersModel* mPlayersModel;
