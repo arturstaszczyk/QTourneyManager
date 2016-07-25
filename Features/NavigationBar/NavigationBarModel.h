@@ -9,7 +9,10 @@ class NavigationBarModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit NavigationBarModel(QObject *parent = 0);
+    explicit NavigationBarModel(QObject *parent = 0)
+        : QObject(parent)
+        , a_title("hah")
+        , a_isRoot(true) {}
 
     AUTO_PROPERTY(QString, title)
     AUTO_PROPERTY(bool, isRoot)

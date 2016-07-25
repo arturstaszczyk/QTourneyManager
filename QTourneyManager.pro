@@ -7,13 +7,10 @@ SOURCES += main.cpp \
     Features/Timer/TimerModel.cpp \
     Features/RoundDef.cpp \
     Features/Settings/HostAddress/HostAddressModel.cpp \
-    Features/Tournaments/TournamentsListModel.cpp \
-    Features/NavigationBar/NavigationBarModel.cpp \
     Features/NavigationBar/NavigationBarController.cpp \
     Features/TournamentStructureDef.cpp \
     Commands/RequestTournamentsCommand.cpp \
     Commands/CommandRecycler.cpp \
-    Commands/Command.cpp \
     Commands/RequestRoundsCommand.cpp \
     Features/Settings/HostAddress/HostAddressController.cpp \
     Features/Timer/TimerController.cpp \
@@ -21,7 +18,6 @@ SOURCES += main.cpp \
     Commands/RequestPlayersCommand.cpp \
     Features/PlayersAndStats/PlayersAndStatsController.cpp \
     Features/PlayersAndStats/PlayersModel.cpp \
-    Features/PlayersAndStats/StatsModel.cpp \
     Commands/RequestBuyinCommand.cpp
 
 CONFIG(debug, debug|release)

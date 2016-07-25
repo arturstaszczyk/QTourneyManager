@@ -9,7 +9,8 @@ class StatsModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit StatsModel(QObject *parent = 0);
+    explicit StatsModel(QObject *parent = 0)
+        : QObject(parent) {}
 
     AUTO_PROPERTY(int, buyinCash)
     AUTO_PROPERTY(int, buyinChips)

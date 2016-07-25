@@ -11,8 +11,8 @@ RoundDef::RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, QObject
     , a_smallBlind(smallBlind)
     , a_bigBlind(bigBlind)
     , a_roundTimeInSeconds(roundTimeInSeconds)
-    , a_isValid(true)
     , a_roundTimeString(RoundDef::secondsToTimeString(roundTimeInSeconds))
+    , a_isValid(true)
 {
 }
 

@@ -9,7 +9,11 @@ class Command : public QObject
 {
     Q_OBJECT
 public:
-    explicit Command(QString name, QObject *parent = 0);
+    explicit Command(QString name, QObject *parent = 0)
+        : QObject(parent)
+        , mFinished(false)
+        , mName(name) {}
+
     virtual~Command(){}
 
     virtual void execute() = 0;

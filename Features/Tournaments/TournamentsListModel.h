@@ -9,7 +9,8 @@ class TournamentsListModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit TournamentsListModel(QObject *parent = 0);
+    explicit TournamentsListModel(QObject *parent = 0)
+        : QObject(parent) {}
 
     AUTO_PROPERTY(QStringList, tournaments)
 };
