@@ -4,6 +4,7 @@
 #include "Command.h"
 
 #include <QNetworkReply>
+#include "Features/PlayerDef.h"
 
 class RequestPlayersCommand : public Command
 {
@@ -16,6 +17,9 @@ public:
 
 public slots:
     void onHttpPlayersGet(QNetworkReply* reply);
+
+signals:
+    void playerParsed(PlayerDef* player);
 
 private:
     QString mHostAddress;

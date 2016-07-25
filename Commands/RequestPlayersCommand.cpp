@@ -1,5 +1,10 @@
 ﻿#include "RequestPlayersCommand.h"
 
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QNetworkAccessManager>
+
 RequestPlayersCommand::RequestPlayersCommand(QString hostAddress, QObject* parent)
     : Command(COMMAND_NAME(RequestPlayersCommand), parent)
     , mHostAddress(hostAddress)
@@ -19,5 +24,28 @@ void RequestPlayersCommand::execute()
 
 void RequestPlayersCommand::onHttpPlayersGet(QNetworkReply *reply)
 {
-    qDebug() << reply->readAll();
+    QJsonParseError error;
+    QByteArray resp = reply->readAll();
+    QJsonDocument json = QJsonDocument::fromJson(resp, &error);
+    qDebug() << error.errorString();
+
+    if(json.isArray())
+    {
+        QJsonArray jsonArray = json.array();
+
+        QJsonArray::ConstIterator iter, endIter = jsonArray.constEnd();
+        for(iter = jsonArray.constBegin(); iter != endIter; ++iter)
+        {
+            QJsonObject playerObj = (*iter).toObject();
+            qDebug() << playerObj;
+            PlayerDef* playerDef = new PlayerDef();
+            playerDef->nick(playerObj["nick"].toString());
+            playerDef->rebuyCount(playerObj["rebuy_count"].toInt());
+            playerDef->setBuyinUrl(playerObj["buyin_structure"].toString());
+
+            emit playerParsed(playerDef);
+        }
+    }
+
+    finish();
 }

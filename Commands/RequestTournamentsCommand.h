@@ -15,7 +15,7 @@ public:
     void execute() override;
 
 signals:
-    void onTournamentParsed(TournamentStructureDef*);
+    void tournamentParsed(TournamentStructureDef*);
 
 private slots:
     void onHttpTournamentsGet(QNetworkReply*reply);

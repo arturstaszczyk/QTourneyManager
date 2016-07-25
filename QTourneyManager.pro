@@ -60,6 +60,6 @@ HEADERS += \
     Features/Settings/HostAddress/HostAddressController.h \
     Features/Timer/TimerController.h \
     Features/Tournaments/TournamentsListController.h \
-    PlayerDef.h \
-    BuyinDef.h \
+    Features/PlayerDef.h \
+    Features/BuyinDef.h \
     Commands/RequestPlayersCommand.h

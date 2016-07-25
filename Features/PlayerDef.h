@@ -15,6 +15,9 @@ public:
     AUTO_PROPERTY(QString, nick)
     AUTO_PROPERTY(int, rebuyCount)
 
+public:
+    void setBuyinUrl(QString buyinUrl) { mByuinUrl = buyinUrl; }
+
 private:
     QString mByuinUrl;
 };

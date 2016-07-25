@@ -41,7 +41,7 @@ void RequestTournamentsCommand::onHttpTournamentsGet(QNetworkReply *reply)
             QJsonObject tournamentDef = (*iter).toObject();
             TournamentStructureDef* tournament = new TournamentStructureDef(tournamentDef["name"].toString(),
                     tournamentDef["rounds"].toVariant().toStringList());
-            emit onTournamentParsed(tournament);
+            emit tournamentParsed(tournament);
         }
     }
 

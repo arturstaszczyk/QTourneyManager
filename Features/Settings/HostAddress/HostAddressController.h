@@ -7,6 +7,7 @@
 
 #include "HostAddressModel.h"
 #include "Commands/CommandRecycler.h"
+#include "Features/PlayerDef.h"
 #include "Features/TournamentStructureDef.h"
 
 class HostAddressController : public QObject
@@ -17,6 +18,7 @@ public:
 
 signals:
     void onTournamentParsed(TournamentStructureDef* torunament);
+    void onPlayerParsed(PlayerDef* player);
 
 public slots:
     void onHostAddressChanged(QString address, bool isValid);

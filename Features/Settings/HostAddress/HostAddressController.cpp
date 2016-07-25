@@ -18,7 +18,7 @@ void HostAddressController::onHostAddressChanged(QString address, bool isValid)
         mModel->address(address);
 
     RequestTournamentsCommand* requestTourneysCmd = new RequestTournamentsCommand(address, this);
-    connect(requestTourneysCmd, SIGNAL(onTournamentParsed(TournamentStructureDef*)),
+    connect(requestTourneysCmd, SIGNAL(tournamentParsed(TournamentStructureDef*)),
             this, SIGNAL(onTournamentParsed(TournamentStructureDef*)));
     mCommandRecycler->executeAndDispose(requestTourneysCmd);
 
