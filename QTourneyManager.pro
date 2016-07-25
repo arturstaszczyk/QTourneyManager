@@ -18,8 +18,6 @@ SOURCES += main.cpp \
     Features/Settings/HostAddress/HostAddressController.cpp \
     Features/Timer/TimerController.cpp \
     Features/Tournaments/TournamentsListController.cpp \
-    PlayerDef.cpp \
-    BuyinDef.cpp \
     Commands/RequestPlayersCommand.cpp
 
 CONFIG(debug, debug|release)

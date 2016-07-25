@@ -9,7 +9,8 @@ class BuyinDef : public QObject
 {
     Q_OBJECT
 public:
-    explicit BuyinDef(QObject* parent = nullptr);
+    explicit BuyinDef(QObject* parent = nullptr)
+        : QObject(parent) {}
 
     AUTO_PROPERTY(int, bankroll)
     AUTO_PROPERTY(int, cash)

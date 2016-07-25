@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     NavigationBarController navigationBar(&engine);
 
 #ifdef _DEBUG
-    addressController.onHostAddressChanged("192.168.0.102", true);
+    addressController.onHostAddressChanged("localhost", true);
 #endif
 
 

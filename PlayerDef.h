@@ -9,7 +9,8 @@ class PlayerDef : public QObject
 {
     Q_OBJECT
 public:
-    explicit PlayerDef(QObject *parent = 0);
+    explicit PlayerDef(QObject *parent = 0)
+        : QObject(parent) {}
 
     AUTO_PROPERTY(QString, nick)
     AUTO_PROPERTY(int, rebuyCount)
