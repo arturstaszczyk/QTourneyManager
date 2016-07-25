@@ -48,7 +48,7 @@ Item {
                 height: 80
 
                 style: RoundButtonStyle {}
-                iconSource: timerModel.running ? "../../images/ui/button-pause.png" :
+                iconSource: timerModel.running && !timerModel.paused ? "../../images/ui/button-pause.png" :
                                                  "../../images/ui/button-play.png"
 
                 onClicked: {

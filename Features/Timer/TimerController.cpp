@@ -23,7 +23,15 @@ TimerController::TimerController(QQmlContext* context, QList<RoundDef*> rounds, 
 
 void TimerController::togglePause()
 {
-    mModel->running(!mModel->running());
+    if(mModel->running())
+    {
+        mModel->paused(!mModel->paused());
+    }
+    else
+    {
+        mModel->running(true);
+        mModel->paused(false);
+    }
 }
 
 void TimerController::nextRound()
@@ -77,6 +85,7 @@ void TimerController::addStructure(TournamentStructureDef *tournament)
 void TimerController::updateModelTime()
 {
     RETURN_IF(!mModel->running());
+    RETURN_IF(mModel->paused());
 
     auto activeRoundId = mModel->activeRound();
     auto rounds = mModel->rawRoundsList();
@@ -102,7 +111,7 @@ void TimerController::timerEvent(QTimerEvent* event)
     Q_UNUSED(event);
 
     float seconds = mTime.elapsed() / 1000.0;
-    if(mModel->running())
+    if(mModel->running() && !mModel->paused())
     {
         mElapsedRoundSeconds += seconds - mLastTick;
         mLastTick = seconds;

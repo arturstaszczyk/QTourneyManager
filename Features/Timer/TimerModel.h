@@ -15,8 +15,11 @@ public:
     explicit TimerModel(QObject *parent = 0);
 
     AUTO_PROPERTY(bool, running)
+    AUTO_PROPERTY(bool, paused)
+
     AUTO_PROPERTY(int, activeRound)
     AUTO_PROPERTY(QString, activeRoundRemainingTime)
+
     Q_PROPERTY(QQmlListProperty<RoundDef> rounds READ rounds NOTIFY roundsChanged)
 
 public:

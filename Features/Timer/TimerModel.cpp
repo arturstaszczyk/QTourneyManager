@@ -9,6 +9,7 @@ TimerModel::TimerModel(QObject *parent)
 void TimerModel::zero()
 {
     running(false);
+    paused(false);
     activeRound(0);
 }
 

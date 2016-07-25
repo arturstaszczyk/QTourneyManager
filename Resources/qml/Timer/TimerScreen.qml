@@ -11,6 +11,11 @@ Item {
             anchors.fill: parent
             spacing: 0
 
+//            Item {
+//                Layout.fillWidth: true
+//                Layout.preferredHeight: 30
+//            }
+
             MainTimer {
                 id: timerView
 
