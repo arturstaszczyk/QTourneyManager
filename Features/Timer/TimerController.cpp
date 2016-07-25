@@ -23,6 +23,8 @@ TimerController::TimerController(QQmlContext* context, QList<RoundDef*> rounds, 
 
 void TimerController::togglePause()
 {
+    RETURN_IF(mModel->rawRoundsList().empty());
+
     if(mModel->running())
     {
         mModel->paused(!mModel->paused());
@@ -36,6 +38,8 @@ void TimerController::togglePause()
 
 void TimerController::nextRound()
 {
+    RETURN_IF(mModel->rawRoundsList().empty());
+
     resetTime();
     if(hasNextRound())
     {
@@ -51,6 +55,8 @@ void TimerController::nextRound()
 
 void TimerController::previousRound()
 {
+    RETURN_IF(mModel->rawRoundsList().empty());
+
     resetTime();
     if(hasPrevRound())
     {
