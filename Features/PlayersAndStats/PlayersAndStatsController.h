@@ -20,6 +20,7 @@ signals:
 
 public slots:
     void addPlayer(QJsonObject playerObj);
+    void rebuy(QString playerNick);
 
 private:
     CommandRecycler* mCommandRecycler;

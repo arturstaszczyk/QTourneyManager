@@ -2,9 +2,9 @@
 import QtQuick.Controls 1.5
 import QtQuick.Layouts 1.2
 
-import "../Globals.js" as Globals
 import "../Styles/Text"
 import "../Styles/Buttons"
+import "../Globals.js" as Globals
 
 Item {
     id: tournamentView
