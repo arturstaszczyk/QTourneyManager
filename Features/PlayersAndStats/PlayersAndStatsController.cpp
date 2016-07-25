@@ -87,16 +87,22 @@ void PlayersAndStatsController::updateStatsModel()
     RETURN_IF(mBuyins.size() == 0);
     RETURN_IF(mBuyins.first() == nullptr);
 
-    int chipsSum = 0;
+    int rebuyCountSum = 0;
     int playersCount = 0;
 
     mPlayersModel->forEachPlayer([&](PlayerDef* player){
-        chipsSum += player->rebuyCount();
+        rebuyCountSum += player->rebuyCount();
         if(!player->eliminated())
             playersCount++;
     });
 
-    auto bankroll = mBuyins.first()->bankroll();
+    auto buyinChips = mBuyins.first()->bankroll();
+    auto buyinCash = mBuyins.first()->cash();
 
-    mStatsModel->averageChipsCount(chipsSum * bankroll / playersCount);
+    mStatsModel->buyinChips(buyinChips);
+    mStatsModel->buyinCash(buyinCash);
+
+    mStatsModel->averageChipsCount(playersCount == 0 ? 0 : rebuyCountSum * buyinChips / playersCount);
+    mStatsModel->totalChips(rebuyCountSum * buyinChips);
+    mStatsModel->playersInGame(playersCount);
 }

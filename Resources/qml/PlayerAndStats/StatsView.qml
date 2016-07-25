@@ -21,13 +21,58 @@ ColumnLayout {
 
         SupportText {
             Layout.fillWidth: true
-            text: qsTr("Average chips count: ")
+            text: qsTr("Total chips on the table")
+        }
+
+        SupportText {
+            Layout.fillWidth: true
+            horizontalAlignment: Text.AlignRight
+            text: statsModel.totalChips
+        }
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+
+        SupportText {
+            Layout.fillWidth: true
+            text: qsTr("Players in game")
+        }
+
+        SupportText {
+            Layout.fillWidth: true
+            horizontalAlignment: Text.AlignRight
+            text: statsModel.playersInGame
+        }
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+
+        SupportText {
+            Layout.fillWidth: true
+            text: qsTr("Av. chips per player")
         }
 
         SupportText {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignRight
             text: statsModel.averageChipsCount
+        }
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+
+        SupportText {
+            Layout.fillWidth: true
+            text: qsTr("Buyin")
+        }
+
+        SupportText {
+            Layout.fillWidth: true
+            horizontalAlignment: Text.AlignRight
+            text: statsModel.buyinChips + "/" + qsTr("PLN") + statsModel.buyinCash
         }
     }
 

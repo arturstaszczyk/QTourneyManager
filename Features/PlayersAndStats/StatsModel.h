@@ -11,7 +11,12 @@ class StatsModel : public QObject
 public:
     explicit StatsModel(QObject *parent = 0);
 
+    AUTO_PROPERTY(int, buyinCash)
+    AUTO_PROPERTY(int, buyinChips)
+
+    AUTO_PROPERTY(int, totalChips)
     AUTO_PROPERTY(int, averageChipsCount)
+    AUTO_PROPERTY(int, playersInGame)
 
 };
 
