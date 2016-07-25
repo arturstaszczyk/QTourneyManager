@@ -6,42 +6,63 @@ import "../Styles/Text"
 import "../Styles/Buttons"
 import "../Globals.js" as Globals
 
-Item {
+Rectangle {
     id: tournamentView
+    property int headerHeight
+
+    height: headerHeight
+
+    color: "red"
+
+    Behavior on height
+    {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.InOutQuad
+        }
+    }
 
     RowLayout {
-        spacing: 20
-        anchors.fill: tournamentView
+        id: headerRow
+
+        height: headerHeight
+        anchors.top: tournamentView.top
+        anchors.left: tournamentView.left
+        anchors.right: tournamentView.right
         anchors.leftMargin: Globals.normalMargin
         anchors.rightMargin: Globals.normalMargin
 
-        Item {
+        spacing: 20
+
+        SupportText {
             Layout.fillWidth: true
-            Layout.preferredHeight: parent.height
-            Layout.alignment: Qt.AlignLeft | Qt.AlignHCenter
+            Layout.fillHeight: true
 
-            SupportText {
-                color: Globals.textColorDark
-                anchors.verticalCenter: parent.verticalCenter
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignLeft
 
-                text: modelData
-            }
+            color: Globals.textColorDark
+            text: modelData
         }
 
         Button {
-            Layout.preferredWidth: tournamentView.height - 10
-            Layout.preferredHeight: tournamentView.height - 10
+            Layout.preferredWidth: headerRow.height - 10
+            Layout.preferredHeight: headerRow.height - 10
 
             iconSource: "../../images/ui/button-question-small.png"
 
             style: RoundButtonStyle {
                 backgroundColor: "gray"
             }
+
+            onClicked: {
+                tournamentView.height += 30
+            }
         }
 
         Button {
-            Layout.preferredWidth: tournamentView.height - 10
-            Layout.preferredHeight: tournamentView.height - 10
+            Layout.preferredWidth: headerRow.height - 10
+            Layout.preferredHeight: headerRow.height - 10
 
             iconSource: "../../images/ui/button-play-small.png"
 
@@ -54,5 +75,13 @@ Item {
                 navigationBarController.requestTimerScreen();
             }
         }
+    }
+
+    Rectangle {
+
+        anchors.left: tournamentView.left
+        anchors.right: tournamentView.right
+        anchors.top: headerRow.bottom
+        anchors.bottom: tournamentView.bottom
     }
 }
