@@ -6,6 +6,8 @@
 #include <chrono>
 
 #include "Commands/CommandRecycler.h"
+#include "Features/RoundDef.h"
+#include "Features/PlayerDef.h"
 #include "Features/Timer/TimerController.h"
 #include "Features/Tournaments/TournamentsListController.h"
 #include "Features/NavigationBar/NavigationBarController.h"
@@ -17,6 +19,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    qmlRegisterUncreatableType<PlayerDef>("poker.playerdef", 1, 0, "PlayerDef", "Cannot create model in QML");
     qmlRegisterUncreatableType<RoundDef>("poker.rounddef", 1, 0, "RoundDef", "Cannot create model in QML");
 
     std::chrono::milliseconds interval(100);

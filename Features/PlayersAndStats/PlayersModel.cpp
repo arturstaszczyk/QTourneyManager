@@ -9,6 +9,11 @@ PlayersModel::PlayersModel(QObject *parent) : QObject(parent)
 
 }
 
+QQmlListProperty<PlayerDef> PlayersModel::players()
+{
+    return QQmlListProperty<PlayerDef>(this, mPlayers);
+}
+
 void PlayersModel::addPlayer(QString player, int rebuyCount, QString buyinStructure)
 {
     PlayerDef* playerDef = new PlayerDef(this);
@@ -16,18 +21,15 @@ void PlayersModel::addPlayer(QString player, int rebuyCount, QString buyinStruct
     playerDef->rebuyCount(rebuyCount);
     playerDef->setBuyinUrl(buyinStructure);
 
-    auto playerList = players();
-    playerList.append(playerDef);
-    players(playerList);
+    mPlayers.append(playerDef);
 
-    qDebug() << "Added player " << player << players().count();
+    emit playersChanged(QQmlListProperty<PlayerDef>(this, mPlayers));
 }
 
 void PlayersModel::forEachPlayer(const std::function<void(PlayerDef*)>& lambda)
 {
-    auto playerList = players();
-    auto endIter = playerList.end();
-    for(auto iter = playerList.begin(); iter != endIter; ++iter)
+    auto endIter = mPlayers.end();
+    for(auto iter = mPlayers.begin(); iter != endIter; ++iter)
     {
         PlayerDef* playerDef = qobject_cast<PlayerDef*>(*iter);
         lambda(playerDef);

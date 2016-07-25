@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     Commands/RequestPlayersCommand.cpp \
     Features/PlayersAndStats/PlayersAndStatsController.cpp \
     Features/PlayersAndStats/PlayersModel.cpp \
-    Commands/RequestBuyinCommand.cpp
+    Commands/RequestBuyinCommand.cpp \
+    Features/PlayerDef.cpp
 
 CONFIG(debug, debug|release)
 {
