@@ -23,6 +23,21 @@ Item {
                 Layout.fillWidth: true
             }
 
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: Globals.normalMargin
+            }
+
+            MainText {
+                Layout.fillWidth: true
+
+                level: 3
+                color: Globals.textColorDark
+                horizontalAlignment: Text.AlignHCenter
+
+                text: "Players"
+            }
+
             ListView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
