@@ -38,12 +38,8 @@ void RequestPlayersCommand::onHttpPlayersGet(QNetworkReply *reply)
         {
             QJsonObject playerObj = (*iter).toObject();
             qDebug() << playerObj;
-            PlayerDef* playerDef = new PlayerDef();
-            playerDef->nick(playerObj["nick"].toString());
-            playerDef->rebuyCount(playerObj["rebuy_count"].toInt());
-            playerDef->setBuyinUrl(playerObj["buyin_structure"].toString());
 
-            emit playerParsed(playerDef);
+            emit playerParsed(playerObj);
         }
     }
 

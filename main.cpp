@@ -9,6 +9,7 @@
 #include "Features/Timer/TimerController.h"
 #include "Features/Tournaments/TournamentsListController.h"
 #include "Features/NavigationBar/NavigationBarController.h"
+#include "Features/PlayersAndStats/PlayersAndStatsController.h"
 #include "Features/Settings/HostAddress/HostAddressController.h"
 
 int main(int argc, char *argv[])
@@ -28,11 +29,15 @@ int main(int argc, char *argv[])
     HostAddressController addressController(engine.rootContext(), &commandRecycler);
 
     TournamentsListController tournamentsController(engine.rootContext(), &commandRecycler);
-    QObject::connect(&addressController, SIGNAL(onTournamentParsed(TournamentStructureDef*)),
-                     &tournamentsController, SLOT(addTournament(TournamentStructureDef*)));
+    QObject::connect(&addressController, SIGNAL(onTournamentParsed(QJsonObject)),
+                     &tournamentsController, SLOT(addTournament(QJsonObject)));
 
     QObject::connect(&tournamentsController, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
                      &timerController, SLOT(addStructure(TournamentStructureDef*)));
+
+    PlayersAndStatsController playersAndStatsController(&engine, &commandRecycler);
+    QObject::connect(&addressController, SIGNAL(onPlayerParsed(QJsonObject)),
+                     &playersAndStatsController, SLOT(addPlayer(QJsonObject)));
 
     NavigationBarController navigationBar(&engine);
 

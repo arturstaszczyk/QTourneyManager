@@ -3,8 +3,8 @@
 
 #include "Command.h"
 
+#include <QJsonObject>
 #include <QNetworkReply>
-#include "Features/PlayerDef.h"
 
 class RequestPlayersCommand : public Command
 {
@@ -19,7 +19,7 @@ public slots:
     void onHttpPlayersGet(QNetworkReply* reply);
 
 signals:
-    void playerParsed(PlayerDef* player);
+    void playerParsed(QJsonObject);
 
 private:
     QString mHostAddress;

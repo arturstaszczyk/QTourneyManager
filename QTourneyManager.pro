@@ -18,7 +18,9 @@ SOURCES += main.cpp \
     Features/Settings/HostAddress/HostAddressController.cpp \
     Features/Timer/TimerController.cpp \
     Features/Tournaments/TournamentsListController.cpp \
-    Commands/RequestPlayersCommand.cpp
+    Commands/RequestPlayersCommand.cpp \
+    Features/PlayersAndStats/PlayersAndStatsModel.cpp \
+    Features/PlayersAndStats/PlayersAndStatsController.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -62,4 +64,6 @@ HEADERS += \
     Features/Tournaments/TournamentsListController.h \
     Features/PlayerDef.h \
     Features/BuyinDef.h \
-    Commands/RequestPlayersCommand.h
+    Commands/RequestPlayersCommand.h \
+    Features/PlayersAndStats/PlayersAndStatsModel.h \
+    Features/PlayersAndStats/PlayersAndStatsController.h

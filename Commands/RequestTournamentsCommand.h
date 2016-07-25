@@ -1,10 +1,10 @@
 ﻿#ifndef REQUESTTOURNAMENTSCOMMAND_H
 #define REQUESTTOURNAMENTSCOMMAND_H
 
-#include <QNetworkReply>
-
 #include "Command.h"
-#include "Features/TournamentStructureDef.h"
+
+#include <QJsonObject>
+#include <QNetworkReply>
 
 class RequestTournamentsCommand : public Command
 {
@@ -15,7 +15,7 @@ public:
     void execute() override;
 
 signals:
-    void tournamentParsed(TournamentStructureDef*);
+    void tournamentParsed(QJsonObject);
 
 private slots:
     void onHttpTournamentsGet(QNetworkReply*reply);

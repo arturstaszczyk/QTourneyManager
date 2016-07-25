@@ -13,8 +13,13 @@ TournamentsListController::TournamentsListController(QQmlContext* qmlContext, Co
     qmlContext->setContextProperty("tournamentsListController", this);
 }
 
-void TournamentsListController::addTournament(TournamentStructureDef* tourney)
+void TournamentsListController::addTournament(QJsonObject tourneyObj)
 {
+    TournamentStructureDef* tourney = new TournamentStructureDef(
+                tourneyObj["name"].toString(),
+                tourneyObj["rounds"].toVariant().toStringList(),
+                this);
+
     auto tourneyList = mModel->tournaments();
     auto tourneyName = tourney->name();
 
@@ -22,7 +27,6 @@ void TournamentsListController::addTournament(TournamentStructureDef* tourney)
     mModel->tournaments(tourneyList);
 
     mStructure[tourneyName] = tourney;
-    tourney->setParent(this);
 
     if(!tourney->isStructureReady())
     {

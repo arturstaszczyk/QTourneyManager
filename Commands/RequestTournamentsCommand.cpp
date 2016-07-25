@@ -38,10 +38,8 @@ void RequestTournamentsCommand::onHttpTournamentsGet(QNetworkReply *reply)
         QJsonArray::ConstIterator iter, endIter = jsonArray.constEnd();
         for(iter = jsonArray.constBegin(); iter != endIter; ++iter)
         {
-            QJsonObject tournamentDef = (*iter).toObject();
-            TournamentStructureDef* tournament = new TournamentStructureDef(tournamentDef["name"].toString(),
-                    tournamentDef["rounds"].toVariant().toStringList());
-            emit tournamentParsed(tournament);
+            QJsonObject tournamentObj = (*iter).toObject();
+            emit tournamentParsed(tournamentObj);
         }
     }
 

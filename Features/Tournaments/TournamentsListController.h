@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QObject>
+#include <QJsonObject>
 #include <QQmlContext>
 
 #include "TournamentsListModel.h"
@@ -19,7 +20,7 @@ signals:
     void tournamentSelectedToPlay(TournamentStructureDef*);
 
 public slots:
-    void addTournament(TournamentStructureDef* tourney);
+    void addTournament(QJsonObject tourneyObj);
 
     void onPlayClicked(QString);
 

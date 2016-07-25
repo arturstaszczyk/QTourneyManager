@@ -3,11 +3,11 @@
 
 #include <QObject>
 #include <QQmlContext>
+#include <QJsonObject>
 #include <QNetworkReply>
 
 #include "HostAddressModel.h"
 #include "Commands/CommandRecycler.h"
-#include "Features/PlayerDef.h"
 #include "Features/TournamentStructureDef.h"
 
 class HostAddressController : public QObject
@@ -17,8 +17,8 @@ public:
     explicit HostAddressController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
 
 signals:
-    void onTournamentParsed(TournamentStructureDef* torunament);
-    void onPlayerParsed(PlayerDef* player);
+    void onTournamentParsed(QJsonObject);
+    void onPlayerParsed(QJsonObject);
 
 public slots:
     void onHostAddressChanged(QString address, bool isValid);

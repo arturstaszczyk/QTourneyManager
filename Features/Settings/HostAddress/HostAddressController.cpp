@@ -18,11 +18,10 @@ void HostAddressController::onHostAddressChanged(QString address, bool isValid)
         mModel->address(address);
 
     RequestTournamentsCommand* requestTourneysCmd = new RequestTournamentsCommand(address, this);
-    connect(requestTourneysCmd, SIGNAL(tournamentParsed(TournamentStructureDef*)),
-            this, SIGNAL(onTournamentParsed(TournamentStructureDef*)));
+    connect(requestTourneysCmd, SIGNAL(tournamentParsed(QJsonObject)), this, SIGNAL(onTournamentParsed(QJsonObject)));
     mCommandRecycler->executeAndDispose(requestTourneysCmd);
 
     RequestPlayersCommand* requestPlayersCmd = new RequestPlayersCommand(address, this);
-    //connect(requestPlayersCmd, SIGNAL(onPlayerParsed(), )
+    connect(requestPlayersCmd, SIGNAL(playerParsed(QJsonObject)), this, SIGNAL(onPlayerParsed(QJsonObject)));
     mCommandRecycler->executeAndDispose(requestPlayersCmd);
 }
