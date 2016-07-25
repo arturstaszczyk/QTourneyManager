@@ -6,8 +6,9 @@ import "../Styles/Text"
 import "../Styles/Buttons"
 import "../Globals.js" as Globals
 
-Item {
+Rectangle {
     id: playerView
+    color: modelData.eliminated ? Globals.appBackground : "transparent"
 
     RowLayout {
         anchors.fill: parent
@@ -18,7 +19,7 @@ Item {
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width / 3
-            color: Globals.textColorDark
+            color: modelData.eliminated ? Globals.supportTextColor : Globals.textColorDark
             level: 3
 
             text: modelData.nick
@@ -30,7 +31,7 @@ Item {
         MainText {
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width / 3
-            color: Globals.textColorDark
+            color: modelData.eliminated ? Globals.supportTextColor : Globals.textColorDark
             level: 3
 
             text: "Rebuys: " + modelData.rebuyCount
@@ -47,6 +48,8 @@ Item {
             style: RoundButtonStyle {
                 backgroundColor: "gray"
             }
+
+            onClicked: playersAndStatsController.eliminate(modelData.nick)
         }
 
         Button {
@@ -59,9 +62,7 @@ Item {
                 backgroundColor: "gray"
             }
 
-            onClicked: {
-                playersAndStatsController.rebuy(modelData.nick)
-            }
+            onClicked: playersAndStatsController.rebuy(modelData.nick)
         }
     }
 }

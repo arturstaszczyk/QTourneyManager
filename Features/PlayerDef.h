@@ -10,10 +10,13 @@ class PlayerDef : public QObject
     Q_OBJECT
 public:
     explicit PlayerDef(QObject *parent = 0)
-        : QObject(parent) {}
+        : QObject(parent)
+        , a_eliminated(false)
+    {}
 
     AUTO_PROPERTY(QString, nick)
     AUTO_PROPERTY(int, rebuyCount)
+    AUTO_PROPERTY(bool, eliminated)
 
 public:
     void setBuyinUrl(QString buyinUrl) { mByuinUrl = buyinUrl; }

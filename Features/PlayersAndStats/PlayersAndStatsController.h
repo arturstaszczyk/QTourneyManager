@@ -16,11 +16,10 @@ public:
                                        CommandRecycler* commandsRecycler,
                                        QObject *parent = 0);
 
-signals:
-
 public slots:
     void addPlayer(QJsonObject playerObj);
     void rebuy(QString playerNick);
+    void eliminate(QString playerNick);
 
 private:
     CommandRecycler* mCommandRecycler;

@@ -22,3 +22,14 @@ void PlayersAndStatsModel::addPlayer(QString player, int rebuyCount, QString buy
 
     qDebug() << "Added player " << player << players().count();
 }
+
+void PlayersAndStatsModel::forEachPlayer(const std::function<void(PlayerDef*)>& lambda)
+{
+    auto playerList = players();
+    auto endIter = playerList.end();
+    for(auto iter = playerList.begin(); iter != endIter; ++iter)
+    {
+        PlayerDef* playerDef = qobject_cast<PlayerDef*>(*iter);
+        lambda(playerDef);
+    }
+}

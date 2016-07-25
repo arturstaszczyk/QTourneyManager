@@ -26,12 +26,16 @@ void PlayersAndStatsController::addPlayer(QJsonObject playerObj)
 
 void PlayersAndStatsController::rebuy(QString playerNick)
 {
-    auto playerList = mModel->players();
-    auto endIter = playerList.end();
-    for(auto iter = playerList.begin(); iter != endIter; ++iter)
-    {
-        PlayerDef* playerDef = qobject_cast<PlayerDef*>(*iter);
-        if(playerDef->nick() == playerNick)
+    mModel->forEachPlayer([&](PlayerDef* playerDef) {
+        if(playerDef->nick() == playerNick && !playerDef->eliminated())
             playerDef->rebuyCount(playerDef->rebuyCount() + 1);
-    }
+    });
+}
+
+void PlayersAndStatsController::eliminate(QString playerNick)
+{
+    mModel->forEachPlayer([&](PlayerDef* playerDef) {
+        if(playerDef->nick() == playerNick)
+            playerDef->eliminated(!playerDef->eliminated());
+    });
 }
