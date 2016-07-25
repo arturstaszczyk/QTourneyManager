@@ -19,5 +19,6 @@
         <file>qml/Settings/HostAddressScreen.qml</file>
         <file>qml/PlayerAndStats/PlayersAndStatsScreen.qml</file>
         <file>qml/PlayerAndStats/PlayerView.qml</file>
+        <file>qml/PlayerAndStats/StatsView.qml</file>
     </qresource>
 </RCC>

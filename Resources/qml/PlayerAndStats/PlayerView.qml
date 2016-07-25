@@ -12,8 +12,6 @@ Rectangle {
 
     RowLayout {
         anchors.fill: parent
-        anchors.leftMargin: Globals.normalMargin
-        anchors.rightMargin: Globals.normalMargin
 
         MainText {
 

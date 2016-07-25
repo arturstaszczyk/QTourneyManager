@@ -2,22 +2,38 @@
 import QtQuick.Layouts 1.3
 
 import "../Styles"
+import "../Styles/Text"
 import "../Globals.js" as Globals
 
 Item {
     RoundedPage {
         id: timerScreen
 
-        ListView {
+        ColumnLayout
+        {
             anchors.fill: parent
-            anchors.topMargin: 50
-            boundsBehavior: Flickable.StopAtBounds
+            anchors.margins: Globals.normalMargin
 
-            model: playersAndStatsModel.players
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: Globals.normalMargin
+            }
 
-            delegate: PlayerView {
-                width: parent.width
-                height: 60
+            StatsView {
+                Layout.fillWidth: true
+            }
+
+            ListView {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                boundsBehavior: Flickable.StopAtBounds
+
+                model: playersAndStatsModel.players
+
+                delegate: PlayerView {
+                    width: parent.width
+                    height: 60
+                }
             }
         }
     }
