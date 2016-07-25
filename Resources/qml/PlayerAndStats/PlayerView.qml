@@ -13,7 +13,7 @@ Rectangle {
     RowLayout {
         anchors.fill: parent
 
-        MainText {
+        SupportText {
 
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width / 3
@@ -26,11 +26,10 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
         }
 
-        MainText {
+        SupportText {
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width / 3
             color: modelData.eliminated ? Globals.supportTextColor : Globals.textColorDark
-            level: 3
 
             text: "Rebuys: " + modelData.rebuyCount
             horizontalAlignment: Text.AlignLeft
@@ -38,8 +37,8 @@ Rectangle {
         }
 
         Button {
-            Layout.preferredWidth: playerView.height - 10
-            Layout.preferredHeight: playerView.height - 10
+            Layout.preferredWidth: playerView.height - 15
+            Layout.preferredHeight: playerView.height - 15
 
             iconSource: "../../images/ui/button-question-small.png"
 
@@ -51,8 +50,8 @@ Rectangle {
         }
 
         Button {
-            Layout.preferredWidth: playerView.height - 10
-            Layout.preferredHeight: playerView.height - 10
+            Layout.preferredWidth: playerView.height - 15
+            Layout.preferredHeight: playerView.height - 15
 
             iconSource: "../../images/ui/button-play-small.png"
 

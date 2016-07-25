@@ -20,5 +20,6 @@
         <file>qml/PlayerAndStats/PlayersAndStatsScreen.qml</file>
         <file>qml/PlayerAndStats/PlayerView.qml</file>
         <file>qml/PlayerAndStats/StatsView.qml</file>
+        <file>qml/PlayerAndStats/PlayersListView.qml</file>
     </qresource>
 </RCC>

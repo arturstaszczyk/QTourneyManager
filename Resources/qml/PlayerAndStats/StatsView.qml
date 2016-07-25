@@ -6,6 +6,11 @@ import "../Globals.js" as Globals
 
 ColumnLayout {
 
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: Globals.normalMargin
+    }
+
     MainText {
         Layout.fillWidth: true
 
@@ -14,6 +19,11 @@ ColumnLayout {
         horizontalAlignment: Text.AlignHCenter
 
         text: "Stats"
+    }
+
+    Item {
+        Layout.fillWidth: true
+        Layout.preferredHeight: Globals.normalMargin
     }
 
     RowLayout {

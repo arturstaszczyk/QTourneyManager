@@ -14,41 +14,12 @@ Item {
             anchors.fill: parent
             anchors.margins: Globals.normalMargin
 
-            Item {
-                Layout.fillWidth: true
-                Layout.preferredHeight: Globals.normalMargin
-            }
-
             StatsView {
                 Layout.fillWidth: true
             }
 
-            Item {
+            PlayersListView {
                 Layout.fillWidth: true
-                Layout.preferredHeight: Globals.normalMargin
-            }
-
-            MainText {
-                Layout.fillWidth: true
-
-                level: 3
-                color: Globals.textColorDark
-                horizontalAlignment: Text.AlignHCenter
-
-                text: "Players"
-            }
-
-            ListView {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                boundsBehavior: Flickable.StopAtBounds
-
-                model: playersModel.players
-
-                delegate: PlayerView {
-                    width: parent.width
-                    height: 60
-                }
             }
         }
     }

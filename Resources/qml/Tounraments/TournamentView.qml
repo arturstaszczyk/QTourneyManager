@@ -6,13 +6,11 @@ import "../Styles/Text"
 import "../Styles/Buttons"
 import "../Globals.js" as Globals
 
-Rectangle {
+Item {
     id: tournamentView
     property int headerHeight
 
     height: headerHeight
-
-    color: "red"
 
     Behavior on height
     {
@@ -46,8 +44,8 @@ Rectangle {
         }
 
         Button {
-            Layout.preferredWidth: headerRow.height - 10
-            Layout.preferredHeight: headerRow.height - 10
+            Layout.preferredWidth: headerRow.height - 20
+            Layout.preferredHeight: headerRow.height - 20
 
             iconSource: "../../images/ui/button-question-small.png"
 
@@ -61,8 +59,8 @@ Rectangle {
         }
 
         Button {
-            Layout.preferredWidth: headerRow.height - 10
-            Layout.preferredHeight: headerRow.height - 10
+            Layout.preferredWidth: headerRow.height - 20
+            Layout.preferredHeight: headerRow.height - 20
 
             iconSource: "../../images/ui/button-play-small.png"
 
