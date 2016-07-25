@@ -10,7 +10,6 @@ Item{
     RoundedPage {
 
         ListView {
-
             anchors.fill: parent
             anchors.topMargin: 50
             boundsBehavior: Flickable.StopAtBounds

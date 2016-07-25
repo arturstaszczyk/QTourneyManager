@@ -18,5 +18,6 @@
         <file>qml/Tounraments/TournamentsScreen.qml</file>
         <file>qml/Settings/HostAddressScreen.qml</file>
         <file>qml/PlayerAndStats/PlayersAndStatsScreen.qml</file>
+        <file>qml/PlayerAndStats/PlayerView.qml</file>
     </qresource>
 </RCC>

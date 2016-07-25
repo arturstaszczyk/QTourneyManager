@@ -2,6 +2,7 @@
 import QtQuick.Layouts 1.3
 
 import "../Styles"
+import "../Globals.js" as Globals
 
 Item {
     RoundedPage {
@@ -13,17 +14,10 @@ Item {
             boundsBehavior: Flickable.StopAtBounds
 
             model: playersAndStatsModel.players
-            delegate: Rectangle {
-                color: "red"
-                width: 100
+
+            delegate: PlayerView {
+                width: parent.width
                 height: 60
-                border {
-                    width: 1
-                    color: "black"
-                }
-                Text {
-                    text: modelData.nick
-                }
             }
         }
     }
