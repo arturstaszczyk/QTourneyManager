@@ -28,7 +28,7 @@ Item {
                 Layout.fillHeight: true
                 boundsBehavior: Flickable.StopAtBounds
 
-                model: playersAndStatsModel.players
+                model: playersModel.players
 
                 delegate: PlayerView {
                     width: parent.width

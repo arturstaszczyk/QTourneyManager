@@ -37,8 +37,6 @@ void RequestPlayersCommand::onHttpPlayersGet(QNetworkReply *reply)
         for(iter = jsonArray.constBegin(); iter != endIter; ++iter)
         {
             QJsonObject playerObj = (*iter).toObject();
-            qDebug() << playerObj;
-
             emit playerParsed(playerObj);
         }
     }

@@ -27,7 +27,7 @@ ColumnLayout {
         SupportText {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignRight
-            text: playersAndStatsModel.averageChipsCount
+            text: statsModel.averageChipsCount
         }
     }
 

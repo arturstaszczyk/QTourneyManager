@@ -19,8 +19,10 @@ SOURCES += main.cpp \
     Features/Timer/TimerController.cpp \
     Features/Tournaments/TournamentsListController.cpp \
     Commands/RequestPlayersCommand.cpp \
-    Features/PlayersAndStats/PlayersAndStatsModel.cpp \
-    Features/PlayersAndStats/PlayersAndStatsController.cpp
+    Features/PlayersAndStats/PlayersAndStatsController.cpp \
+    Features/PlayersAndStats/PlayersModel.cpp \
+    Features/PlayersAndStats/StatsModel.cpp \
+    Commands/RequestBuyinCommand.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -65,5 +67,7 @@ HEADERS += \
     Features/PlayerDef.h \
     Features/BuyinDef.h \
     Commands/RequestPlayersCommand.h \
-    Features/PlayersAndStats/PlayersAndStatsModel.h \
-    Features/PlayersAndStats/PlayersAndStatsController.h
+    Features/PlayersAndStats/PlayersAndStatsController.h \
+    Features/PlayersAndStats/PlayersModel.h \
+    Features/PlayersAndStats/StatsModel.h \
+    Commands/RequestBuyinCommand.h

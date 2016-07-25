@@ -1,15 +1,15 @@
-﻿#include "PlayersAndStatsModel.h"
+﻿#include "PlayersModel.h"
 
 #include <QDebug>
 
 #include "Features/PlayerDef.h"
 
-PlayersAndStatsModel::PlayersAndStatsModel(QObject *parent) : QObject(parent)
+PlayersModel::PlayersModel(QObject *parent) : QObject(parent)
 {
 
 }
 
-void PlayersAndStatsModel::addPlayer(QString player, int rebuyCount, QString buyinStructure)
+void PlayersModel::addPlayer(QString player, int rebuyCount, QString buyinStructure)
 {
     PlayerDef* playerDef = new PlayerDef(this);
     playerDef->nick(player);
@@ -23,7 +23,7 @@ void PlayersAndStatsModel::addPlayer(QString player, int rebuyCount, QString buy
     qDebug() << "Added player " << player << players().count();
 }
 
-void PlayersAndStatsModel::forEachPlayer(const std::function<void(PlayerDef*)>& lambda)
+void PlayersModel::forEachPlayer(const std::function<void(PlayerDef*)>& lambda)
 {
     auto playerList = players();
     auto endIter = playerList.end();

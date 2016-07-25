@@ -8,11 +8,11 @@
 #include "QAutoProperty.h"
 
 class PlayerDef;
-class PlayersAndStatsModel : public QObject
+class PlayersModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit PlayersAndStatsModel(QObject *parent = 0);
+    explicit PlayersModel(QObject *parent = 0);
 
     AUTO_PROPERTY(QList<QObject*>, players)
 
