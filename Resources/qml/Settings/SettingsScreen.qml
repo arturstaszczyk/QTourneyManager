@@ -32,7 +32,7 @@ Item {
                 }
 
                 onClicked: {
-                    hostAddressController.onHostAddressChanged(hostAddress.text,
+                    settingsController.onHostAddressChanged(hostAddress.text,
                                                                hostAddress.acceptableInput)
                     navigationBarController.requestPop()
                 }

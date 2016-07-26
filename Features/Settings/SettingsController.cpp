@@ -1,18 +1,18 @@
-﻿#include "HostAddressController.h"
+﻿#include "SettingsController.h"
 
 #include "Commands/RequestPlayersCommand.h"
 #include "Commands/RequestTournamentsCommand.h"
 
-HostAddressController::HostAddressController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent)
+SettingsController::SettingsController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent)
     : QObject(parent)
     , mCommandRecycler(commandRecycler)
 {
-    mModel = new HostAddressModel(this);
-    qmlContext->setContextProperty("hostAddressModel", mModel);
-    qmlContext->setContextProperty("hostAddressController", this);
+    mModel = new SettingsModel(this);
+    qmlContext->setContextProperty("settingsModel", mModel);
+    qmlContext->setContextProperty("settingsController", this);
 }
 
-void HostAddressController::onHostAddressChanged(QString address, bool isValid)
+void SettingsController::onHostAddressChanged(QString address, bool isValid)
 {
     if(isValid)
         mModel->address(address);

@@ -6,15 +6,15 @@
 #include <QJsonObject>
 #include <QNetworkReply>
 
-#include "HostAddressModel.h"
+#include "SettingsModel.h"
 #include "Commands/CommandRecycler.h"
 #include "Features/TournamentStructureDef.h"
 
-class HostAddressController : public QObject
+class SettingsController : public QObject
 {
     Q_OBJECT
 public:
-    explicit HostAddressController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
+    explicit SettingsController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
 
 signals:
     void onTournamentParsed(QJsonObject);
@@ -24,7 +24,7 @@ public slots:
     void onHostAddressChanged(QString address, bool isValid);
 
 private:
-    HostAddressModel* mModel;
+    SettingsModel* mModel;
     CommandRecycler* mCommandRecycler;
 };
 

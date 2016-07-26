@@ -9,10 +9,10 @@
 #include "Features/RoundDef.h"
 #include "Features/PlayerDef.h"
 #include "Features/Timer/TimerController.h"
+#include "Features/Settings/SettingsController.h"
 #include "Features/Tournaments/TournamentsListController.h"
 #include "Features/NavigationBar/NavigationBarController.h"
 #include "Features/PlayersAndStats/PlayersAndStatsController.h"
-#include "Features/Settings/HostAddress/HostAddressController.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     TimerController timerController(engine.rootContext());
     timerController.startTimer(interval.count());
 
-    HostAddressController addressController(engine.rootContext(), &commandRecycler);
+    SettingsController addressController(engine.rootContext(), &commandRecycler);
 
     TournamentsListController tournamentsController(engine.rootContext(), &commandRecycler);
     QObject::connect(&addressController, SIGNAL(onTournamentParsed(QJsonObject)),

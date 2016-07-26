@@ -4,7 +4,6 @@
         <file>qml/main.qml</file>
         <file>qml/Timer/MainControlButtons.qml</file>
         <file>qml/Timer/MainTimer.qml</file>
-        <file>qml/MockModels.qml</file>
         <file>qml/NavigationBar.qml</file>
         <file>qml/Timer/RoundView.qml</file>
         <file>qml/Tounraments/TournamentView.qml</file>
@@ -24,5 +23,6 @@
         <file>qml/Tounraments/TournamentBody.qml</file>
         <file>qml/Settings/SettingsScreen.qml</file>
         <file>qml/Settings/HostAddress.qml</file>
+        <file>qml/Settings/AdminPassword.qml</file>
     </qresource>
 </RCC>

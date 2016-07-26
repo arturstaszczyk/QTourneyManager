@@ -6,20 +6,20 @@ CONFIG += c++11
 SOURCES += main.cpp \
     Features/Timer/TimerModel.cpp \
     Features/RoundDef.cpp \
-    Features/Settings/HostAddress/HostAddressModel.cpp \
     Features/NavigationBar/NavigationBarController.cpp \
     Features/TournamentStructureDef.cpp \
     Commands/RequestTournamentsCommand.cpp \
     Commands/CommandRecycler.cpp \
     Commands/RequestRoundsCommand.cpp \
-    Features/Settings/HostAddress/HostAddressController.cpp \
     Features/Timer/TimerController.cpp \
     Features/Tournaments/TournamentsListController.cpp \
     Commands/RequestPlayersCommand.cpp \
     Features/PlayersAndStats/PlayersAndStatsController.cpp \
     Features/PlayersAndStats/PlayersModel.cpp \
     Commands/RequestBuyinCommand.cpp \
-    Features/PlayerDef.cpp
+    Features/PlayerDef.cpp \
+    Features/Settings/SettingsController.cpp \
+    Features/Settings/SettingsModel.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -50,7 +50,6 @@ HEADERS += \
     Features/RoundDef.h \
     Features/TournamentStructureDef.h \
     Features/Timer/TimerModel.h \
-    Features/Settings/HostAddress/HostAddressModel.h \
     Features/Tournaments/TournamentsListModel.h \
     Features/NavigationBar/NavigationBarModel.h \
     Features/NavigationBar/NavigationBarController.h \
@@ -58,7 +57,6 @@ HEADERS += \
     Commands/CommandRecycler.h \
     Commands/RequestRoundsCommand.h \
     Commands/RequestTournamentsCommand.h \
-    Features/Settings/HostAddress/HostAddressController.h \
     Features/Timer/TimerController.h \
     Features/Tournaments/TournamentsListController.h \
     Features/PlayerDef.h \
@@ -67,4 +65,6 @@ HEADERS += \
     Features/PlayersAndStats/PlayersAndStatsController.h \
     Features/PlayersAndStats/PlayersModel.h \
     Features/PlayersAndStats/StatsModel.h \
-    Commands/RequestBuyinCommand.h
+    Commands/RequestBuyinCommand.h \
+    Features/Settings/SettingsModel.h \
+    Features/Settings/SettingsController.h

@@ -8,8 +8,7 @@ import "../Globals.js" as Globals
 
 ColumnLayout {
 
-    property alias text: hostAddressField.text
-    property alias acceptableInput: hostAddressField.acceptableInput
+    property alias text: adminPassfordField.text
 
     Item {
         Layout.fillWidth: true
@@ -25,20 +24,17 @@ ColumnLayout {
 
         level: 3
         color: Globals.textColorDark
-        text: "REST service address:"
+        text: "Admin password"
     }
 
     TextField {
-        id: hostAddressField
+        id: adminPassfordField
         Layout.fillWidth: true
         Layout.preferredHeight: hostAddressField.implicitHeight
 
-        validator: RegExpValidator {
-            regExp: /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/
-        }
+        echoMode: TextInput.Password
 
-        placeholderText: "192.168.0.1"
-        text: settingsModel.address
+        text: settingsModel.adminPassword
 
         style: TextFieldStyle {
             textColor: "black"
