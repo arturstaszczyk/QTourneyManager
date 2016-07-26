@@ -19,7 +19,7 @@ public:
     READONLY_PROPERTY(int, bigBlind)
     READONLY_PROPERTY(int, roundTimeInSeconds)
     READONLY_PROPERTY(QString, roundTimeString)
-    READONLY_PROPERTY(bool, isValid)
+    READONLY_PROPERTY(bool, isBreak)
 
 public:
     bool operator<(const RoundDef& other) const

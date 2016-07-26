@@ -46,7 +46,6 @@ void TournamentsListController::onRoundParsed(QString tourneyName, QJsonObject r
     auto tourney = mStructure[tourneyName];
     RETURN_IF(tourney == nullptr);
 
-    tourney->addRound(roundObj["small_blind"].toInt(),
-            roundObj["big_blind"].toInt(),
-            roundObj["round_duration"].toInt());
+    tourney->addRound(roundObj["small_blind"].toInt(), roundObj["big_blind"].toInt(),
+            roundObj["round_duration"].toInt(), roundObj["is_break"].toBool());
 }

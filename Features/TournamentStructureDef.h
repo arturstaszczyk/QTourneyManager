@@ -19,7 +19,7 @@ public:
     LIST_PROPERTY(RoundDef, rounds)
 
 public:
-    void addRound(int smallBlind, int bigBlind, int timeInSeconds);
+    void addRound(int smallBlind, int bigBlind, int timeInSeconds, bool isBreak);
     bool isStructureReady() const { return a_roundUrls.size() == a_roundsRaw.size(); }
 
 };

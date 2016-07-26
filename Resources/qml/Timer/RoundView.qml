@@ -18,7 +18,7 @@ Rectangle {
 
         SupportText {
             Layout.alignment: Layout.Left
-            text: "BLINDS: $" + modelData.smallBlind + " / $" + modelData.bigBlind
+            text: modelData.isBreak ? "BREAK" : "BLINDS: $" + modelData.smallBlind + " / $" + modelData.bigBlind
             color: roundView.isActive ?  Globals.textColorLight : Globals.textColorDark
         }
 
