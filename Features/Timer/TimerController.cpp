@@ -23,7 +23,7 @@ TimerController::TimerController(QQmlContext* context, QList<RoundDef*> rounds, 
 
 void TimerController::togglePause()
 {
-    RETURN_IF(mModel->rawRoundsList().empty());
+    RETURN_IF(mModel->roundsRaw().empty());
 
     if(mModel->running())
     {
@@ -38,7 +38,7 @@ void TimerController::togglePause()
 
 void TimerController::nextRound()
 {
-    RETURN_IF(mModel->rawRoundsList().empty());
+    RETURN_IF(mModel->roundsRaw().empty());
 
     resetTime();
     if(hasNextRound())
@@ -55,7 +55,7 @@ void TimerController::nextRound()
 
 void TimerController::previousRound()
 {
-    RETURN_IF(mModel->rawRoundsList().empty());
+    RETURN_IF(mModel->roundsRaw().empty());
 
     resetTime();
     if(hasPrevRound())
@@ -72,7 +72,7 @@ void TimerController::previousRound()
 
 bool TimerController::hasNextRound() const
 {
-    auto rounds = mModel->rawRoundsList();
+    auto rounds = mModel->roundsRaw();
     return mModel->activeRound() < rounds.size() - 1;
 }
 
@@ -94,7 +94,7 @@ void TimerController::updateModelTime()
     RETURN_IF(mModel->paused());
 
     auto activeRoundId = mModel->activeRound();
-    auto rounds = mModel->rawRoundsList();
+    auto rounds = mModel->roundsRaw();
     auto activeRound = rounds[activeRoundId];
 
     if(activeRound)
@@ -122,7 +122,7 @@ void TimerController::timerEvent(QTimerEvent* event)
         mElapsedRoundSeconds += seconds - mLastTick;
         mLastTick = seconds;
 
-        auto rounds = mModel->rawRoundsList();
+        auto rounds = mModel->roundsRaw();
         auto activeRoundId = mModel->activeRound();
         auto activeRound = rounds[activeRoundId];
         if(mElapsedRoundSeconds > activeRound->roundTimeInSeconds())
