@@ -6,11 +6,22 @@ import "../Styles/Text"
 import "../Styles/Buttons"
 import "../Globals.js" as Globals
 
-Item {
+Rectangle {
     id: tournamentView
     property int headerHeight
+    property bool expanded: false
 
     height: headerHeight
+    clip: true
+
+    states: State {
+        name: "expanded"
+        when: tournamentView.expanded
+        PropertyChanges {
+            target: tournamentView
+            height: headerRow.height + bodyView.contentHeight
+        }
+    }
 
     Behavior on height
     {
@@ -54,7 +65,9 @@ Item {
             }
 
             onClicked: {
-                tournamentView.height += 30
+
+                tournamentView.expanded = !tournamentView.expanded
+                console.log(tournamentView.expanded + "," + (headerRow.height + bodyView.contentHeight))
             }
         }
 
@@ -76,15 +89,24 @@ Item {
     }
 
     Item {
+
         anchors.left: tournamentView.left
         anchors.right: tournamentView.right
         anchors.top: headerRow.bottom
         anchors.bottom: tournamentView.bottom
 
         ListView {
+            id: bodyView
             anchors.fill: parent
 
-            model: modelData
+            model: modelData.rounds
+            delegate: Rectangle {
+                width: 60
+                height: 60
+                Text {
+                    text: modelData.smallBlind
+                }
+            }
         }
     }
 }
