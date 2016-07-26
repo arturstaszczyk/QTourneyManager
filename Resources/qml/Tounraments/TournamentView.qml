@@ -40,7 +40,7 @@ Item {
             horizontalAlignment: Text.AlignLeft
 
             color: Globals.textColorDark
-            text: modelData
+            text: modelData.name
         }
 
         Button {
@@ -69,7 +69,7 @@ Item {
             }
 
             onClicked: {
-                tournamentsListController.onPlayClicked(modelData)
+                tournamentsListController.onPlayClicked(modelData.name)
                 navigationBarController.requestTimerScreen();
             }
         }

@@ -83,7 +83,7 @@ bool TimerController::hasPrevRound() const
 
 void TimerController::addStructure(TournamentStructureDef *tournament)
 {
-    QList<RoundDef*> rounds = tournament->rounds();
+    auto rounds = tournament->roundsRaw();
     qSort(rounds.begin(), rounds.end(), QSortHelpers::PtrLess<RoundDef>());
     mModel->rounds(rounds);
 }

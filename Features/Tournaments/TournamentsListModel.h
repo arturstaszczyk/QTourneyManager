@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "QAutoProperty.h"
+#include "Features/TournamentStructureDef.h"
 
 class TournamentsListModel : public QObject
 {
@@ -12,7 +13,7 @@ public:
     explicit TournamentsListModel(QObject *parent = 0)
         : QObject(parent) {}
 
-    AUTO_PROPERTY(QStringList, tournaments)
+    LIST_PROPERTY(TournamentStructureDef, tournaments)
 };
 
 #endif // TOUNRAMENTSLISTMODEL_H

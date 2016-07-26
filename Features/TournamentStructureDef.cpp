@@ -2,13 +2,13 @@
 
 TournamentStructureDef::TournamentStructureDef(QString name, QStringList roundUrls, QObject *parent)
     : QObject(parent)
-    , mName(name)
-    , mRoundUrls(roundUrls)
+    , a_name(name)
+    , a_roundUrls(roundUrls)
 {
 
 }
 
 void TournamentStructureDef::addRound(int smallBlind, int bigBlind, int timeInSeconds)
 {
-    mRounds.append(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
+    roundsAdd(new RoundDef(timeInSeconds, smallBlind, bigBlind, this));
 }

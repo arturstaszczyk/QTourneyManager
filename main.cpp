@@ -22,6 +22,9 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     qmlRegisterUncreatableType<PlayerDef>("poker.playerdef", 1, 0, "PlayerDef", "Cannot create model in QML");
     qmlRegisterUncreatableType<RoundDef>("poker.rounddef", 1, 0, "RoundDef", "Cannot create model in QML");
+    qmlRegisterUncreatableType<TournamentStructureDef>("poker.tournamentstructuredef", 1, 0,
+                                         "TournamentStructureDef", "Cannot create model in QML");
+
 
     std::chrono::milliseconds interval(100);
 

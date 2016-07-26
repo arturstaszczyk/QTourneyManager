@@ -6,6 +6,7 @@
 #include <QString>
 
 #include "RoundDef.h"
+#include "QAutoProperty.h"
 
 class TournamentStructureDef : public QObject
 {
@@ -13,17 +14,14 @@ class TournamentStructureDef : public QObject
 public:
     explicit TournamentStructureDef(QString name, QStringList roundUrls, QObject *parent = 0);
 
+    AUTO_PROPERTY(QString, name)
+    AUTO_PROPERTY(QStringList, roundUrls)
+    LIST_PROPERTY(RoundDef, rounds)
+
+public:
     void addRound(int smallBlind, int bigBlind, int timeInSeconds);
-    const QList<RoundDef*>& rounds() const { return mRounds; }
-    QString name() const { return mName; }
-    QStringList roundUrls() const { return mRoundUrls; }
+    bool isStructureReady() const { return a_roundUrls.size() == a_roundsRaw.size(); }
 
-    bool isStructureReady() const { return mRoundUrls.size() == mRounds.size(); }
-
-private:
-    QString mName;
-    QStringList mRoundUrls;
-    QList<RoundDef*> mRounds;
 };
 
 #endif // TOURNAMENTSTRUCTUREDEF_H

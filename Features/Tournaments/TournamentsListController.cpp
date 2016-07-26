@@ -22,11 +22,12 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
                 tourneyObj["rounds"].toVariant().toStringList(),
                 this);
 
-    auto tourneyList = mModel->tournaments();
+    mModel->tournamentsAdd(tourney);
+//    auto tourneyList = mModel->tournaments();
     auto tourneyName = tourney->name();
 
-    tourneyList.append(tourneyName);
-    mModel->tournaments(tourneyList);
+//    tourneyList.append(tourneyName);
+//    mModel->tournaments(tourneyList);
 
     mStructure[tourneyName] = tourney;
 
@@ -41,8 +42,6 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
 
 void TournamentsListController::onPlayClicked(QString tournamentName)
 {
-    qDebug() << tournamentName;
-    qDebug() << mStructure[tournamentName]->rounds().size();
     emit tournamentSelectedToPlay(mStructure[tournamentName]);
 }
 

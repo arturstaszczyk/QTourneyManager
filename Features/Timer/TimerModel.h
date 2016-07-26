@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QString>
-#include <QQmlListProperty>
 
 #include "QAutoProperty.h"
 #include "Features/RoundDef.h"
