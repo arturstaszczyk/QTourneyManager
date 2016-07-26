@@ -16,13 +16,13 @@
         <file>qml/Styles/RoundedPage.qml</file>
         <file>qml/Timer/TimerScreen.qml</file>
         <file>qml/Tounraments/TournamentsScreen.qml</file>
-        <file>qml/Settings/HostAddressScreen.qml</file>
         <file>qml/PlayerAndStats/PlayersAndStatsScreen.qml</file>
         <file>qml/PlayerAndStats/PlayerView.qml</file>
         <file>qml/PlayerAndStats/StatsView.qml</file>
         <file>qml/PlayerAndStats/PlayersListView.qml</file>
         <file>qml/Tounraments/TournamentHeader.qml</file>
         <file>qml/Tounraments/TournamentBody.qml</file>
-        <file>qml/Tounraments/RoundRow.qml</file>
+        <file>qml/Settings/SettingsScreen.qml</file>
+        <file>qml/Settings/HostAddress.qml</file>
     </qresource>
 </RCC>

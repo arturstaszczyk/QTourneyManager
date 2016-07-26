@@ -17,14 +17,6 @@ ApplicationWindow {
     width: 520
     height: 900
 
-//    property bool isCppAvailable: typeof _cpp !== "undefined"
-//    property QtObject _hostAddress: app.isCppAvailable ? hostAddressModel : mock.mockHostAddressModel
-//    property QtObject _timer: app.isCppAvailable ? timerModel : mock.mockTimerModel
-
-//    MockModels{
-//        id: mock
-//    }
-
     Image {
         id: background
         anchors.fill: parent

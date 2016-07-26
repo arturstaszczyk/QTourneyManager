@@ -23,7 +23,7 @@ NavigationBarController::NavigationBarController(QQmlApplicationEngine* engine, 
     QQmlComponent timerComponent(engine, QUrl("qrc:/qml/Timer/TimerScreen.qml"));
     mTimerScreen = timerComponent.create();
 
-    QQmlComponent hostAddressComponent(engine, QUrl("qrc:/qml/Settings/HostAddressScreen.qml"));
+    QQmlComponent hostAddressComponent(engine, QUrl("qrc:/qml/Settings/SettingsScreen.qml"));
     mHostAddressScreen = hostAddressComponent.create();
 
     QQmlComponent playersAndStatsComponent(engine, QUrl("qrc:/qml/PlayerAndStats/PlayersAndStatsScreen.qml"));
