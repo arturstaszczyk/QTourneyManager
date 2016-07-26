@@ -64,11 +64,7 @@ Rectangle {
                 backgroundColor: "gray"
             }
 
-            onClicked: {
-
-                tournamentView.expanded = !tournamentView.expanded
-                console.log(tournamentView.expanded + "," + (headerRow.height + bodyView.contentHeight))
-            }
+            onClicked: tournamentView.expanded = !tournamentView.expanded
         }
 
         Button {

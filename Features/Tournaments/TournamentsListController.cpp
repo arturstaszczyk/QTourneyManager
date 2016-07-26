@@ -23,11 +23,7 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
                 this);
 
     mModel->tournamentsAdd(tourney);
-//    auto tourneyList = mModel->tournaments();
     auto tourneyName = tourney->name();
-
-//    tourneyList.append(tourneyName);
-//    mModel->tournaments(tourneyList);
 
     mStructure[tourneyName] = tourney;
 
