@@ -8,15 +8,21 @@ class RoundModel (models.Model):
     round_duration = models.IntegerField()
 
     def __str__(self):
-        return "Small blind: {}GC - Big blind: {}GC".format(self.small_blind, self.big_blind)
+        return "Break {} sec".format(self.round_duration) if self.is_break else\
+            "{} GC/{} GC - {} sec".format(self.small_blind, self.big_blind, self.round_duration)
 
 class TournamentStructureModel(models.Model):
 
     name = models.CharField(max_length=128, unique=True)
-    rounds = models.ManyToManyField(RoundModel)
+    round_list = models.ManyToManyField(RoundModel, through="RoundOrderModel")
 
     def __str__(self):
         return self.name
+
+class RoundOrderModel(models.Model):
+    number = models.PositiveIntegerField()
+    round_model = models.ForeignKey(RoundModel)
+    structure = models.ForeignKey(TournamentStructureModel)
 
 class BuyinStructureModel(models.Model):
     bankroll = models.IntegerField(default=1000)

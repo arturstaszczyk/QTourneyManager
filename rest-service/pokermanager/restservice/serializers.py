@@ -11,7 +11,7 @@ class RoundSerializer(serializers.HyperlinkedModelSerializer):
 class TournamentStructureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TournamentStructureModel
-        fields = ('pk', 'name', 'rounds')
+        fields = ('pk', 'name', 'round_list')
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
