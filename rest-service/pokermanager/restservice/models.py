@@ -28,6 +28,7 @@ class PlayerModel(models.Model):
 
     nick = models.CharField(max_length=128, unique=True)
     rebuy_count = models.IntegerField(default=1)
+    eliminated = models.BooleanField(default=False)
     buyin_structure = models.ForeignKey(BuyinStructureModel, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):

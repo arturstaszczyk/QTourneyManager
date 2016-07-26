@@ -11,6 +11,7 @@ class PlayerDef : public QObject
 public:
     explicit PlayerDef(QObject *parent = 0);
 
+    AUTO_PROPERTY(int, restId)
     AUTO_PROPERTY(QString, nick)
     AUTO_PROPERTY(int, rebuyCount)
     AUTO_PROPERTY(bool, eliminated)

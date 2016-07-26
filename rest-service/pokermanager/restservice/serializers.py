@@ -1,24 +1,24 @@
 from rest_framework import serializers
-from .models import RoundModel, TournamentStructureModel, PlayerModel, BuyinStructureModel
+from .models import *
 
 
 class RoundSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = RoundModel
-        fields = ('small_blind', 'big_blind', 'round_duration')
+        fields = ('pk', 'small_blind', 'big_blind', 'round_duration')
 
 
 class TournamentStructureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TournamentStructureModel
-        fields = ('name', 'rounds')
+        fields = ('pk', 'name', 'rounds')
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = PlayerModel
-        fields = ("nick", "rebuy_count", "buyin_structure")
+        fields = ('pk', "nick", "rebuy_count", "buyin_structure", "eliminated")
 
 class BuyinStructureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BuyinStructureModel
-        fields = ("bankroll", "cash")
+        fields = ('pk', "bankroll", "cash")

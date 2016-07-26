@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     Commands/RequestBuyinCommand.cpp \
     Features/PlayerDef.cpp \
     Features/Settings/SettingsController.cpp \
-    Features/Settings/SettingsModel.cpp
+    Features/Settings/SettingsModel.cpp \
+    Commands/UpdatePlayerCommand.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -67,4 +68,5 @@ HEADERS += \
     Features/PlayersAndStats/StatsModel.h \
     Commands/RequestBuyinCommand.h \
     Features/Settings/SettingsModel.h \
-    Features/Settings/SettingsController.h
+    Features/Settings/SettingsController.h \
+    Commands/UpdatePlayerCommand.h

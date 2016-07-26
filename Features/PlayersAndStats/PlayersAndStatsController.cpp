@@ -1,5 +1,6 @@
 ﻿#include "PlayersAndStatsController.h"
 
+#include <QJsonArray>
 #include <QQmlContext>
 
 #include "Features/PlayerDef.h"
@@ -10,6 +11,7 @@
 #include "Features/BuyinDef.h"
 #include "Commands/CommandRecycler.h"
 #include "Commands/RequestBuyinCommand.h"
+#include "Commands/UpdatePlayerCommand.h"
 
 PlayersAndStatsController::PlayersAndStatsController(QQmlApplicationEngine* engine,
                                                      CommandRecycler* commandsRecycler, QObject *parent)
@@ -40,11 +42,15 @@ void PlayersAndStatsController::downloadBuyin(QString buyinUrl)
 
 void PlayersAndStatsController::addPlayer(QJsonObject playerObj)
 {
-    auto nick = playerObj["nick"].toString();
-    auto rebuyCount = playerObj["rebuy_count"].toInt();
     auto buyinUrl = playerObj["buyin_structure"].toString();
+    PlayerDef* playerDef = new PlayerDef(mPlayersModel);
+    playerDef->restId(playerObj["pk"].toInt());
+    playerDef->nick(playerObj["nick"].toString());
+    playerDef->rebuyCount(playerObj["rebuy_count"].toInt());
+    playerDef->eliminated(playerObj["eliminated"].toBool());
+    playerDef->setBuyinUrl(buyinUrl);
 
-    mPlayersModel->addPlayer(nick, rebuyCount, buyinUrl);
+    mPlayersModel->playersAdd(playerDef);
 
     if(needToDownloadBuyin(buyinUrl))
         downloadBuyin(buyinUrl);
@@ -64,21 +70,31 @@ void PlayersAndStatsController::addBuyin(QString buyinUrl, QJsonObject buyinObj)
 
 void PlayersAndStatsController::rebuy(QString playerNick)
 {
+    PlayerDef* playerToUpdate = nullptr;
     mPlayersModel->forEachPlayer([&](PlayerDef* playerDef) {
         if(playerDef->nick() == playerNick && !playerDef->eliminated())
+        {
             playerDef->rebuyCount(playerDef->rebuyCount() + 1);
+            playerToUpdate = playerDef;
+        }
     });
 
+    updateRestService(playerToUpdate);
     updateStatsModel();
 }
 
 void PlayersAndStatsController::eliminate(QString playerNick)
 {
+    PlayerDef* playerToUpdate = nullptr;
     mPlayersModel->forEachPlayer([&](PlayerDef* playerDef) {
         if(playerDef->nick() == playerNick)
+        {
+            playerToUpdate = playerDef;
             playerDef->eliminated(!playerDef->eliminated());
+        }
     });
 
+    updateRestService(playerToUpdate);
     updateStatsModel();
 }
 
@@ -105,4 +121,16 @@ void PlayersAndStatsController::updateStatsModel()
     mStatsModel->averageChipsCount(playersCount == 0 ? 0 : rebuyCountSum * buyinChips / playersCount);
     mStatsModel->totalChips(rebuyCountSum * buyinChips);
     mStatsModel->playersInGame(playersCount);
+}
+
+void PlayersAndStatsController::updateRestService(PlayerDef *playerDef)
+{
+    QJsonObject playerObj;
+    playerObj["pk"] = playerDef->restId();
+    playerObj["nick"] = playerDef->nick();
+    playerObj["rebuy_count"] = playerDef->rebuyCount();
+    playerObj["eliminated"] = playerDef->eliminated();
+
+    UpdatePlayerCommand* updatePlayerCmd = new UpdatePlayerCommand(playerObj, this);
+    mCommandRecycler->executeAndDispose(updatePlayerCmd);
 }

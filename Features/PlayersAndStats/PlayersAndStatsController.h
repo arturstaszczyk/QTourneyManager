@@ -7,6 +7,7 @@
 #include <QQmlApplicationEngine>
 
 class BuyinDef;
+class PlayerDef;
 class StatsModel;
 class PlayersModel;
 class CommandRecycler;
@@ -30,6 +31,7 @@ private:
     void downloadBuyin(QString buyinUrl);
 
     void updateStatsModel();
+    void updateRestService(PlayerDef* playerDef);
 
 private:
     CommandRecycler* mCommandRecycler;

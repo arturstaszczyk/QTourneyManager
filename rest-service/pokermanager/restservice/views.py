@@ -1,8 +1,7 @@
-from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from .models import RoundModel, TournamentStructureModel, PlayerModel, BuyinStructureModel
-from .serializers import RoundSerializer, TournamentStructureSerializer, PlayerSerializer, BuyinStructureSerializer
+from rest_framework.response import Response
+from .serializers import *
 
 class RoundViewSet(viewsets.ModelViewSet):
     queryset = RoundModel.objects.all()

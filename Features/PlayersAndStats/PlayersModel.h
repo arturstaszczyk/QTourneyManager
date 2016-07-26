@@ -19,8 +19,6 @@ public:
 public:
     void forEachPlayer(const std::function<void(PlayerDef*)>& lambda);
 
-public slots:
-    void addPlayer(QString player, int rebuyCount, QString buyinStructure);
 
 };
 
