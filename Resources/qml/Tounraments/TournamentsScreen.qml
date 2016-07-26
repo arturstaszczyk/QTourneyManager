@@ -14,6 +14,7 @@ Item{
         ColumnLayout
         {
             anchors.fill: parent
+            anchors.margins: Globals.normalMargin
 
             Item {
                 Layout.fillWidth: true
@@ -29,7 +30,7 @@ Item{
 
                 delegate: TournamentView {
                     width: parent.width
-                    headerHeight: 60
+                    headerHeight: Globals.cellHeight
                 }
             }
         }

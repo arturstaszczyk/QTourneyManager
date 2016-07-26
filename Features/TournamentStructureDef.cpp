@@ -8,7 +8,6 @@ TournamentStructureDef::TournamentStructureDef(QString name, QStringList roundUr
     , a_name(name)
     , a_roundUrls(roundUrls)
 {
-
 }
 
 void TournamentStructureDef::addRound(int smallBlind, int bigBlind, int timeInSeconds)

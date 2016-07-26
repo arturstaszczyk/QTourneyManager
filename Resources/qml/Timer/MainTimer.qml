@@ -36,7 +36,7 @@ ColumnLayout {
 
         delegate: RoundView {
             width: parent.width
-            height: 50
+            height: Globals.cellHeight
         }
 
         model: timerModel.rounds

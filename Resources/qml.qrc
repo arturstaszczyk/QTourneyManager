@@ -21,5 +21,8 @@
         <file>qml/PlayerAndStats/PlayerView.qml</file>
         <file>qml/PlayerAndStats/StatsView.qml</file>
         <file>qml/PlayerAndStats/PlayersListView.qml</file>
+        <file>qml/Tounraments/TournamentHeader.qml</file>
+        <file>qml/Tounraments/TournamentBody.qml</file>
+        <file>qml/Tounraments/RoundRow.qml</file>
     </qresource>
 </RCC>

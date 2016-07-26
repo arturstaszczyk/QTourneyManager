@@ -12,3 +12,4 @@ var textColorDark = "#000000"
 var supportTextColor = "#bbbabb"
 
 var normalMargin = 20
+var cellHeight = 60

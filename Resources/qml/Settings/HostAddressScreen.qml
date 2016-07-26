@@ -19,7 +19,7 @@ Item {
             width: page.width
 
             Item {
-                height: 50
+                height: Globals.normalMargin
             }
 
             Item {
@@ -63,7 +63,7 @@ Item {
             }
 
             Item {
-                height: 50
+                height: Globals.normalMargin
             }
 
             Button {

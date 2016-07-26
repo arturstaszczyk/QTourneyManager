@@ -67,7 +67,7 @@ ApplicationWindow {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    anchors.margins: 50
+                    anchors.margins: Globals.normalMargin
                     spacing: 0
 
                     Button {

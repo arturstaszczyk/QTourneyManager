@@ -36,7 +36,7 @@ ColumnLayout {
 
         delegate: PlayerView {
             width: parent.width
-            height: 50
+            height: Globals.cellHeight
         }
     }
 }
