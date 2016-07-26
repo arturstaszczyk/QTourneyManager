@@ -21,6 +21,10 @@ Item {
                 Layout.fillWidth: true
             }
 
+            AdminPassword {
+                Layout.fillWidth: true
+            }
+
             Button {
                 Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
 

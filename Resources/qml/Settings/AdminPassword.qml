@@ -30,7 +30,7 @@ ColumnLayout {
     TextField {
         id: adminPassfordField
         Layout.fillWidth: true
-        Layout.preferredHeight: hostAddressField.implicitHeight
+        Layout.preferredHeight: adminPassfordField.implicitHeight
 
         echoMode: TextInput.Password
 

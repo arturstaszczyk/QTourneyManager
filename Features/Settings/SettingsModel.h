@@ -13,10 +13,6 @@ public:
 
     AUTO_PROPERTY(QString, address)
     AUTO_PROPERTY(QString, adminPassword)
-   // AUTO_PROPERTY(bool, isAddressValid)
-
-private slots:
-    //void onAddressChanged(QString address);
 
 };
 
