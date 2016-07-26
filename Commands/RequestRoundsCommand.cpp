@@ -6,9 +6,10 @@
 #include <QNetworkAccessManager>
 
 
-RequestRoundsCommand::RequestRoundsCommand(TournamentStructureDef* tourney, QObject* parent)
+RequestRoundsCommand::RequestRoundsCommand(QString tourneyName, QStringList roundsUrlList, QObject* parent)
     : Command(COMMAND_NAME(RequestRoundsCommand), parent)
-    , mTourney(tourney)
+    , mTourneyName(tourneyName)
+    , mRoundsUrlList(roundsUrlList)
     , mRemainigRequestsCount(0)
 {
 }
@@ -17,10 +18,11 @@ void RequestRoundsCommand::execute()
 {
     QNetworkAccessManager* roundsHttp = new QNetworkAccessManager(this);
     connect(roundsHttp, SIGNAL(finished(QNetworkReply*)), this, SLOT(onHttpRoundGet(QNetworkReply*)));
-    QString apiAddress;
 
-    mRemainigRequestsCount = mTourney->roundUrls().size();
-    foreach(apiAddress, mTourney->roundUrls())
+    mRemainigRequestsCount = mRoundsUrlList.size();
+
+    QString apiAddress;
+    foreach(apiAddress, mRoundsUrlList)
     {
         roundsHttp->get(QNetworkRequest(QUrl(apiAddress)));
         qDebug() << "Requesting " << apiAddress;
@@ -34,9 +36,7 @@ void RequestRoundsCommand::onHttpRoundGet(QNetworkReply *reply)
     QJsonDocument roundJson = QJsonDocument::fromJson(roundDef, &error);
     auto roundObject = roundJson.object();
 
-    mTourney->addRound(roundObject["small_blind"].toInt(),
-            roundObject["big_blind"].toInt(),
-            roundObject["round_duration"].toInt());
+    emit roundParsed(mTourneyName, roundObject);
 
     mRemainigRequestsCount--;
     if(mRemainigRequestsCount == 0)

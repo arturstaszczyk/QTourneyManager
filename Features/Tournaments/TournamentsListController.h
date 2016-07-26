@@ -23,6 +23,7 @@ public slots:
     void addTournament(QJsonObject tourneyObj);
 
     void onPlayClicked(QString);
+    void onRoundParsed(QString tourneyName, QJsonObject roundObj);
 
 private:
     TournamentsListModel* mModel;

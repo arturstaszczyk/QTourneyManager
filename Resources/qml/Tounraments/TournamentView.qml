@@ -75,11 +75,16 @@ Item {
         }
     }
 
-    Rectangle {
-
+    Item {
         anchors.left: tournamentView.left
         anchors.right: tournamentView.right
         anchors.top: headerRow.bottom
         anchors.bottom: tournamentView.bottom
+
+        ListView {
+            anchors.fill: parent
+
+            model: modelData
+        }
     }
 }

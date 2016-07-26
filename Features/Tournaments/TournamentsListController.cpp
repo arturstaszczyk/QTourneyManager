@@ -1,7 +1,9 @@
 ﻿#include "TournamentsListController.h"
 
 #include <QDebug>
+#include <QJsonObject>
 
+#include "ReturnIf.h"
 #include "Commands/RequestRoundsCommand.h"
 
 TournamentsListController::TournamentsListController(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent)
@@ -30,7 +32,9 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
 
     if(!tourney->isStructureReady())
     {
-        RequestRoundsCommand* command = new RequestRoundsCommand(tourney, this);
+        RequestRoundsCommand* command = new RequestRoundsCommand(tourneyName, tourney->roundUrls(), this);
+        connect(command, SIGNAL(roundParsed(QString,QJsonObject)),
+                this, SLOT(onRoundParsed(QString,QJsonObject)));
         mCommandRecycler->executeAndDispose(command);
     }
 }
@@ -40,4 +44,14 @@ void TournamentsListController::onPlayClicked(QString tournamentName)
     qDebug() << tournamentName;
     qDebug() << mStructure[tournamentName]->rounds().size();
     emit tournamentSelectedToPlay(mStructure[tournamentName]);
+}
+
+void TournamentsListController::onRoundParsed(QString tourneyName, QJsonObject roundObj)
+{
+    auto tourney = mStructure[tourneyName];
+    RETURN_IF(tourney == nullptr);
+
+    tourney->addRound(roundObj["small_blind"].toInt(),
+            roundObj["big_blind"].toInt(),
+            roundObj["round_duration"].toInt());
 }

@@ -1,25 +1,29 @@
 ﻿#ifndef REQUESTROUNDSCOMMAND_H
 #define REQUESTROUNDSCOMMAND_H
 
+#include <QJsonObject>
 #include <QNetworkReply>
 
 #include "Command.h"
-#include "Features/TournamentStructureDef.h"
 
 class RequestRoundsCommand : public Command
 {
     Q_OBJECT
 
 public:
-    explicit RequestRoundsCommand(TournamentStructureDef* tourney, QObject* parent = nullptr);
+    explicit RequestRoundsCommand(QString tourneyName, QStringList roundsUrlList, QObject* parent = nullptr);
 
     void execute() override;
+
+signals:
+    void roundParsed(QString tourneyName, QJsonObject roundObj);
 
 private slots:
     void onHttpRoundGet(QNetworkReply*reply);
 
 private:
-    TournamentStructureDef* mTourney;
+    QString mTourneyName;
+    QStringList mRoundsUrlList;
 
     int mRemainigRequestsCount;
 };
