@@ -6,7 +6,7 @@ Rectangle {
 
     anchors.fill: parent
     anchors.margins: Globals.normalMargin
-    radius: 20
+    radius: Globals.rectangleRadius
 
     clip: true
 }

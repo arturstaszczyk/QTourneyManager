@@ -13,3 +13,4 @@ var supportTextColor = "#bbbabb"
 
 var normalMargin = 20
 var cellHeight = 60
+var rectangleRadius = 20
