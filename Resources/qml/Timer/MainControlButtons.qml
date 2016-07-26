@@ -4,6 +4,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
+import "../Globals.js" as Globals
 import "../Styles/Buttons"
 
 Item {
@@ -11,21 +12,19 @@ Item {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 5
-        anchors.leftMargin: 60
-        anchors.rightMargin: 60
+        anchors.margins: Globals.normalMargin
         spacing: 0
 
         Item {
-            Layout.preferredWidth: 80
+            Layout.preferredWidth: timerButtonsView.width / 3
             Layout.fillHeight: true
 
             Button {
                 id: prevButton
 
                 anchors.centerIn: parent
-                width: 60
-                height: 60
+                width: 50
+                height: 50
 
                 style: RoundButtonStyle {}
                 iconSource: "../../images/ui/button-prev.png"
@@ -58,7 +57,7 @@ Item {
         }
 
         Item {
-            Layout.preferredWidth: 80
+            Layout.preferredWidth: timerButtonsView.width / 3
             Layout.fillHeight: true
             Button {
                 id: nextButton

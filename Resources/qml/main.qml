@@ -14,8 +14,8 @@ import "Styles/Buttons"
 ApplicationWindow {
     id: app
     visible: true
-    width: 640
-    height: 960
+    width: 520
+    height: 900
 
 //    property bool isCppAvailable: typeof _cpp !== "undefined"
 //    property QtObject _hostAddress: app.isCppAvailable ? hostAddressModel : mock.mockHostAddressModel

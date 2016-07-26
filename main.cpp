@@ -16,8 +16,9 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
     qmlRegisterUncreatableType<PlayerDef>("poker.playerdef", 1, 0, "PlayerDef", "Cannot create model in QML");
     qmlRegisterUncreatableType<RoundDef>("poker.rounddef", 1, 0, "RoundDef", "Cannot create model in QML");

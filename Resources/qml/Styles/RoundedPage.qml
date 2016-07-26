@@ -5,7 +5,7 @@ Rectangle {
     color: "white"
 
     anchors.fill: parent
-    anchors.margins: 50
+    anchors.margins: Globals.normalMargin
     radius: 20
 
     clip: true
