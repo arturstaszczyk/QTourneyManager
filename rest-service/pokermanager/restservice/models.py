@@ -2,6 +2,7 @@ from django.db import models
 
 class RoundModel (models.Model):
 
+    is_break = models.BooleanField(default=False)
     small_blind = models.IntegerField()
     big_blind = models.IntegerField()
     round_duration = models.IntegerField()

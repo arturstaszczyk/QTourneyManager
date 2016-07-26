@@ -5,7 +5,7 @@ from .models import *
 class RoundSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = RoundModel
-        fields = ('pk', 'small_blind', 'big_blind', 'round_duration')
+        fields = ('pk', 'small_blind', 'big_blind', 'round_duration', 'is_break')
 
 
 class TournamentStructureSerializer(serializers.HyperlinkedModelSerializer):
