@@ -6,12 +6,13 @@ RoundDef::RoundDef(QObject* parent)
 {
 }
 
-RoundDef::RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, QObject *parent)
+RoundDef::RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, bool isBreak, QObject *parent)
     : QObject(parent)
     , a_smallBlind(smallBlind)
     , a_bigBlind(bigBlind)
     , a_roundTimeInSeconds(roundTimeInSeconds)
     , a_roundTimeString(RoundDef::secondsToTimeString(roundTimeInSeconds))
+    , a_isBreak(isBreak)
 {
 
 }

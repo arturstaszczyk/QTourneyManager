@@ -19,7 +19,7 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
 {
     TournamentStructureDef* tourney = new TournamentStructureDef(
                 tourneyObj["name"].toString(),
-                tourneyObj["rounds"].toVariant().toStringList(),
+                tourneyObj["round_list"].toVariant().toStringList(),
                 this);
 
     mModel->tournamentsAdd(tourney);
@@ -28,7 +28,7 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
     mStructure[tourneyName] = tourney;
 
     if(!tourney->isStructureReady())
-    {
+    {zle sie sortuja!!!
         RequestRoundsCommand* command = new RequestRoundsCommand(tourneyName, tourney->roundUrls(), this);
         connect(command, SIGNAL(roundParsed(QString,QJsonObject)),
                 this, SLOT(onRoundParsed(QString,QJsonObject)));

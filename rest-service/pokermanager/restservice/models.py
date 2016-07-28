@@ -24,6 +24,12 @@ class RoundOrderModel(models.Model):
     round_model = models.ForeignKey(RoundModel)
     structure = models.ForeignKey(TournamentStructureModel)
 
+    def __str__(self):
+        return str(self.structure) + ": " + str(self.number) + "-" + str(self.round_model)
+
+    class Meta:
+        ordering = ('number',)
+
 class BuyinStructureModel(models.Model):
     bankroll = models.IntegerField(default=1000)
     cash = models.IntegerField(default=5)

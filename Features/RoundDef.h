@@ -11,7 +11,7 @@ class RoundDef : public QObject
 
 public:
     explicit RoundDef(QObject* parent = nullptr);
-    explicit RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, QObject *parent = 0);
+    explicit RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, bool isBreak, QObject *parent = 0);
 
     static QString secondsToTimeString(int seconds);
 
