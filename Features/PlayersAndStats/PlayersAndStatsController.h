@@ -42,6 +42,7 @@ private:
     StatsModel* mStatsModel;
 
     QMap<QString, BuyinDef*> mBuyins;
+    QString mHostAddress;
 };
 
 #endif // PLAYERSANDSTATSCONTROLLER_H

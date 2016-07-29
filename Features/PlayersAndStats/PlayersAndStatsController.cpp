@@ -30,7 +30,8 @@ PlayersAndStatsController::PlayersAndStatsController(QQmlApplicationEngine* engi
 
 void PlayersAndStatsController::onHostAddressChanged(QString address)
 {
-    RequestPlayersCommand* requestPlayersCmd = new RequestPlayersCommand(address, this);
+    mHostAddress = address;
+    RequestPlayersCommand* requestPlayersCmd = new RequestPlayersCommand(mHostAddress, this);
     connect(requestPlayersCmd, SIGNAL(playerParsed(QJsonObject)), this, SLOT(onPlayerParsed(QJsonObject)));
     mCommandRecycler->executeAndDispose(requestPlayersCmd);
 }
@@ -140,6 +141,6 @@ void PlayersAndStatsController::updateRestService(PlayerDef *playerDef)
     playerObj["rebuy_count"] = playerDef->rebuyCount();
     playerObj["eliminated"] = playerDef->eliminated();
 
-    UpdatePlayerCommand* updatePlayerCmd = new UpdatePlayerCommand(playerObj, this);
+    UpdatePlayerCommand* updatePlayerCmd = new UpdatePlayerCommand(mHostAddress, playerObj, this);
     mCommandRecycler->executeAndDispose(updatePlayerCmd);
 }

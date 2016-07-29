@@ -11,7 +11,7 @@ class UpdatePlayerCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit UpdatePlayerCommand(QJsonObject playerObj, QObject *parent = 0);
+    explicit UpdatePlayerCommand(QString hostAddress, QJsonObject playerObj, QObject *parent = 0);
 
     void execute() override;
 
@@ -20,6 +20,7 @@ public slots:
 
 private:
     QJsonObject mPlayerObj;
+    QString mHostAddress;
 };
 
 #endif // UPDATEPLAYERCOMMAND_H
