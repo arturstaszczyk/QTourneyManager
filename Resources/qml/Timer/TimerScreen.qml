@@ -1,7 +1,10 @@
 ﻿import QtQuick 2.7
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 1.5
 
 import "../Styles"
+import "../Styles/Buttons"
+import "../Globals.js" as Globals
 
 Item {
     RoundedPage {
@@ -23,6 +26,22 @@ Item {
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: parent.height / 4.0
+            }
+
+            Button {
+                id: showPlayersAndStatsButton
+                Layout.fillWidth: true
+                text: "Show players & stats"
+
+                onClicked: navigationBarController.requestPlayerAndStatsScreen()
+                style: SystemButtonStyle {
+                    buttonText: showPlayersAndStatsButton.text
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: Globals.normalMargin
             }
 
         }
