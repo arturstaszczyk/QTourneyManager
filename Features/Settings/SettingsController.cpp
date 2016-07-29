@@ -1,5 +1,6 @@
 ﻿#include "SettingsController.h"
 
+#include <QDebug>
 #include <QCryptographicHash>
 
 #include "ReturnIf.h"
@@ -30,6 +31,7 @@ void SettingsController::onAdminPasswordChanged(QString adminPassword)
     hash.addData(adminPassword.toUtf8());
     QString base64Hash(hash.result().toBase64());
 
+    qDebug() << base64Hash;
     DeviceId deviceId;
     emit adminPasswordChanged(deviceId.getDeviceId().toString(), base64Hash);
 }

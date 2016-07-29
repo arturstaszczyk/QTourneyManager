@@ -1,7 +1,12 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from rest_framework.response import Response
 from .serializers import *
+from .forms import PasswordForm
+from .models import AdminModel
+from django.http import JsonResponse
+import base64
+
+
+from django.shortcuts import render
 
 class RoundViewSet(viewsets.ModelViewSet):
     queryset = RoundModel.objects.all()
@@ -18,3 +23,42 @@ class PlayersViewSet(viewsets.ModelViewSet):
 class BuyinStructureViewSet(viewsets.ModelViewSet):
     queryset = BuyinStructureModel.objects.all()
     serializer_class = BuyinStructureSerializer
+
+def save_new_password(password):
+    admin_model = AdminModel.objects.get(pk=1)
+    if admin_model == None:
+        admin_model = AdminModel()
+
+    admin_model.device_id = None
+
+    hash = sha3.sha3_256()
+    hash.update(password.encode())
+    encoded = hash.digest()
+
+    encoded = base64.b64encode(encoded)
+
+    admin_model.password = encoded
+
+    admin_model.save()
+
+def login_view(request):
+    if request.method == 'POST':
+
+        if('device_id' not in request.POST):
+            save_new_password(request.POST['password'])
+        else:
+            admin_model = AdminModel.objects.get(pk=1)
+            if admin_model == None:
+                admin_model = AdminModel()
+
+            allow = False
+            if(admin_model.password == request.POST['password']):
+                admin_model.device_id = request.POST['device_id']
+                admin_model.save()
+                allow = True
+
+            return JsonResponse({'allow': True}) if allow else JsonResponse({'allow': False})
+
+    form = PasswordForm()
+
+    return render(request, 'pages/login.html', {'form': form})

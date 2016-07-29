@@ -1,4 +1,5 @@
 from django.db import models
+import sha3
 
 
 class TournamentStructureModel(models.Model):
@@ -41,3 +42,11 @@ class PlayerModel(models.Model):
 
     def __str__(self):
         return self.nick
+
+class AdminModel(models.Model):
+
+    device_id = models.UUIDField(null=True)
+    password = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.password
