@@ -15,9 +15,11 @@ signals:
 
 public slots:
     void adminLogin(QString deviceId, QString password);
+    void onHostAddressChanged(QString address);
 
 private:
     CommandRecycler* mCommandRecycler;
+
 };
 
 #endif // SYNCCENTER_H

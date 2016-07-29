@@ -8,6 +8,7 @@
 #include "Commands/CommandRecycler.h"
 #include "Features/RoundDef.h"
 #include "Features/PlayerDef.h"
+#include "Features/SyncCenter/SyncCenter.h"
 #include "Features/Timer/TimerController.h"
 #include "Features/Settings/SettingsController.h"
 #include "Features/Tournaments/TournamentsListController.h"
@@ -33,6 +34,9 @@ int main(int argc, char *argv[])
     timerController.startTimer(interval.count());
 
     SettingsController addressController(engine.rootContext(), &commandRecycler);
+
+    SyncCenter syncCenter(&commandRecycler);
+    QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)), &syncCenter, SLOT(onHostAddressChanged(QString)));
 
     TournamentsListController tournamentsController(engine.rootContext(), &commandRecycler);
     QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)),

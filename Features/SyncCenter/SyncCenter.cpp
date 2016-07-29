@@ -10,6 +10,11 @@ SyncCenter::SyncCenter(CommandRecycler* commandRecycler, QObject *parent)
 
 }
 
+void SyncCenter::onHostAddressChanged(QString address)
+{
+
+}
+
 void SyncCenter::adminLogin(QString deviceId, QString password)
 {
     RequestAdminCommand* requestAdminCmd = new RequestAdminCommand();
