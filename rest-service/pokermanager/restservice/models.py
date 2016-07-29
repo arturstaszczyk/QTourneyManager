@@ -15,7 +15,7 @@ class RoundModel (models.Model):
     big_blind = models.IntegerField()
     round_duration = models.IntegerField()
     number = models.PositiveIntegerField()
-    tournament = models.ForeignKey(TournamentStructureModel, related_name='round')
+    tournament = models.ForeignKey(TournamentStructureModel, related_name='rounds')
 
     def __str__(self):
         breakStr = str(self.tournament.name) + " [{}. BREAK] {} sec".format(self.number, self.round_duration)

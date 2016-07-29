@@ -11,17 +11,20 @@ Rectangle {
 
     border.width: 1
     border.color: "black"
-
     radius: Globals.rectangleRadius
 
     ListView {
         id: roundsList
         anchors.fill: parent
 
+        boundsBehavior: Flickable.StopAtBounds
+
         model: modelData.rounds
         delegate: RoundView {
             width: parent.width
             height: Globals.cellHeight
+
+            disableHighlight: true
         }
     }
 }

@@ -10,8 +10,8 @@ TournamentStructureDef::TournamentStructureDef(QString name, QStringList roundUr
 {
 }
 
-void TournamentStructureDef::addRound(int smallBlind, int bigBlind, int timeInSeconds, bool isBreak)
+void TournamentStructureDef::addRound(int smallBlind, int bigBlind, int timeInSeconds, bool isBreak, int number)
 {
-    roundsAdd(new RoundDef(timeInSeconds, smallBlind, bigBlind, isBreak, this));
+    roundsAdd(new RoundDef(timeInSeconds, smallBlind, bigBlind, isBreak, number, this));
     qSort(a_roundsRaw.begin(), a_roundsRaw.end(), QSortHelpers::PtrLess<RoundDef>());
 }

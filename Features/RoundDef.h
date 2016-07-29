@@ -11,7 +11,7 @@ class RoundDef : public QObject
 
 public:
     explicit RoundDef(QObject* parent = nullptr);
-    explicit RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, bool isBreak, QObject *parent = 0);
+    explicit RoundDef(int roundTimeInSeconds, int smallBlind, int bigBlind, bool isBreak, int number, QObject *parent = 0);
 
     static QString secondsToTimeString(int seconds);
 
@@ -20,11 +20,12 @@ public:
     READONLY_PROPERTY(int, roundTimeInSeconds)
     READONLY_PROPERTY(QString, roundTimeString)
     READONLY_PROPERTY(bool, isBreak)
+    READONLY_PROPERTY(int, number)
 
 public:
-    bool operator<(const RoundDef& other) const
+    bool operator < (const RoundDef& other) const
     {
-        return this->a_smallBlind < other.a_smallBlind;
+        return this->a_number < other.a_number;
     }
 
 };

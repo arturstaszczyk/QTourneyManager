@@ -6,7 +6,8 @@ import "../Globals.js" as Globals
 
 Rectangle {
     id: roundView
-    property bool isActive: (index === timerModel.activeRound) && timerModel.running
+    property bool disableHighlight: false
+    property bool isActive: (index === timerModel.activeRound) && timerModel.running && !disableHighlight
 
     color: isActive ? "#8fd9d0" : "transparent"
 
