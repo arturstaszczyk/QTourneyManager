@@ -14,11 +14,13 @@ signals:
     void refresh();
 
 public slots:
-    void adminLogin(QString deviceId, QString password);
+    void onRequestAdmin(QString deviceId, QString password);
     void onHostAddressChanged(QString address);
 
 private:
     CommandRecycler* mCommandRecycler;
+
+    QString mHostAddress;
 
 };
 

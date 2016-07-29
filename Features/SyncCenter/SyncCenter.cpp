@@ -12,10 +12,10 @@ SyncCenter::SyncCenter(CommandRecycler* commandRecycler, QObject *parent)
 
 void SyncCenter::onHostAddressChanged(QString address)
 {
-
+    mHostAddress = address;
 }
 
-void SyncCenter::adminLogin(QString deviceId, QString password)
+void SyncCenter::onRequestAdmin(QString deviceId, QString password)
 {
     RequestAdminCommand* requestAdminCmd = new RequestAdminCommand();
     connect(requestAdminCmd, SIGNAL(adminRequestComplete(bool, QString)), this, SLOT(onAdminRequestComplete(bool, QString)));

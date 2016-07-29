@@ -33,27 +33,30 @@ int main(int argc, char *argv[])
     TimerController timerController(engine.rootContext());
     timerController.startTimer(interval.count());
 
-    SettingsController addressController(engine.rootContext(), &commandRecycler);
+    SettingsController settingsController(engine.rootContext(), &commandRecycler);
 
     SyncCenter syncCenter(&commandRecycler);
-    QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)), &syncCenter, SLOT(onHostAddressChanged(QString)));
+    QObject::connect(&settingsController, SIGNAL(hostAddressChanged(QString)),
+                     &syncCenter, SLOT(onHostAddressChanged(QString)));
+    QObject::connect(&settingsController, SIGNAL(adminPasswordChanged(QString, QString)),
+                     &syncCenter, SLOT(onRequestAdmin(QString,QString)));
 
     TournamentsListController tournamentsController(engine.rootContext(), &commandRecycler);
-    QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)),
+    QObject::connect(&settingsController, SIGNAL(hostAddressChanged(QString)),
                      &tournamentsController, SLOT(onHostAddressChanged(QString)));
 
     QObject::connect(&tournamentsController, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
                      &timerController, SLOT(addStructure(TournamentStructureDef*)));
 
     PlayersAndStatsController playersAndStatsController(&engine, &commandRecycler);
-    QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)),
+    QObject::connect(&settingsController, SIGNAL(hostAddressChanged(QString)),
                      &playersAndStatsController, SLOT(onHostAddressChanged(QString)));
 
 
     NavigationBarController navigationBar(&engine);
 
 #ifdef _DEBUG
-    addressController.onHostAddressChanged("localhost", true);
+    settingsController.onHostAddressChanged("localhost", true);
 #endif
 
 

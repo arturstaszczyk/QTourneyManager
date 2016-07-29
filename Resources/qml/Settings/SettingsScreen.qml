@@ -22,6 +22,7 @@ Item {
             }
 
             AdminPassword {
+                id: adminPassword
                 Layout.fillWidth: true
             }
 
@@ -38,6 +39,7 @@ Item {
                 onClicked: {
                     settingsController.onHostAddressChanged(hostAddress.text,
                                                                hostAddress.acceptableInput)
+                    settingsController.onAdminPasswordChanged(adminPassword.text)
                     navigationBarController.requestPop()
                 }
             }

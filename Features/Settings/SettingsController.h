@@ -18,9 +18,11 @@ public:
 
 signals:
     void hostAddressChanged(QString);
+    void adminPasswordChanged(QString deviceId, QString base64Hash);
 
 public slots:
     void onHostAddressChanged(QString address, bool isValid);
+    void onAdminPasswordChanged(QString adminPassword);
 
 private:
     SettingsModel* mModel;
