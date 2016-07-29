@@ -9,13 +9,13 @@ class RequestAdminCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit RequestAdminCommand(QObject *parent = 0);
+    explicit RequestAdminCommand(QString deviceId, QString password, QObject *parent = 0);
 
     void execute() override;
 
-signals:
-
-public slots:
+private:
+    QString mDeviceId;
+    QString mPassword;
 };
 
 #endif // REQUESTADMINCOMMAND_H

@@ -19,10 +19,7 @@ void SyncCenter::onHostAddressChanged(QString address)
 
 void SyncCenter::onRequestAdmin(QString deviceId, QString password)
 {
-    RequestAdminCommand* requestAdminCmd = new RequestAdminCommand();
+    RequestAdminCommand* requestAdminCmd = new RequestAdminCommand(deviceId, password);
     connect(requestAdminCmd, SIGNAL(adminRequestComplete(bool, QString)), this, SLOT(onAdminRequestComplete(bool, QString)));
     mCommandRecycler->executeAndDispose(requestAdminCmd);
-
-    qDebug() << deviceId;
-    qDebug() << password;
 }
