@@ -1,36 +1,31 @@
 from django.db import models
 
+
+class TournamentStructureModel(models.Model):
+
+    name = models.CharField(max_length=128, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class RoundModel (models.Model):
 
     is_break = models.BooleanField(default=False)
     small_blind = models.IntegerField()
     big_blind = models.IntegerField()
     round_duration = models.IntegerField()
-
-    def __str__(self):
-        return "Break {} sec".format(self.round_duration) if self.is_break else\
-            "{} GC/{} GC - {} sec".format(self.small_blind, self.big_blind, self.round_duration)
-
-class TournamentStructureModel(models.Model):
-
-    name = models.CharField(max_length=128, unique=True)
-    round_list = models.ManyToManyField(RoundModel, through="RoundOrderModel")
-
-    def __str__(self):
-        return self.name
-
-class RoundOrderModel(models.Model):
     number = models.PositiveIntegerField()
-    round_model = models.ForeignKey(RoundModel)
-    structure = models.ForeignKey(TournamentStructureModel)
+    tournament = models.ForeignKey(TournamentStructureModel, related_name='round')
 
     def __str__(self):
-        return str(self.structure) + ": " + str(self.number) + "-" + str(self.round_model)
+        breakStr = str(self.tournament.name) + " [{}. BREAK] {} sec".format(self.number, self.round_duration)
+        roundStr = str(self.tournament.name) + " [{}. ROUND] {} GC/{} GC - {} sec".format(self.number, self.small_blind,
+                                                                                          self.big_blind, self.round_duration)
+        return breakStr if self.is_break else roundStr
 
-    class Meta:
-        ordering = ('number',)
 
 class BuyinStructureModel(models.Model):
+
     bankroll = models.IntegerField(default=1000)
     cash = models.IntegerField(default=5)
 
