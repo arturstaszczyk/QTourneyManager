@@ -20,7 +20,9 @@ SOURCES += main.cpp \
     Features/PlayerDef.cpp \
     Features/Settings/SettingsController.cpp \
     Features/Settings/SettingsModel.cpp \
-    Commands/UpdatePlayerCommand.cpp
+    Commands/UpdatePlayerCommand.cpp \
+    Features/SyncCenter/SyncCenter.cpp \
+    Commands/RequestAdminCommand.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -69,4 +71,6 @@ HEADERS += \
     Commands/RequestBuyinCommand.h \
     Features/Settings/SettingsModel.h \
     Features/Settings/SettingsController.h \
-    Commands/UpdatePlayerCommand.h
+    Commands/UpdatePlayerCommand.h \
+    Features/SyncCenter/SyncCenter.h \
+    Commands/RequestAdminCommand.h
