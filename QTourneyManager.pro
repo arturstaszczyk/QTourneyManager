@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     Features/Settings/SettingsModel.cpp \
     Commands/UpdatePlayerCommand.cpp \
     Features/SyncCenter/SyncCenter.cpp \
-    Commands/RequestAdminCommand.cpp
+    Commands/RequestAdminCommand.cpp \
+    Features/Settings/DeviceId.cpp
 
 CONFIG(debug, debug|release)
 {
@@ -73,4 +74,5 @@ HEADERS += \
     Features/Settings/SettingsController.h \
     Commands/UpdatePlayerCommand.h \
     Features/SyncCenter/SyncCenter.h \
-    Commands/RequestAdminCommand.h
+    Commands/RequestAdminCommand.h \
+    Features/Settings/DeviceId.h

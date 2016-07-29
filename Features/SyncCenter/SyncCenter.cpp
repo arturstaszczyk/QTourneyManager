@@ -1,5 +1,7 @@
 ﻿#include "SyncCenter.h"
 
+#include <QDebug>
+
 #include "Commands/CommandRecycler.h"
 #include "Commands/RequestAdminCommand.h"
 
@@ -20,4 +22,7 @@ void SyncCenter::onRequestAdmin(QString deviceId, QString password)
     RequestAdminCommand* requestAdminCmd = new RequestAdminCommand();
     connect(requestAdminCmd, SIGNAL(adminRequestComplete(bool, QString)), this, SLOT(onAdminRequestComplete(bool, QString)));
     mCommandRecycler->executeAndDispose(requestAdminCmd);
+
+    qDebug() << deviceId;
+    qDebug() << password;
 }

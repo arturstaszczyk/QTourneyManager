@@ -3,6 +3,7 @@
 #include <QCryptographicHash>
 
 #include "ReturnIf.h"
+#include "DeviceId.h"
 
 SettingsController::SettingsController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent)
     : QObject(parent)
@@ -29,5 +30,6 @@ void SettingsController::onAdminPasswordChanged(QString adminPassword)
     hash.addData(adminPassword.toUtf8());
     QString base64Hash(hash.result().toBase64());
 
-    emit adminPasswordChanged("device_id", base64Hash);
+    DeviceId deviceId;
+    emit adminPasswordChanged(deviceId.getDeviceId().toString(), base64Hash);
 }
