@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 
 
     std::chrono::milliseconds interval(100);
-
     CommandRecycler commandRecycler(interval);
 
     TimerController timerController(engine.rootContext());
@@ -36,15 +35,16 @@ int main(int argc, char *argv[])
     SettingsController addressController(engine.rootContext(), &commandRecycler);
 
     TournamentsListController tournamentsController(engine.rootContext(), &commandRecycler);
-    QObject::connect(&addressController, SIGNAL(onTournamentParsed(QJsonObject)),
-                     &tournamentsController, SLOT(addTournament(QJsonObject)));
+    QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)),
+                     &tournamentsController, SLOT(onHostAddressChanged(QString)));
 
     QObject::connect(&tournamentsController, SIGNAL(tournamentSelectedToPlay(TournamentStructureDef*)),
                      &timerController, SLOT(addStructure(TournamentStructureDef*)));
 
     PlayersAndStatsController playersAndStatsController(&engine, &commandRecycler);
-    QObject::connect(&addressController, SIGNAL(onPlayerParsed(QJsonObject)),
-                     &playersAndStatsController, SLOT(addPlayer(QJsonObject)));
+    QObject::connect(&addressController, SIGNAL(hostAddressChanged(QString)),
+                     &playersAndStatsController, SLOT(onHostAddressChanged(QString)));
+
 
     NavigationBarController navigationBar(&engine);
 

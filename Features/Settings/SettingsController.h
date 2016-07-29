@@ -17,8 +17,7 @@ public:
     explicit SettingsController(QQmlContext* qmlContext, CommandRecycler* commandRecycler, QObject *parent = 0);
 
 signals:
-    void onTournamentParsed(QJsonObject);
-    void onPlayerParsed(QJsonObject);
+    void hostAddressChanged(QString);
 
 public slots:
     void onHostAddressChanged(QString address, bool isValid);

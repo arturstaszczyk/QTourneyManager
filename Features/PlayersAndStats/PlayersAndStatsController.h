@@ -20,11 +20,14 @@ public:
                                        QObject *parent = 0);
 
 public slots:
-    void addPlayer(QJsonObject playerObj);
-    void addBuyin(QString buyinUrl, QJsonObject buyinObj);
+    void onHostAddressChanged(QString address);
 
     void rebuy(QString playerNick);
     void eliminate(QString playerNick);
+
+private slots:
+    void onPlayerParsed(QJsonObject playerObj);
+    void onBuyinParsed(QString buyinUrl, QJsonObject buyinObj);
 
 private:
     bool needToDownloadBuyin(QString buyinUrl);

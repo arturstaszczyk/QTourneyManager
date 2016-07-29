@@ -9,9 +9,11 @@
 #include "StatsModel.h"
 #include "PlayersModel.h"
 #include "Features/BuyinDef.h"
+
 #include "Commands/CommandRecycler.h"
 #include "Commands/RequestBuyinCommand.h"
 #include "Commands/UpdatePlayerCommand.h"
+#include "Commands/RequestPlayersCommand.h"
 
 PlayersAndStatsController::PlayersAndStatsController(QQmlApplicationEngine* engine,
                                                      CommandRecycler* commandsRecycler, QObject *parent)
@@ -26,21 +28,14 @@ PlayersAndStatsController::PlayersAndStatsController(QQmlApplicationEngine* engi
     engine->rootContext()->setContextProperty("statsModel", mStatsModel);
 }
 
-bool PlayersAndStatsController::needToDownloadBuyin(QString buyinUrl)
+void PlayersAndStatsController::onHostAddressChanged(QString address)
 {
-    return mBuyins.find(buyinUrl) == mBuyins.end();
+    RequestPlayersCommand* requestPlayersCmd = new RequestPlayersCommand(address, this);
+    connect(requestPlayersCmd, SIGNAL(playerParsed(QJsonObject)), this, SLOT(onPlayerParsed(QJsonObject)));
+    mCommandRecycler->executeAndDispose(requestPlayersCmd);
 }
 
-void PlayersAndStatsController::downloadBuyin(QString buyinUrl)
-{
-    RequestBuyinCommand* requestBuyin = new RequestBuyinCommand(buyinUrl, this);
-    connect(requestBuyin, SIGNAL(buyinParsed(QString, QJsonObject)), this, SLOT(addBuyin(QString, QJsonObject)));
-    mCommandRecycler->executeAndDispose(requestBuyin);
-
-    mBuyins[buyinUrl] = nullptr;
-}
-
-void PlayersAndStatsController::addPlayer(QJsonObject playerObj)
+void PlayersAndStatsController::onPlayerParsed(QJsonObject playerObj)
 {
     auto buyinUrl = playerObj["buyin_structure"].toString();
     PlayerDef* playerDef = new PlayerDef(mPlayersModel);
@@ -58,7 +53,21 @@ void PlayersAndStatsController::addPlayer(QJsonObject playerObj)
     updateStatsModel();
 }
 
-void PlayersAndStatsController::addBuyin(QString buyinUrl, QJsonObject buyinObj)
+bool PlayersAndStatsController::needToDownloadBuyin(QString buyinUrl)
+{
+    return mBuyins.find(buyinUrl) == mBuyins.end();
+}
+
+void PlayersAndStatsController::downloadBuyin(QString buyinUrl)
+{
+    RequestBuyinCommand* requestBuyin = new RequestBuyinCommand(buyinUrl, this);
+    connect(requestBuyin, SIGNAL(buyinParsed(QString, QJsonObject)), this, SLOT(onBuyinParsed(QString, QJsonObject)));
+    mCommandRecycler->executeAndDispose(requestBuyin);
+
+    mBuyins[buyinUrl] = nullptr;
+}
+
+void PlayersAndStatsController::onBuyinParsed(QString buyinUrl, QJsonObject buyinObj)
 {
     BuyinDef* buyinDef = new BuyinDef(this);
     buyinDef->bankroll(buyinObj["bankroll"].toInt());

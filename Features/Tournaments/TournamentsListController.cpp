@@ -5,6 +5,7 @@
 
 #include "ReturnIf.h"
 #include "Commands/RequestRoundsCommand.h"
+#include "Commands/RequestTournamentsCommand.h"
 
 TournamentsListController::TournamentsListController(QQmlContext* qmlContext, CommandRecycler* recycler, QObject *parent)
     : QObject(parent)
@@ -15,7 +16,19 @@ TournamentsListController::TournamentsListController(QQmlContext* qmlContext, Co
     qmlContext->setContextProperty("tournamentsListController", this);
 }
 
-void TournamentsListController::addTournament(QJsonObject tourneyObj)
+void TournamentsListController::onHostAddressChanged(QString address)
+{
+    RequestTournamentsCommand* requestTourneysCmd = new RequestTournamentsCommand(address, this);
+    connect(requestTourneysCmd, SIGNAL(tournamentParsed(QJsonObject)), this, SLOT(onTournamentParsed(QJsonObject)));
+    mCommandRecycler->executeAndDispose(requestTourneysCmd);
+}
+
+void TournamentsListController::onPlayClicked(QString tournamentName)
+{
+    emit tournamentSelectedToPlay(mStructure[tournamentName]);
+}
+
+void TournamentsListController::onTournamentParsed(QJsonObject tourneyObj)
 {
     TournamentStructureDef* tourney = new TournamentStructureDef(
                 tourneyObj["name"].toString(),
@@ -34,11 +47,6 @@ void TournamentsListController::addTournament(QJsonObject tourneyObj)
                 this, SLOT(onRoundParsed(QString,QJsonObject)));
         mCommandRecycler->executeAndDispose(command);
     }
-}
-
-void TournamentsListController::onPlayClicked(QString tournamentName)
-{
-    emit tournamentSelectedToPlay(mStructure[tournamentName]);
 }
 
 void TournamentsListController::onRoundParsed(QString tourneyName, QJsonObject roundObj)

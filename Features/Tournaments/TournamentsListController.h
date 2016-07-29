@@ -20,9 +20,11 @@ signals:
     void tournamentSelectedToPlay(TournamentStructureDef*);
 
 public slots:
-    void addTournament(QJsonObject tourneyObj);
-
+    void onHostAddressChanged(QString address);
     void onPlayClicked(QString);
+
+private slots:
+    void onTournamentParsed(QJsonObject tourneyObj);
     void onRoundParsed(QString tourneyName, QJsonObject roundObj);
 
 private:
