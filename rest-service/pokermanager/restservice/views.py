@@ -4,6 +4,7 @@ from .forms import PasswordForm
 from .models import AdminModel
 from django.http import JsonResponse
 import base64
+from django.views.decorators.csrf import csrf_exempt
 
 
 from django.shortcuts import render
@@ -41,8 +42,12 @@ def save_new_password(password):
 
     admin_model.save()
 
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
+
+        print(request.POST['password'])
+        #print(request.POST['device_id'])
 
         if('device_id' not in request.POST):
             save_new_password(request.POST['password'])
@@ -52,10 +57,13 @@ def login_view(request):
                 admin_model = AdminModel()
 
             allow = False
+            print(admin_model.password)
             if(admin_model.password == request.POST['password']):
                 admin_model.device_id = request.POST['device_id']
                 admin_model.save()
                 allow = True
+            else:
+                admin_model.device_id = ""
 
             return JsonResponse({'allow': True}) if allow else JsonResponse({'allow': False})
 
