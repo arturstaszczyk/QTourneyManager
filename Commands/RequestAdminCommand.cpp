@@ -17,10 +17,8 @@ RequestAdminCommand::RequestAdminCommand(QString hostAddress, QString deviceId, 
 
 void RequestAdminCommand::execute()
 {
-
     QNetworkAccessManager* adminHttp = new QNetworkAccessManager(this);
     connect(adminHttp, SIGNAL(finished(QNetworkReply*)), this, SLOT(onAdminRequestGet(QNetworkReply*)));
-
 
     QUrlQuery postParams;
     postParams.addQueryItem("device_id", mDeviceId);

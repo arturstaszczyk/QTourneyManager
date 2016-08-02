@@ -14,6 +14,9 @@ public:
 
     void execute() override;
 
+signals:
+    void adminRequestComplete(bool isAdmin);
+
 private slots:
     void onAdminRequestGet(QNetworkReply*reply);
 

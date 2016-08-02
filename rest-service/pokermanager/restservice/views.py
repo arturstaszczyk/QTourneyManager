@@ -42,31 +42,33 @@ def save_new_password(password):
 
     admin_model.save()
 
+def can_become_admin(password, device_id):
+    allow = False
+
+    admin_model = AdminModel.objects.get(pk=1)
+    if admin_model == None:
+        admin_model = AdminModel()
+
+    print(admin_model.password)
+    if (admin_model.password == password):
+        admin_model.device_id = device_id
+        admin_model.save()
+        allow = True
+    else:
+        admin_model.device_id = ""
+
+    return allow
+
 @csrf_exempt
 def login_view(request):
     if request.method == 'POST':
 
-        print(request.POST['password'])
-        #print(request.POST['device_id'])
-
         if('device_id' not in request.POST):
             save_new_password(request.POST['password'])
         else:
-            admin_model = AdminModel.objects.get(pk=1)
-            if admin_model == None:
-                admin_model = AdminModel()
-
-            allow = False
-            print(admin_model.password)
-            if(admin_model.password == request.POST['password']):
-                admin_model.device_id = request.POST['device_id']
-                admin_model.save()
-                allow = True
-            else:
-                admin_model.device_id = ""
-
+            allow = can_become_admin(request.POST['password'], request.POST['device_id'])
             return JsonResponse({'allow': True}) if allow else JsonResponse({'allow': False})
+    else:
+        form = PasswordForm()
 
-    form = PasswordForm()
-
-    return render(request, 'pages/login.html', {'form': form})
+        return render(request, 'pages/login.html', {'form': form})
